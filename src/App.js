@@ -1,69 +1,103 @@
 import "./App.css";
-import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import io from "socket.io-client";
-import axios from "axios";
+import DummyHomepage from "./views/DummyHomepage";
 
-const socket = io.connect("http://localhost:4001/chat");
+import { SocketContext } from "./context/SocketContext";
+import { useContext, useState } from "react";
 
-function HomePage() {
-  const [room, setRoom] = useState("");
-
-  const [message, setMessage] = useState("");
-  const [myMessages, setMyMessages] = useState([]);
-  const [messageFromOther, setMessageFromOther] = useState([]);
-
-  const sendMessage = async () => {
-    socket.emit("send_message", { message, room });
-    setMyMessages([...myMessages, message]);
-  };
-
-  const joinRoom = () => {
-    if (room !== "") {
-      socket.emit("join_room", room);
-    }
-  };
-
-  useEffect(() => {
-    socket.on("receive_message", (data) => {
-      console.log(data, "<<<ini dari sebelah");
-      setMessageFromOther(data.message);
-    });
-  }, [socket]);
-
-  const findStrangerHandler = async () => {
-    console.log("gaada routernya sob");
-  };
+function Notifications() {
+  const { answerCall, call, callAccepted } = useContext(SocketContext);
 
   return (
     <>
-      <div
-        style={{
-          marginBottom: 10,
-        }}
-      >
-        <input
-          placeholder="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button onClick={sendMessage}>send message</button>
-        <br />
-        <input
-          placeholder="room"
-          value={room}
-          onChange={(e) => setRoom(e.target.value)}
-        />
-        <button onClick={joinRoom}>Join room</button>
+      {call.isReceivedCall && !callAccepted && (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <h1>{call.name} is calling:</h1>
+          <button onClick={answerCall}>Accept</button>
+        </div>
+      )}
+    </>
+  );
+}
+
+function Options({ children }) {
+  const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } =
+    useContext(SocketContext);
+  const [idToCall, setIdToCall] = useState("");
+
+  return (
+    <div style={{ display: "flex", flexDirection: "row", marginTop: "120px" }}>
+      <form noValidate autoComplete="off" onSubmit={(e) => e.preventDefault()}>
+        <div>
+          <h6>Account Info</h6>
+          <label>Name</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <p>copy the following text! {me}</p>
+        </div>
+        <div>
+          <h6>Account Info</h6>
+          <label>Id to call</label>
+          <input
+            type="text"
+            value={idToCall}
+            onChange={(e) => setIdToCall(e.target.value)}
+          />
+          {callAccepted && !callEnded ? (
+            <button onClick={leaveCall}>Hang up</button>
+          ) : (
+            <button onClick={() => callUser(idToCall)}>Call</button>
+          )}
+        </div>
+      </form>
+      {children}
+    </div>
+  );
+}
+
+function VideoPlayer() {
+  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } =
+    useContext(SocketContext);
+
+  return (
+    <div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {stream && (
+          <div
+            style={{
+              padding: "10px",
+              border: "2px solid black",
+              margin: "10px",
+            }}
+          >
+            <h2>{name || "Name"}</h2>
+            <div style={{ width: "550px", height: "300px" }}>
+              <video playsInline muted ref={myVideo} autoPlay />
+            </div>
+          </div>
+        )}
+        {callAccepted && !callEnded && (
+          <div
+            style={{
+              padding: "10px",
+              border: "2px solid black",
+              margin: "10px",
+            }}
+          >
+            <h2>{call.name || "Name"}</h2>
+
+            <video playsInline ref={userVideo} autoPlay />
+          </div>
+        )}
       </div>
 
-      {myMessages.map((myMsg, i) => (
-        <div key={i}>{myMsg + " <--- kiri"}</div>
-      ))}
-      {messageFromOther}
-
-      <button onClick={findStrangerHandler}>Find stranger</button>
-    </>
+      <Options>
+        <Notifications />
+      </Options>
+    </div>
   );
 }
 
@@ -71,7 +105,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/" element={<DummyHomepage />} /> */}
+        <Route path="/" element={<VideoPlayer />} />
       </Routes>
     </div>
   );
