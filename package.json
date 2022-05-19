@@ -15,11 +15,12 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
+    "socket.io-client": "^4.5.1",
     "sweetalert2": "^11.4.14",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "PORT=5050 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
