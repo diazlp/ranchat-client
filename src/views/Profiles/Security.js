@@ -1,9 +1,9 @@
 import { Col } from "react-bootstrap";
 
-export default function LoginPage(params) {
+export default function Security(params) {
   return (
     <Col>
-      <h1>LoginPage</h1>
+      <h1>Security</h1>
     </Col>
   );
 }

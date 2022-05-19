@@ -4,3 +4,4 @@ import testReducer from "./testReducer";
 export default combineReducers({
   test: testReducer,
 });
+
