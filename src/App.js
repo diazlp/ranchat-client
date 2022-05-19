@@ -10,12 +10,12 @@ function HomePage() {
   const [room, setRoom] = useState("");
 
   const [message, setMessage] = useState("");
-  const [myMessages, setMyMessages] = useState([]);
-  const [messageFromOther, setMessageFromOther] = useState([]);
+  const [messageList, setMessageList] = useState([]);
+  const [username, setUsername] = useState("");
 
   const sendMessage = async () => {
-    socket.emit("send_message", { message, room });
-    setMyMessages([...myMessages, message]);
+    socket.emit("send_message", { username, message, room });
+    setMessageList([...messageList, { sender: "you", message }]);
   };
 
   const joinRoom = () => {
@@ -26,10 +26,14 @@ function HomePage() {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      console.log(data, "<<<ini dari sebelah");
-      setMessageFromOther(data.message);
+      // console.log(data, "<<<ini dari sebelah");
+      let obj = {
+        sender: data.username,
+        message: data.message,
+      };
+      setMessageList([...messageList, obj]);
     });
-  }, [socket]);
+  }, [socket, messageList]);
 
   const findStrangerHandler = async () => {
     console.log("gaada routernya sob");
@@ -42,6 +46,11 @@ function HomePage() {
           marginBottom: 10,
         }}
       >
+        <input
+          placeholder="username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <br />
         <input
           placeholder="message"
           value={message}
@@ -57,10 +66,14 @@ function HomePage() {
         <button onClick={joinRoom}>Join room</button>
       </div>
 
-      {myMessages.map((myMsg, i) => (
-        <div key={i}>{myMsg + " <--- kiri"}</div>
-      ))}
-      {messageFromOther}
+      {messageList.map((data, i) => {
+        return (
+          <div key={i}>
+            <p style={{ color: "red" }}>{data.sender}</p>
+            <p>{data.message}</p>
+          </div>
+        );
+      })}
 
       <button onClick={findStrangerHandler}>Find stranger</button>
     </>
