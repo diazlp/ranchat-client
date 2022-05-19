@@ -1,9 +1,27 @@
-import { Col } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
+import OnBoarding from "../components/OnBoarding/OnBoarding";
+import FormComponent from "../components/Form/FormComponent";
+import Headline from "../components/Text/Headline";
 
 export default function RegisterPage(params) {
   return (
-    <Col>
-      <h1>RegisterPage</h1>
-    </Col>
+    <Container fluid>
+      <Row className="vh-100">
+        <Col className="bg-danger d-flex align-items-center justify-content-center">
+          <Row>
+            <Headline text="Register" />
+            <FormComponent type="register" />
+            <p>
+              Don't have an account? <Link to="/login">Login</Link>
+            </p>
+          </Row>
+        </Col>
+        <Col className="bg-secondary d-flex align-items-center justify-content-center">
+          <OnBoarding />
+        </Col>
+      </Row>
+    </Container>
   );
 }
