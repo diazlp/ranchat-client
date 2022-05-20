@@ -5,6 +5,7 @@ export default function ButtonPrimary({ text, page }) {
   return (
     <Link to={page}>
       <Button
+        className="button-sign"
         onClick={() => {
           console.log(page);
         }}
