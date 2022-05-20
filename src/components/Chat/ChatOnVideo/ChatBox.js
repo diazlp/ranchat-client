@@ -1,7 +1,7 @@
 import { Container, Row, Stack } from "react-bootstrap";
-import ChatBubble from "./ChatBubble";
+import ChatBubble from "./ChatBubble1";
 
-export default function ChatBox() {
+export default function ChatBox1() {
   return (
     <Container fluid className="chat-box">
       <Row className="chat-box-area">

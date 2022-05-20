@@ -58,7 +58,7 @@ export default function MainHeaders(params) {
               />
             </div>
             <h1 className="m-0 total-user-online">1.000.000</h1>
-            <Icon name="circle" from="online" />
+            <Icon name="circle" placement="online" />
             <h3 className="m-0 subheading">Online User</h3>
           </Stack>
         </Navbar.Collapse>
