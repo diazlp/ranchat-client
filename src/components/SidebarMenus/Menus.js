@@ -29,7 +29,7 @@ export default function Menus(params) {
         <Stack gap={5} className="my-auto text-center menus-sidebar-icon">
           {menus.map((el) => (
             <Link to={el.to} className={el.disabled === true ? "disabled" : ""}>
-              <Icon name={el.icon} from="SidebarMenus" />
+              <Icon name={el.icon} placement="menus" />
             </Link>
           ))}
         </Stack>

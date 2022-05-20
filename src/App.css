@@ -13,7 +13,7 @@ button {
 
 /* Sidebar menus */
 .sidebar-menus{
-  width: 120px !important;
+  width: 110px !important;
 }
 
 .sidebar-menus {
@@ -32,7 +32,7 @@ button {
 
 .icon-online{
   font-size: 10px;
-  color: green;
+  color: rgb(36, 197, 36);
 }
 
 .icon-offline{
@@ -145,3 +145,110 @@ button {
   font-size: 12px;
 }
 
+
+/* Sidebar Chat */
+.sidebar-chat {
+  width: 370px !important;
+  padding: 0 35px !important;
+}
+
+.sidebar-chat .header{
+  height: 100px;
+}
+
+.cb2:hover {
+  background-color: rgb(240, 240, 240);
+  cursor: pointer;
+}
+
+.button-upgrade {
+  background-color: rgb(255, 230, 0) !important;
+  color: rgb(41, 41, 41) !important;
+  border-radius: 30px !important;
+}
+
+.avatar-cb2 {
+  border-radius: 50%;
+}
+
+.username-cb2 {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.message-cb2 {
+  color: rgb(155, 155, 155);
+  display: inline-block;
+  font-size: 14px;
+}
+
+.badge-message .bg-primary {
+  background-color: blueviolet !important;
+}
+
+.chat-list {
+  overflow-x: auto;
+  height: 650px;
+}
+
+
+/* Friend Chat */
+.sidebar-friend {
+  width: 370px !important;
+}
+
+.badge-friend .bg-primary {
+  background-color: blueviolet !important;
+}
+
+.sidebar-friend .header {
+  height: 100px;
+}
+
+
+/* Chat */
+.chat-header {
+  height: 100px;
+  background-color: rgb(156, 93, 214) !important;
+  color: white;
+}
+
+.badge-level .bg-primary {
+  background-color: rgb(235, 197, 29) !important;
+}
+
+.icon-header-chat {
+  font-size: 24px;
+}
+
+.chat-area {
+  height: 780px;
+  overflow-x: auto;
+}
+
+.cb1 {
+  border-radius: 25px;
+}
+
+.chat-you {
+  background-color: rgb(100, 40, 156);
+  color: white;
+}
+
+.chat-guest {
+  background-color: rgb(156, 93, 214);
+  color: white;
+}
+
+.chat-message {
+  color: white;
+}
+
+.chat-time {
+  color: rgb(128, 128, 128);
+  font-size: 15px;
+}
+
+.icon-header-chat-level {
+  font-size: 15px;
+}

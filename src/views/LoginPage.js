@@ -11,7 +11,7 @@ export default function LoginPage(params) {
     <Container fluid>
       <Row className="vh-100">
         <Menus />
-        <Col className="bg-danger d-flex align-items-center justify-content-center">
+        <Col className="d-flex align-items-center justify-content-center">
           <Row>
             <Headline text="Login" />
             <FormComponent type="login" />
