@@ -14,10 +14,16 @@ import DetailPage from "./views/Profiles/DetailPage";
 import EditProfile from "./views/Profiles/EditProfile";
 import Security from "./views/Profiles/Security";
 
+/* DUMMY PAGE */
+import DummyHomepage from "./DummyPage/DummyHomepage";
+import DummyVideoPage from "./DummyPage/DummyVideoPage";
+
 function App() {
   return (
     <div className="App">
       <Routes>
+        {/* < Route path='/' element={<DummyHomepage>}/> */}
+        {/* <Route path="/" element={<DummyVideoPage />} /> */}
         <Route path="/" element={<HomePage />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/login" element={<LoginPage />} />
