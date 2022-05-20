@@ -7,12 +7,32 @@ export default function HomePage() {
   const [room, setRoom] = useState("");
 
   const [message, setMessage] = useState("");
-  const [myMessages, setMyMessages] = useState([]);
-  const [messageFromOther, setMessageFromOther] = useState([]);
+
+  // /* DIBAWAH INI ADALAH CODINGAN DIAZ */
+  //   const [myMessages, setMyMessages] = useState([]);
+  //   const [messageFromOther, setMessageFromOther] = useState([]);
+
+  //   const sendMessage = async () => {
+  //     socket.emit("send_message", { message, room });
+  //     setMyMessages([...myMessages, message]);
+  //   };
+
+  //   useEffect(() => {
+  //     socket.on("receive_message", (data) => {
+  //       // console.log(data, "<<<ini dari sebelah");
+  //       setMessageFromOther([...messageFromOther, data.message]);
+  //       console.log(messageFromOther);
+  //     });
+  //   }, [socket, messageFromOther]);
+
+  ////////////////////////////
+
+  const [messageList, setMessageList] = useState([]);
+  const [username, setUsername] = useState("");
 
   const sendMessage = async () => {
-    socket.emit("send_message", { message, room });
-    setMyMessages([...myMessages, message]);
+    socket.emit("send_message", { username, message, room });
+    setMessageList([...messageList, { sender: "you", message }]);
   };
 
   const joinRoom = () => {
@@ -24,11 +44,15 @@ export default function HomePage() {
   useEffect(() => {
     socket.on("receive_message", (data) => {
       // console.log(data, "<<<ini dari sebelah");
-      setMessageFromOther([...messageFromOther, data.message]);
-      console.log(messageFromOther);
+      let obj = {
+        sender: data.username,
+        message: data.message,
+      };
+      setMessageList([...messageList, obj]);
     });
-  }, [socket, messageFromOther]);
+  }, [socket, messageList]);
 
+  /* BELUM ADA GUNANYA */
   const findStrangerHandler = async () => {
     console.log("gaada routernya sob");
   };
@@ -40,6 +64,11 @@ export default function HomePage() {
           marginBottom: 10,
         }}
       >
+        <input
+          placeholder="username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <br />
         <input
           placeholder="message"
           value={message}
@@ -55,12 +84,14 @@ export default function HomePage() {
         <button onClick={joinRoom}>Join room</button>
       </div>
 
-      {myMessages.map((myMsg, i) => (
-        <div key={i}>{myMsg + " <--- kiri"}</div>
-      ))}
-      {messageFromOther.map((myMsg, i) => (
-        <div key={i}>{myMsg + " kanan ---->"}</div>
-      ))}
+      {messageList.map((data, i) => {
+        return (
+          <div key={i}>
+            <p style={{ color: "red" }}>{data.sender}</p>
+            <p>{data.message}</p>
+          </div>
+        );
+      })}
 
       <button onClick={findStrangerHandler}>Find stranger</button>
     </>
