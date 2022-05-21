@@ -1,4 +1,4 @@
-import { Badge, Button, Col, Row, Stack } from "react-bootstrap";
+import { Badge, Button, Col, Form, Row, Stack } from "react-bootstrap";
 import ChatBubble2 from "./Chat/ChatPersonal/ChatBubble2";
 import Icon from "./Icon/Icon";
 
@@ -29,7 +29,7 @@ export default function SidebarChat(params) {
           </Col>
         </Row>
         <Row className="m-0">
-          <input type="search" />
+          <Form.Control type="search" placeholder="name@example.com" />
         </Row>
         <Row className="chat-list d-flex align-items-start">
           <ChatBubble2

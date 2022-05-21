@@ -1,4 +1,4 @@
-import { Container, Row, Stack } from "react-bootstrap";
+import { Container, Form, Row, Stack } from "react-bootstrap";
 import ChatBubble from "./ChatBubble1";
 
 export default function ChatBox1() {
@@ -12,7 +12,7 @@ export default function ChatBox1() {
         </Stack>
       </Row>
       <Row>
-        <input />
+        <Form.Control type="search" placeholder="name@example.com" />
       </Row>
     </Container>
   );

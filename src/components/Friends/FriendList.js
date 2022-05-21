@@ -1,4 +1,4 @@
-import { Badge, Button, Col, Nav, Row, Stack } from "react-bootstrap";
+import { Badge, Button, Col, Form, Nav, Row, Stack } from "react-bootstrap";
 import Icon from "../Icon/Icon";
 import FriendListItem from "./FriendListItem";
 
@@ -19,7 +19,7 @@ export default function FriendList(params) {
       </Row>
 
       <Row className="m-0">
-        <input type="search" />
+        <Form.Control type="email" placeholder="name@example.com" />
       </Row>
 
       <Stack gap={4} className="mt-5">
@@ -49,8 +49,10 @@ export default function FriendList(params) {
           <FriendListItem />
         </div>
 
-        <Row className="mt-auto create-room-video">
-          <Button className="p-3 ">Create Room</Button>
+        <Row>
+          <Button className="p-3 create-room-video">
+            <Icon name="plus" /> Create Room
+          </Button>
         </Row>
       </Stack>
     </Col>

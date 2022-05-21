@@ -157,7 +157,7 @@ button {
 
 /* Video Play ground */
 .video-prev {
-  width: 870px;
+  width: 100%;
   height: 500px;
   border-radius: 20px;
   background-color: black;
@@ -363,4 +363,9 @@ button {
   border-radius: 50px !important;
   background-color: rgb(233, 233, 233);
   width: 270px;
+}
+
+.create-room-video {
+  background-color: rgb(255, 214, 30) !important;
+  border-radius: 50px !important;
 }
