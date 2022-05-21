@@ -12,7 +12,7 @@ export default function RegisterPage(params) {
       <Row className="vh-100">
         <Menus />
         <Col className="d-flex align-items-center justify-content-center">
-          <Row>
+          <Row id="register-form">
             <Headline text="Register" />
             <FormComponent type="register" />
             <p>

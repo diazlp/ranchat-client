@@ -387,6 +387,15 @@ video::-webkit-media-controls {
 }
 
 
+/* Form */
+#login-form {
+  width: 500px !important;
+}
+#register-form {
+  width: 500px !important;
+}
+
+
 /* Chat */
 .chat-header {
   height: 100px;
