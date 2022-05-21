@@ -4,7 +4,7 @@ import Peer from "simple-peer";
 
 const SocketContext = createContext();
 
-const socket = io.connect("http://localhost:4001/chat");
+const socket = io.connect("http://localhost:4001");
 
 const ContextProvider = ({ children }) => {
   const [stream, setStream] = useState(null);
@@ -103,5 +103,7 @@ const ContextProvider = ({ children }) => {
     </SocketContext.Provider>
   );
 };
+
+
 
 export { ContextProvider, SocketContext };

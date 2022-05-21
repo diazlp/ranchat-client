@@ -1,11 +1,11 @@
-import { FETCH_TOKEN } from "./actionTypes";
+import { FETCH_USER, FETCH_PROFILE } from "./actionTypes";
 import axios from "axios";
 
 const serverAppUrl = "http://localhost:4001";
 
-const setToken = (payload) => {
+const setUser = (payload) => {
   return {
-    type: FETCH_TOKEN,
+    type: FETCH_USER,
     payload,
   };
 };
@@ -25,20 +25,22 @@ export const getToken = (data) => {
         password: data.password,
       })
       .then(({ data }) => {
-        dispatch(setToken(data.access_token));
+        localStorage.setItem("access_token", data.access_token);
+        dispatch(setUser(data.profile));
       });
   };
 };
 
-export const register = (data) => {
+export const registerUser = (data) => {
+  console.log(data);
   return axios
     .post(`${serverAppUrl}/user/register`, {
-      fullName: data.fullName,
+      fullName: data.fullname,
       email: data.email,
       password: data.password,
     })
-    .then(({ data }) => {
-      console.log(data);
+    .then(() => {
+      localStorage.removeItem("email_login");
     });
 };
 
@@ -52,17 +54,23 @@ export const getProfile = () => {
 
 export const addProfile = (data) => {
   return axios
-    .post(`${serverAppUrl}/user/profile`, {
-      profilePicture: data.profilePicture,
-      birthday: data.birthday,
-      address: data.address,
-      gender: data.gender,
-      bio: data.bio,
-      banner: data.banner,
-      facebook: data.facebook,
-      instagram: data.instagram,
-      twitter: data.twitter,
-    })
+    .post(
+      `${serverAppUrl}/user/profile`,
+      {
+        profilePicture: data.profilePicture,
+        birthday: data.birthday,
+        address: data.address,
+        gender: data.gender,
+        bio: data.bio,
+        banner: data.banner,
+        facebook: data.facebook,
+        instagram: data.instagram,
+        twitter: data.twitter,
+      },
+      {
+        access_token: localStorage.getItem("access_token"),
+      }
+    )
     .then(({ data }) => {
       console.log(data);
     });

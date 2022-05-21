@@ -24,7 +24,7 @@ function App() {
       <Routes>
         {/* <Route path="/" element={<DummyHomepage />} /> */}
         {/* <Route path="/" element={<DummyVideoPage />} /> */}
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} /> 
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

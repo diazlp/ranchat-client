@@ -1,16 +1,16 @@
-import { FETCH_TOKEN, FETCH_PROFILE } from "../actions/actionTypes";
+import { FETCH_USER, FETCH_PROFILE } from "../actions/actionTypes";
 
 const initialState = {
-  token: "",
+  user: "",
   profile: {},
 };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_TOKEN:
+    case FETCH_USER:
       return {
         ...state,
-        token: action.payload,
+        user: action.payload,
       };
     case FETCH_PROFILE:
       return {
