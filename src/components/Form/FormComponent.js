@@ -10,24 +10,21 @@ export default function FormComponent({ type }) {
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-
   const [status, setStatus] = useState(false);
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const login = () => {
-    console.log(status);
     if (status) {
       localStorage.setItem("email_login", email);
     } else {
       if (localStorage.getItem("email_login")) {
-        console.log("asdf");
         localStorage.removeItem("email_login");
       }
       setStatus(false);
     }
 
-    dispatch(getToken({ email, password }))
+    getToken({ email, password })
       .then(() => {
         navigate("/chat");
       })

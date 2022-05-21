@@ -1,14 +1,7 @@
-import { FETCH_USER, FETCH_PROFILE } from "./actionTypes";
+import { FETCH_PROFILE } from "./actionTypes";
 import axios from "axios";
 
 const serverAppUrl = "http://localhost:4001";
-
-const setUser = (payload) => {
-  return {
-    type: FETCH_USER,
-    payload,
-  };
-};
 
 const setProfile = (payload) => {
   return {
@@ -18,17 +11,15 @@ const setProfile = (payload) => {
 };
 
 export const getToken = (data) => {
-  return (dispatch) => {
-    return axios
-      .post(`${serverAppUrl}/user/login`, {
-        email: data.email,
-        password: data.password,
-      })
-      .then(({ data }) => {
-        localStorage.setItem("access_token", data.access_token);
-        dispatch(setUser(data.profile));
-      });
-  };
+  return axios
+    .post(`${serverAppUrl}/user/login`, {
+      email: data.email,
+      password: data.password,
+    })
+    .then(({ data }) => {
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("profile", data.profile);
+    });
 };
 
 export const registerUser = (data) => {
@@ -46,9 +37,15 @@ export const registerUser = (data) => {
 
 export const getProfile = () => {
   return (dispatch) => {
-    return axios.get(`${serverAppUrl}/user/profile`).then(({ data }) => {
-      dispatch(setProfile(data));
-    });
+    return axios
+      .get(`${serverAppUrl}/user/profile`, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      })
+      .then(({ data }) => {
+        dispatch(setProfile(data));
+      });
   };
 };
 
@@ -68,7 +65,9 @@ export const addProfile = (data) => {
         twitter: data.twitter,
       },
       {
-        access_token: localStorage.getItem("access_token"),
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
       }
     )
     .then(({ data }) => {
