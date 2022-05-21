@@ -82,7 +82,7 @@ button {
   width: 870px;
   height: 500px;
   border-radius: 20px;
-  background-color: black;
+  /* background-color: black; */
 }
 
 .playground {
