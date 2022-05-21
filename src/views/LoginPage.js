@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import OnBoarding from "../components/OnBoarding/OnBoarding";
 import FormComponent from "../components/Form/FormComponent";
 import Headline from "../components/Text/Headline";
+import Menus from "../components/SidebarMenus/Menus";
 
 export default function LoginPage(params) {
   return (
     <Container fluid>
       <Row className="vh-100">
-        <Col className="bg-danger d-flex align-items-center justify-content-center">
+        <Menus />
+        <Col className="d-flex align-items-center justify-content-center">
           <Row>
             <Headline text="Login" />
             <FormComponent type="login" />
