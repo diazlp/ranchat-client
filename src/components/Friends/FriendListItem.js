@@ -1,30 +1,38 @@
-import { Badge, Button, Col, Nav, Row, Stack } from "react-bootstrap";
-import Icon from "../Icon/Icon";
+import { Col, Row } from "react-bootstrap";
 
-export default function FriendListItem(params) {
+import BadgeLevel from "../Badge/BadgeLevel";
+import Icon from "../Icon/Icon";
+import Avatar from "../Avatar/Avatar";
+
+export default function FriendListItem({ username, status, avatar, level }) {
+  const usernameTruncate = (username) => {
+    let usernameView = "";
+    console.log(username);
+    for (const i in username) {
+      if (usernameView.length < 12) usernameView += username[i];
+    }
+
+    if (username.length >= 12) usernameView += "...";
+    return usernameView;
+  };
+
+  console.log(usernameTruncate(username));
+
   return (
     <Row className="m-0 p-3 friend-list-item mb-2">
       <Col className="col-3">
-        <img
-          src="https://dummyimage.com/500x500/e6e6e6/080808&text=A"
-          alt="pp"
-          width="50"
-          height="50"
-          className="avatar-cb2"
-        />
+        <Avatar avatar={avatar} size="md" />
       </Col>
       <Col className="text-truncate">
         <Row>
-          <h6>Aliansyah Firdaus</h6>
+          <h6>{usernameTruncate(username)}</h6>
           <p className="m-0">
-            <Icon name="circle" placement="online" /> Online
+            <Icon name="circle" placement={`${status}-sm`} /> {status}
           </p>
         </Row>
       </Col>
       <Col className="col-3">
-        <h6 className="m-0">
-          <Badge pill>Lvl12</Badge>
-        </h6>
+        <BadgeLevel level={level} size="sm" />
       </Col>
     </Row>
   );

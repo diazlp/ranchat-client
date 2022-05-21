@@ -3,22 +3,23 @@ import { Link } from "react-router-dom";
 import ButtonCTARun from "../Button/ButtonCTARan";
 import Icon from "../Icon/Icon";
 
-export default function Menus(params) {
+export default function Menus({ isLogin }) {
+  console.log(isLogin);
   const menus = [
     {
       icon: "message",
       to: "/chat",
-      disabled: false,
+      disabled: isLogin,
     },
     {
       icon: "user-group",
       to: "/profile",
-      disabled: false,
+      disabled: isLogin,
     },
     {
       icon: "gear",
       to: "#",
-      disabled: true,
+      disabled: false,
     },
   ];
 
@@ -31,10 +32,13 @@ export default function Menus(params) {
             <Link
               to={el.to}
               className={
-                el.disabled === true ? "nav-link disabled" : "nav-link"
+                el.disabled === true ? "nav-link" : "nav-link disabled"
               }
             >
-              <Icon name={el.icon} placement="menus" />
+              <Icon
+                name={el.icon}
+                placement={el.disabled === true ? "menus" : "disabled"}
+              />
             </Link>
           ))}
         </Stack>
