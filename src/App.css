@@ -30,7 +30,7 @@ button {
   border-radius: 50%;
   background: hsl(0deg 0% 0% / 0.25);
   will-change: transform;
-  transform: translateY(2px);
+  transform: translateY(1px) translateX(-2px);
   transition:
     transform
     600ms
@@ -74,7 +74,7 @@ button {
   transition: transform 34ms;
 }
 .pushable:hover .shadow {
-  transform: translateY(4px);
+  transform: translateY(5px) translateX(-4px);
   transition:
     transform
     250ms
