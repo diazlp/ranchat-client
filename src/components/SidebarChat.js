@@ -5,7 +5,7 @@ import Icon from "./Icon/Icon";
 export default function SidebarChat(params) {
   return (
     <Col className="col-3 sidebar-chat">
-      <Row className="header d-flex align-items-center ">
+      <Row className="header d-flex align-items-center">
         <Col className="col-3">
           <img
             src="https://i.ibb.co/0nC0wBx/Run-Chat-Icon.png"

@@ -1,8 +1,14 @@
-import { Badge, Button, Col, Row } from "react-bootstrap";
+import { Badge, Button, Col, Nav, Row, Stack } from "react-bootstrap";
+import Icon from "../Icon/Icon";
+import FriendListItem from "./FriendListItem";
 
 export default function FriendList(params) {
+  const handleSelect = (eventKey) => {
+    console.log(eventKey);
+  };
+
   return (
-    <Col className="col-3 sidebar-friend px-4">
+    <Col className="col-3 sidebar-friend">
       <Row className="header">
         <Col className="d-flex align-items-center justify-content-between">
           <h2>Friend</h2>
@@ -11,6 +17,42 @@ export default function FriendList(params) {
           </h5>
         </Col>
       </Row>
+
+      <Row className="m-0">
+        <input type="search" />
+      </Row>
+
+      <Stack gap={4} className="mt-5">
+        <Row className="tab-filter-online mx-auto">
+          <Nav
+            justify
+            variant="pills"
+            onSelect={handleSelect}
+            defaultActiveKey="online"
+            className="p-0"
+          >
+            <Nav.Item>
+              <Nav.Link eventKey="online">Online (4) </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="offline">Offline</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Row>
+
+        <div className="friend-list">
+          <FriendListItem />
+          <FriendListItem />
+          <FriendListItem />
+          <FriendListItem />
+          <FriendListItem />
+          <FriendListItem />
+        </div>
+
+        <Row className="mt-auto create-room-video">
+          <Button className="p-3 ">Create Room</Button>
+        </Row>
+      </Stack>
     </Col>
   );
 }

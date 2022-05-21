@@ -2,7 +2,7 @@ import { Col, Row } from "react-bootstrap";
 
 export default function ChatBubble2({ name, message, image }) {
   return (
-    <Row className="m-0 mb-2 cb2 py-2 mb-auto">
+    <Row className="m-0 mb-2 cb2">
       <Col className="my-2 col-2 d-flex justify-content-center">
         <img
           src="https://dummyimage.com/500x500/e6e6e6/080808&text=A"
