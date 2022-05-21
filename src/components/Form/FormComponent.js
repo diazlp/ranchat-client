@@ -1,4 +1,5 @@
 import { Form, Button } from "react-bootstrap";
+import ButtonPrimary from "../Button/ButtonPrimary";
 import InputComponent from "./InputComponent";
 
 export default function FormComponent({ type }) {
@@ -55,14 +56,15 @@ export default function FormComponent({ type }) {
           key={el.placeholder}
         />
       ))}
-      {type === "login" && (
+      {type === "register" && (
         <Form.Group className="mb-5" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
+          <Form.Check
+            type="checkbox"
+            label="Saya setuju dengan syarat & ketentuan yang berlaku"
+          />
         </Form.Group>
       )}
-      <Button variant="primary" type="submit" className="px-5 mb-4">
-        Register
-      </Button>
+      <ButtonPrimary text={type} action="/" placement="sign" />
     </Form>
   );
 }

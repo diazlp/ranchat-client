@@ -121,6 +121,8 @@ video::-webkit-media-controls {
 /* Button */
 .btn-sign{
   background-color: #5f358f !important;
+  margin: 30px 0;
+  padding: 10px 20px !important;
 }
 .btn-premium-cta{
   background-color: rgb(235, 172, 38) !important;
