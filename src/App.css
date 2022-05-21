@@ -326,7 +326,7 @@ button {
 
 /* Friend List */
 .friend-list {
-  height: 600px;
+  height: 590px;
   max-height: 600px;
   overflow-x: auto;
 }
@@ -368,4 +368,16 @@ button {
 .create-room-video {
   background-color: rgb(255, 214, 30) !important;
   border-radius: 50px !important;
+}
+
+.icon-lock {
+  position: absolute;
+  color: rgb(224, 224, 224);
+}
+
+.fa-lock {
+  position: relative;
+  color: #ffa600;
+  font-size: 12px;
+  transform: translateY(4px) translateX(-4px);
 }

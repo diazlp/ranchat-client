@@ -49,9 +49,9 @@ export default function FriendList(params) {
           <FriendListItem />
         </div>
 
-        <Row>
+        <Row className="m-0">
           <Button className="p-3 create-room-video">
-            <Icon name="plus" /> Create Room
+            <Icon name="plus" /> Create Video Room
           </Button>
         </Row>
       </Stack>

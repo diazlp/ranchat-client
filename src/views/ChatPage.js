@@ -8,7 +8,7 @@ import Menus from "../components/SidebarMenus/Menus";
 
 export default function ChatPage(params) {
   return (
-    <Container fluid>
+    <Container fluid className="chat-page">
       <Row className="vh-100">
         <Menus />
         <SidebarChat />
