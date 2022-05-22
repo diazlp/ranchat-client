@@ -7,7 +7,6 @@ import Avatar from "../Avatar/Avatar";
 export default function FriendListItem({ username, status, avatar, level }) {
   const usernameTruncate = (username) => {
     let usernameView = "";
-    console.log(username);
     for (const i in username) {
       if (usernameView.length < 12) usernameView += username[i];
     }
@@ -15,8 +14,6 @@ export default function FriendListItem({ username, status, avatar, level }) {
     if (username.length >= 12) usernameView += "...";
     return usernameView;
   };
-
-  console.log(usernameTruncate(username));
 
   return (
     <Row className="m-0 p-3 friend-list-item mb-2">

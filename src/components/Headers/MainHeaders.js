@@ -2,7 +2,7 @@ import { Nav, Navbar, Row, Stack } from "react-bootstrap";
 import ButtonPrimary from "../Button/ButtonPrimary";
 import Icon from "../Icon/Icon";
 
-export default function MainHeaders({ isLogin, premium }) {
+export default function MainHeaders({ isLogin, premium, setModalShow }) {
   const btnHeaders = (isLogin, premium) => {
     if (!isLogin) {
       return (
@@ -15,8 +15,9 @@ export default function MainHeaders({ isLogin, premium }) {
       return (
         <ButtonPrimary
           text="Premium Now"
-          action="login"
+          action="premium"
           placement="premium-cta"
+          setModalShow={setModalShow}
         />
       );
     }
