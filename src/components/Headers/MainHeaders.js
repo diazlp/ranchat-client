@@ -15,9 +15,8 @@ export default function MainHeaders({ isLogin, premium, setModalShow }) {
       return (
         <ButtonPrimary
           text="Premium Now"
-          action="premium"
+          action={setModalShow}
           placement="premium-cta"
-          setModalShow={setModalShow}
         />
       );
     }
