@@ -1,6 +1,5 @@
 import { Col, Row, Button, Stack } from "react-bootstrap";
 import ButtonPrimary from "../Button/ButtonPrimary";
-import MyVideo from "/home/aliansyah/Documents/File Belajar/Hacktiv8/Phase3/Final Project/ranchat-client/src/static-noise.mp4";
 
 export default function VideoBox({ guest, isLogin, found }) {
   const showButtonReq = (isLogin) => {
@@ -57,7 +56,7 @@ export default function VideoBox({ guest, isLogin, found }) {
             </Stack>
           </Col>
           <video
-            src={MyVideo}
+            src={"/static-noise.mp4"}
             controls
             muted
             autoPlay={"autoplay"}

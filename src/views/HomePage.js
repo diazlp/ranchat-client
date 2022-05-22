@@ -14,7 +14,7 @@ export default function HomePage() {
 
   const login = true;
   const premium = false;
-  const found = true;
+  const found = false;
 
   return (
     <Container fluid>
