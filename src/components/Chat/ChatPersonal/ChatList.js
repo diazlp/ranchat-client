@@ -14,7 +14,6 @@ export default function ChatList({ name, message, image }) {
 
   const usernameTruncate = (username) => {
     let usernameView = "";
-    console.log(username);
     for (const i in username) {
       if (usernameView.length < 18) usernameView += username[i];
     }
