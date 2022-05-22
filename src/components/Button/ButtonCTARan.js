@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Icon from "../Icon/Icon";
 
 export default function ButtonCTARan(params) {
   return (

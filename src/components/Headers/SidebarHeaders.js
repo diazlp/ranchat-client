@@ -1,4 +1,5 @@
 import { Col, Form, Row, Stack } from "react-bootstrap";
+
 import BadgeComponent from "../Badge/BadgeComponent";
 
 export default function SidebarHeaders({ text, premium, color, num }) {

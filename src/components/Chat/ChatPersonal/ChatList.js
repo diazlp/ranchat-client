@@ -1,4 +1,5 @@
 import { Col, Row } from "react-bootstrap";
+
 import Avatar from "../../Avatar/Avatar";
 import TextForChat from "../../Text/TextForChat";
 

@@ -1,4 +1,5 @@
 import { Col, Row, Stack } from "react-bootstrap";
+
 import Avatar from "../../Avatar/Avatar";
 import BadgeLevel from "../../Badge/BadgeLevel";
 import Icon from "../../Icon/Icon";

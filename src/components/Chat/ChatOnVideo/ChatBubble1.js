@@ -1,4 +1,5 @@
 import { Col, Stack } from "react-bootstrap";
+
 import TextForChat from "../../Text/TextForChat";
 
 export default function ChatBubble({ who, message, time, username }) {
