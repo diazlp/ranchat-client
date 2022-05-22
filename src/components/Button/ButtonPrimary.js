@@ -8,8 +8,33 @@ export default function ButtonPrimary({
   action,
   placement,
   setModalShow,
+  submit,
 }) {
-  if (action !== "premium") {
+  if (action === "premium") {
+    return (
+      <Button className={`btn-${placement}`} onClick={() => setModalShow(true)}>
+        {placement === "premium-cta" && (
+          <Icon name="crown" placement="premium" />
+        )}
+        {text}
+      </Button>
+    );
+  } else if (action === "LR") {
+    return (
+      <Button
+        className={`btn-${placement}`}
+        onClick={(e) => {
+          e.preventDefault();
+          submit();
+        }}
+      >
+        {placement === "premium-cta" && (
+          <Icon name="crown" placement="premium" />
+        )}
+        {text}
+      </Button>
+    );
+  } else {
     return (
       <Link to={action}>
         <Button
@@ -24,15 +49,6 @@ export default function ButtonPrimary({
           {text}
         </Button>
       </Link>
-    );
-  } else {
-    return (
-      <Button className={`btn-${placement}`} onClick={() => setModalShow(true)}>
-        {placement === "premium-cta" && (
-          <Icon name="crown" placement="premium" />
-        )}
-        {text}
-      </Button>
     );
   }
 }

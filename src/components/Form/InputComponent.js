@@ -2,7 +2,14 @@ import { Col, Form, Row } from "react-bootstrap";
 import ButtonPrimary from "../Button/ButtonPrimary";
 import Icon from "../Icon/Icon";
 
-export default function InputComponent({ type, placeholder, placement }) {
+export default function InputComponent({
+  type,
+  placeholder,
+  placement,
+  inputHandler,
+  value,
+  name,
+}) {
   if (placement === "search") {
     return (
       <Form.Control
@@ -26,7 +33,16 @@ export default function InputComponent({ type, placeholder, placement }) {
     );
   } else {
     return (
-      <Form.Control type={type} placeholder={placeholder} className="mb-3" />
+      <Form.Control
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => {
+          const value = e.target.value;
+          inputHandler(value, name);
+        }}
+        className="mb-3"
+      />
     );
   }
 }
