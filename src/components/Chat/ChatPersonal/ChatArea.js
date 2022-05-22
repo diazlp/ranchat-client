@@ -1,5 +1,5 @@
 import { Col, Row } from "react-bootstrap";
-import ChatList from "./ChatList";
+
 import ChatBubble2 from "./ChatBubble2";
 
 export default function ChatArea({ data }) {

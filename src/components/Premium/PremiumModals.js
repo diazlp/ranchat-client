@@ -1,5 +1,4 @@
 import { Modal, Button } from "react-bootstrap";
-import ButtonPrimary from "../Button/ButtonPrimary";
 
 export default function PremiumModal(props) {
   return (

@@ -1,4 +1,5 @@
 import { Badge } from "react-bootstrap";
+
 import Icon from "../Icon/Icon";
 
 export default function BadgeLevel({ level, size }) {

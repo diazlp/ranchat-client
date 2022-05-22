@@ -16,7 +16,6 @@ button:hover {
 }
 .clickable{
   cursor: pointer;
-  filter: brightness(108%);
 }
 .clickable:hover{
   cursor: pointer;
@@ -68,6 +67,14 @@ video::-webkit-media-controls {
   color: rgb(185, 185, 185);
 }
 
+.icon-user-info-headline{
+  color: #464646;
+  font-size: 18px;
+}
+.icon-user-info-privacy{
+  color: #cfcfcf;
+  font-size: 12px;
+}
 .icon-send-message{
   color: #424242;
   font-size: 23px;
@@ -143,6 +150,14 @@ video::-webkit-media-controls {
 }
 .btn-request{
   background-color: rgb(235, 172, 38) !important;
+  color: rgb(255, 255, 255) !important;
+}
+.btn-send-verif{
+  background-color: blueviolet !important;
+  color: rgb(255, 255, 255) !important;
+}
+.btn-verif{
+  background-color: blueviolet !important;
   color: rgb(255, 255, 255) !important;
 }
 
@@ -491,14 +506,54 @@ video::-webkit-media-controls {
   background-color: #A766F0;
 }
 
+
 /* Profile Page */
 .sidebar-profile .nav-link {
   border-radius: 30px;
   color: white !important;
   border: 3px solid #8051b6;
   background-color: #A766F0;
+  font-weight: bold;
 }
 
 .sidebar-profile .nav-link:hover {
   background-color: #be93f0;
+}
+
+.sidebar-profile .background-profile {
+  max-width: 1280px;
+  max-height: 400px;
+}
+
+.detail-page .avatar {
+  max-width: 190px;
+  max-height: 190px;
+  border-radius: 50%;
+  transform: translateY(-60px);
+  padding: 5px;
+  background-color: #e4e4e4;
+}
+
+.detail-page .social-media i {
+  padding-top: 17px;
+  font-size: 25px;
+}
+
+.detail-page .about-me .about-paragraf {
+  width: 800px;
+}
+
+
+/* User Info */
+.user-info{
+  margin-top: 30px !important;
+}
+
+.user-info .user-info-headline {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user-info .user-info-value {
+  font-size: 16px;
 }
