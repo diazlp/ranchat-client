@@ -12,7 +12,7 @@ export default function LoginPage(params) {
       <Row className="vh-100">
         <Menus />
         <Col className="d-flex align-items-center justify-content-center">
-          <Row>
+          <Row id="login-form">
             <Headline text="Login" />
             <FormComponent type="login" />
             <p>

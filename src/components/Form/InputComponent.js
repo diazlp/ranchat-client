@@ -25,6 +25,8 @@ export default function InputComponent({ type, placeholder, placement }) {
       </Row>
     );
   } else {
-    <Form.Control type={type} placeholder={placeholder} />;
+    return (
+      <Form.Control type={type} placeholder={placeholder} className="mb-3" />
+    );
   }
 }
