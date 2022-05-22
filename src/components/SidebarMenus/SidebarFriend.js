@@ -7,12 +7,12 @@ import InputComponent from "../Form/InputComponent";
 import TabFilterStatus from "../Friends/TabFilterStatus";
 
 export default function SidebarFriend({ data }) {
-  const badge = 100;
+  const friend = 100;
   const online = 6;
 
   return (
     <Col className="col-3 sidebar-friend">
-      <SidebarHeaders text="Friend" badge={badge} />
+      <SidebarHeaders text="Friend" num={friend} />
       <InputComponent type="search" placement="search" />
 
       <Stack gap={4} className="mt-5">

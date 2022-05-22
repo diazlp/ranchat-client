@@ -1,11 +1,11 @@
 import { Col, Container, Row, Stack } from "react-bootstrap";
+
 import ChatBox from "../components/Chat/ChatOnVideo/ChatBox";
 import MainHeaders from "../components/Headers/MainHeaders";
 import Menus from "../components/SidebarMenus/Menus";
 import VideoBox from "../components/VideoPreview/VideoBox";
 
-export default function HomePage(params) {
-
+export default function HomePage() {
   const login = true;
   const premium = false;
   const found = true;

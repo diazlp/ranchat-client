@@ -163,6 +163,25 @@ video::-webkit-media-controls {
   margin-right: 10px;
 }
 
+/* Sidebar */
+.sidebar-profile{
+  width: 370px !important;
+  padding: 0 35px !important;
+  background-color: rgb(186, 1, 233);
+}
+.sidebar-menus{
+  width: 110px !important;
+  background-color: rgb(245, 245, 245);
+}
+.sidebar-chat {
+  width: 370px !important;
+  padding: 0 35px !important;
+}
+.sidebar-friend {
+  width: 370px !important;
+  padding: 0 35px !important;
+}
+
 
 /* Pushable button CTA RAN */
 .pushable {
@@ -240,13 +259,6 @@ video::-webkit-media-controls {
 }
 .pushable:focus:not(:focus-visible) {
   outline: none;
-}
-
-
-/* Sidebar Main Menus */
-.sidebar-menus{
-  width: 110px !important;
-  background-color: rgb(245, 245, 245);
 }
 
 
@@ -347,7 +359,7 @@ video::-webkit-media-controls {
 }
 
 
-/* Badge Level */
+/* Badge */
 .badge-level-grey .bg-primary {
   background-color: rgb(112, 112, 112) !important;
 }
@@ -363,13 +375,21 @@ video::-webkit-media-controls {
 .badge-level-blue .bg-primary {
   background-color: rgb(8, 96, 155) !important;
 }
+.badge-header-premium .bg-primary{
+  background-color: rgb(235, 172, 38) !important;
+  color: #ffffff;
+}
+.badge-header-free .bg-primary{
+  background-color: #ffffff !important;
+  color: #5f358f;
+}
+.badge-header-default .bg-primary{
+  background-color: #5f358f !important;
+  color: #ffffff;
+}
 
 
 /* Sidebar Chat */
-.sidebar-chat {
-  width: 370px !important;
-  padding: 0 35px !important;
-}
 .cb2:hover {
   background-color: rgb(240, 240, 240);
   cursor: pointer;
@@ -440,11 +460,6 @@ video::-webkit-media-controls {
   background-color: rgb(247, 247, 247);
 }
 
-.sidebar-friend {
-  width: 370px !important;
-  padding: 0 35px !important;
-}
-
 .nav-pills .nav-link {
   border-radius: 50px !important;
 }
@@ -468,4 +483,22 @@ video::-webkit-media-controls {
 .create-room-video {
   background-color: rgb(235, 172, 38) !important;
   border-radius: 50px !important;
+}
+
+
+/* On Boarding */
+.onBoading{
+  background-color: #A766F0;
+}
+
+/* Profile Page */
+.sidebar-profile .nav-link {
+  border-radius: 30px;
+  color: white !important;
+  border: 3px solid #8051b6;
+  background-color: #A766F0;
+}
+
+.sidebar-profile .nav-link:hover {
+  background-color: #be93f0;
 }

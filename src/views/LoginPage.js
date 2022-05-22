@@ -20,9 +20,7 @@ export default function LoginPage(params) {
             </p>
           </Row>
         </Col>
-        <Col className="bg-secondary d-flex align-items-center justify-content-center">
-          <OnBoarding />
-        </Col>
+        <OnBoarding />
       </Row>
     </Container>
   );

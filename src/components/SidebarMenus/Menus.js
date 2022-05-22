@@ -1,10 +1,9 @@
-import { Button, Col, Nav, Row, Stack } from "react-bootstrap";
+import { Col, Nav, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ButtonCTARun from "../Button/ButtonCTARan";
 import Icon from "../Icon/Icon";
 
 export default function Menus({ isLogin }) {
-  console.log(isLogin);
   const menus = [
     {
       icon: "message",
@@ -13,7 +12,7 @@ export default function Menus({ isLogin }) {
     },
     {
       icon: "user-group",
-      to: "/profile",
+      to: "/profile/detail",
       disabled: isLogin,
     },
     {

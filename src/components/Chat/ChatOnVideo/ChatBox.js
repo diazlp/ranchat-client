@@ -1,4 +1,5 @@
 import { Container, Row, Stack } from "react-bootstrap";
+
 import InputComponent from "../../Form/InputComponent";
 import ChatBubble1 from "./ChatBubble1";
 
@@ -15,9 +16,15 @@ export default function ChatBox1({ data }) {
           />
           <ChatBubble1
             who="guest"
-            message="halooo juga"
+            message="Hai juga"
             time="00.00"
-            username="Afifah"
+            username="Kevin Tandiono"
+          />
+          <ChatBubble1
+            who="you"
+            message="halooo sayang"
+            time="23.59"
+            username="Kevin Tandiono"
           />
         </Stack>
       </Row>

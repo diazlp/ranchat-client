@@ -41,9 +41,6 @@ export default function FormComponent({ type }) {
             require: true,
           },
         ];
-
-      default:
-        break;
     }
   };
 

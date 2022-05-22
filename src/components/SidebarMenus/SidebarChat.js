@@ -6,6 +6,8 @@ import InputComponent from "../Form/InputComponent";
 import SidebarHeaders from "../Headers/SidebarHeaders";
 
 export default function SidebarChat({ premium, data }) {
+  const message = 20;
+
   return (
     <Col className="col-3 sidebar-chat">
       <Row className="header d-flex align-items-center">
@@ -26,7 +28,7 @@ export default function SidebarChat({ premium, data }) {
           )}
         </Col>
       </Row>
-      <SidebarHeaders text="Message" badge={20} />
+      <SidebarHeaders text="Message" num={message} />
       <InputComponent type="search" placement="search" />
       <Row className="gap-2 chat-list d-flex align-items-start">
         <ChatList

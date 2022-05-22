@@ -1,35 +1,22 @@
-import { Col, Button, Stack } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
-import ButtonPrimary from "../../components/Button/ButtonPrimary";
 
-export default function ProfilePage(params) {
-  const profileMenus = [
-    {
-      id: 1,
-      text: "Profile Page",
-      page: "detail",
-    },
-    {
-      id: 2,
-      text: "Edit Profile",
-      page: "edit",
-    },
-    {
-      id: 3,
-      text: "Password and Security",
-      page: "security",
-    },
-  ];
+import Menus from "../../components/SidebarMenus/Menus";
+import SidebarProfile from "../../components/SidebarMenus/SidebarProfile";
+
+export default function ProfilePage() {
+  const login = true;
+  const premium = true;
 
   return (
-    <Col>
-      <h1>ProfilePage</h1>
-      <Stack direction="horizontal" gap={3} className="justify-content-center">
-        {profileMenus.map((el) => (
-          <ButtonPrimary text={el.text} page={el.page} key={el.id} />
-        ))}
-      </Stack>
-      <Outlet />
-    </Col>
+    <Container fluid>
+      <Row className="vh-100">
+        <Menus isLogin={login} />
+        <SidebarProfile premium={premium} />
+        <Col>
+          <Outlet />
+        </Col>
+      </Row>
+    </Container>
   );
 }

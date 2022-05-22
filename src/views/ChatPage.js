@@ -1,4 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
+
 import ChatArea from "../components/Chat/ChatPersonal/ChatArea";
 import ChatFooter from "../components/Chat/ChatPersonal/ChatFooters";
 import ChatHeader from "../components/Chat/ChatPersonal/ChatHeaders";
@@ -10,15 +11,16 @@ export default function ChatPage() {
   const login = true;
   const premium = false;
   const lvl = 3;
+  const data = "data";
 
   return (
     <Container fluid className="chat-page">
       <Row className="vh-100">
         <Menus isLogin={login} />
-        <SidebarChat premium={premium} data={"data"} />
+        <SidebarChat premium={premium} data={data} />
         <Col className="bg-light">
           <ChatHeader level={lvl} />
-          <ChatArea data={"data"} />
+          <ChatArea data={data} />
           <ChatFooter level={lvl} />
         </Col>
         <FriendList />
