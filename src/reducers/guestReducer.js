@@ -1,4 +1,4 @@
-import { CREATE_GUEST, DELETE_GUEST } from "../actions/actionTypes";
+import { CREATE_GUEST, DELETE_GUEST, JOIN_ROOM } from "../actions/actionTypes";
 
 const initialState = {
   guest: "",
@@ -17,6 +17,11 @@ const guestReducer = (state = initialState, action) => {
       return {
         ...state,
         guest: "",
+      };
+    case JOIN_ROOM:
+      return {
+        ...state,
+        room: action.payload,
       };
     default:
       return state;

@@ -1,12 +1,37 @@
 import { Col, Row, Button, Stack } from "react-bootstrap";
 import ButtonPrimary from "../Button/ButtonPrimary";
-import { useContext, useState } from "react";
-
+import { useContext, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { SocketContext } from "../../context/SocketContext";
-
+import { joinRoom } from "../../actions/guestAction";
 export default function VideoBox({ guest }) {
-  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } =
-    useContext(SocketContext);
+  const {
+    me,
+    name,
+    callAccepted,
+    myVideo,
+    userVideo,
+    answerCall,
+    callEnded,
+    callUser,
+    stream,
+    call,
+  } = useContext(SocketContext);
+  const dispatch = useDispatch();
+  const room = useSelector((state) => state.guest.room);
+  const ran = () => {
+    dispatch(joinRoom(me));
+  };
+
+  useEffect(() => {
+    if (room.guestCaller) {
+      callUser(room.guestCaller);
+    }
+    if (call.isReceivedCall) {
+      answerCall();
+      console.log(userVideo, "<<<<< dari useEffect");
+    }
+  }, [room, call]);
 
   function Notifications() {
     const { answerCall, call, callAccepted } = useContext(SocketContext);
@@ -69,9 +94,9 @@ export default function VideoBox({ guest }) {
   if (guest) {
     return (
       <Col className="d-flex justify-content-center">
-        <Options>
+        {/* <Options>
           <Notifications />
-        </Options>
+        </Options> */}
         <div className="video-prev d-flex align-items-end">
           {stream && (
             <div
@@ -100,7 +125,9 @@ export default function VideoBox({ guest }) {
 
           <Col className="d-flex justify-content-center mb-4">
             <Stack direction="horizontal" gap={3}>
-              <Button className="video-button-ran">Run</Button>
+              <Button className="video-button-ran" onClick={() => ran()}>
+                Run
+              </Button>
               <Button className="video-button-stop">Stop</Button>
               <Button className="video-button-request">Request</Button>
             </Stack>
