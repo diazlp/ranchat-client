@@ -1,11 +1,31 @@
-import { Badge, Col, Row, Stack } from "react-bootstrap";
+import { Col, Stack } from "react-bootstrap";
+import TextForChat from "../../Text/TextForChat";
 
-export default function ChatBubble({ who }) {
+export default function ChatBubble({ who, message, time, username }) {
+  const usernameTruncate = (username) => {
+    let usernameView = "";
+    console.log(username);
+    for (const i in username) {
+      if (usernameView.length < 18) usernameView += username[i];
+    }
+
+    if (username.length >= 18) usernameView += "...";
+    return usernameView;
+  };
+
   return (
     <Col className="my-2">
-      <p className={`username-chat-bubble ${who}`}>Aliansyah Firdaus</p>
-      <p className="message-chat-bubble">Haloo</p>
-      <p className="time-chat-bubble">20.30</p>
+      <Stack gap={3}>
+        <div>
+          <TextForChat
+            placement="username"
+            from={who}
+            text={usernameTruncate(username)}
+          />
+          <TextForChat placement="message" text={message} />
+        </div>
+        <TextForChat placement="time" text={time} />
+      </Stack>
     </Col>
   );
 }
