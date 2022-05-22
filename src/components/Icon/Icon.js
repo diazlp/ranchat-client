@@ -1,3 +1,9 @@
-export default function Icon({ name, placement }) {
-  return <i class={`icon fa-solid fa-${name} icon-${placement}`} />;
+export default function Icon({ name, placement, sosmed }) {
+  return (
+    <i
+      class={`icon fa-${
+        sosmed ? "brands" : "solid"
+      } fa-${name} icon-${placement}`}
+    />
+  );
 }
