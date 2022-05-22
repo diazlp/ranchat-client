@@ -66,6 +66,22 @@ video::-webkit-media-controls {
   font-size: 15px;
   color: rgb(185, 185, 185);
 }
+.icon-edit-user-info{
+  color: blueviolet !important;
+  font-size: 25px;
+}
+.icon-edit-profile-banner {
+  transform: translateX(-40px) translateY(20px);
+  position: absolute;
+}
+.icon-edit-avatar {
+  transform: translateX(-40px) translateY(70px);
+  position: absolute;
+}
+.icon-edit-profile-info {
+  font-size: 20px;
+}
+
 
 .icon-user-info-headline{
   color: #464646;
@@ -522,12 +538,12 @@ video::-webkit-media-controls {
 
 .sidebar-profile .background-profile {
   max-width: 1280px;
-  max-height: 400px;
+  max-height: 300px;
 }
 
 .detail-page .avatar {
-  max-width: 190px;
-  max-height: 190px;
+  max-width: 170px;
+  max-height: 170px;
   border-radius: 50%;
   transform: translateY(-60px);
   padding: 5px;
@@ -556,4 +572,20 @@ video::-webkit-media-controls {
 
 .user-info .user-info-value {
   font-size: 16px;
+}
+
+
+/* User Edit */
+.background-profile-edit {
+  position: relative;
+}
+
+.avatar-edit {
+  max-width: 170px;
+  max-height: 170px;
+  border-radius: 50%;
+  transform: translateY(-60px);
+  padding: 5px;
+  background-color: #e4e4e4;
+  position: relative;
 }

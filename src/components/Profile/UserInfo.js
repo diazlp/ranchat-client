@@ -1,7 +1,8 @@
 import { Col, Stack } from "react-bootstrap";
+
 import Icon from "../Icon/Icon";
 
-export default function UserInfo({ placement, privacy }) {
+export default function UserInfo({ placement, privacy, edit }) {
   const icon = (val) => {
     switch (val) {
       case "Birthday":
@@ -27,6 +28,12 @@ export default function UserInfo({ placement, privacy }) {
         <Stack direction="horizontal" gap={3}>
           <Icon name={icon(privacy)} placement="user-info-privacy clickable" />
           <p className="m-0 user-info-value">03 July 2021</p>
+          {edit && (
+            <Icon
+              name="square-pen"
+              placement="edit-user-info icon-edit-profile-info clickable"
+            />
+          )}
         </Stack>
       </Stack>
     </Col>
