@@ -9,6 +9,8 @@ export default function InputComponent({
   inputHandler,
   value,
   name,
+  inputMessage,
+  sendMesssage,
 }) {
   if (placement === "search") {
     return (
@@ -23,11 +25,21 @@ export default function InputComponent({
       <Row>
         <Col className="d-flex align-items-center">
           <Form.Control
-            type={type}
+            type={type} 
             placeholder="Type your message"
             className="input-chat py-2"
+            onChange={(e) => {
+              const value = e.target.value;
+              inputMessage(value);
+            }}
           />
-          <Icon name="paper-plane" placement="send-message clickable" />
+          <div
+            onClick={() => {
+              sendMesssage();
+            }}
+          >
+            <Icon name="paper-plane" placement="send-message clickable" />
+          </div>
         </Col>
       </Row>
     );

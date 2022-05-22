@@ -44,6 +44,18 @@ export const getProfile = () => {
   };
 };
 
+export const getUser = (data) => {
+  return axios.post(
+    `${serverAppUrl}/user`,
+    { id: data },
+    {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    }
+  );
+};
+
 export const addProfile = (data) => {
   return axios
     .post(

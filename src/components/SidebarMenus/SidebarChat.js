@@ -1,13 +1,26 @@
 import { Col, Row } from "react-bootstrap";
 
 import ButtonPrimary from "../Button/ButtonPrimary";
-import ChatList from "../Chat/ChatPersonal/ChatList";
 import InputComponent from "../Form/InputComponent";
 import SidebarHeaders from "../Headers/SidebarHeaders";
+import ListChats from "./ListChats";
+import { getChatList } from "../../actions/chatAction";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function SidebarChat({ premium, data }) {
   const message = 20;
+  const [listChat, setlistChat] = useState([]);
+  const disptach = useDispatch();
+  const { chatList } = useSelector((state) => state.chat);
 
+  useEffect(() => {
+    disptach(getChatList());
+  }, []);
+
+  useEffect(() => {
+    setlistChat(chatList);
+  }, [chatList]);
   return (
     <Col className="col-3 sidebar-chat">
       <Row className="header d-flex align-items-center">
@@ -31,16 +44,8 @@ export default function SidebarChat({ premium, data }) {
       <SidebarHeaders text="Message" num={message} />
       <InputComponent type="search" placement="search" />
       <Row className="gap-2 chat-list d-flex align-items-start">
-        <ChatList
-          name="Aliansyah Firdaus"
-          image="https://dummyimage.com/500x500/e6e6e6/080808&text=A"
-          message="Oy! Bayar utang! Parah banget"
-        />
-        <ChatList
-          name="Abdul Ridho Ramadhan"
-          image="https://dummyimage.com/500x500/e6e6e6/080808&text=A"
-          message="SELAMAT ANDA MENDAPATKAN REWARD"
-        />
+        {listChat.length > 0 &&
+          listChat.map((chat) => <ListChats chat={chat} />)}
       </Row>
     </Col>
   );

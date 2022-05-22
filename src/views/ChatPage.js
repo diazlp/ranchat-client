@@ -6,13 +6,19 @@ import ChatHeader from "../components/Chat/ChatPersonal/ChatHeaders";
 import FriendList from "../components/SidebarMenus/SidebarFriend";
 import Menus from "../components/SidebarMenus/Menus";
 import SidebarChat from "../components/SidebarMenus/SidebarChat";
+import { getProfile } from "../actions/userAction";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 export default function ChatPage() {
   const login = true;
   const premium = false;
   const lvl = 3;
   const data = "data";
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProfile());
+  }, []);
   return (
     <Container fluid className="chat-page">
       <Row className="vh-100">

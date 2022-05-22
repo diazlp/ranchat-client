@@ -1,31 +1,22 @@
 import { Col, Row } from "react-bootstrap";
 import ChatList from "./ChatList";
 import ChatBubble2 from "./ChatBubble2";
+import { useSelector } from "react-redux";
+import { format } from "timeago.js";
 
 export default function ChatArea({ data }) {
+  const { chatHistory } = useSelector((state) => state.chat);
   return (
     <Row className="chat-area d-flex align-items-end p-4">
       <Col>
-        <ChatBubble2
-          from="you"
-          message="Lorem Ipsum is simply dummy text of the printing"
-          time="15.37"
-        />
-        <ChatBubble2
-          from="guest"
-          message="Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing"
-          time="16.37"
-        />
-        <ChatBubble2
-          from="guest"
-          message="Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing"
-          time="16.37"
-        />
-        <ChatBubble2
-          from="you"
-          message="Lorem Ipsum is simply dummy text of the printing"
-          time="18.37"
-        />
+        {chatHistory.length > 0 &&
+          chatHistory.map((chat) => (
+            <ChatBubble2
+              from={chat.fromSelf}
+              message={chat.message}
+              time={format(chat.time)}
+            />
+          ))}
       </Col>
     </Row>
   );
