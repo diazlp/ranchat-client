@@ -1,11 +1,10 @@
 import { createContext, useState, useRef, useEffect } from "react";
 import { io } from "socket.io-client";
 import Peer from "simple-peer";
-import { useSelector, useDispatch } from "react-redux";
-import { createGuest, deleteGuest } from "../actions/guestAction";
+
 const SocketContext = createContext();
 
-const socket = io.connect("http://localhost:4001/");
+const socket = io.connect("http://localhost:4001/chat");
 
 const ContextProvider = ({ children }) => {
   const [stream, setStream] = useState(null);
@@ -19,9 +18,6 @@ const ContextProvider = ({ children }) => {
   const userVideo = useRef();
   const connectionRef = useRef();
 
-  const dispatch = useDispatch();
-  const guest = useSelector((state) => state.guest.guest);
-
   useEffect(() => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
@@ -31,17 +27,10 @@ const ContextProvider = ({ children }) => {
         myVideo.current.srcObject = currentStream;
       });
 
-    socket.on("me", (id) => {
-      setMe(id);
-      dispatch(createGuest(id));
-    });
+    socket.on("me", (id) => setMe(id));
 
     socket.on("calluser", ({ from, name: callerName, signal }) => {
       setCall({ isReceivedCall: true, from, name: callerName, signal });
-    });
-
-    socket.on("disconnected", () => {
-      dispatch(deleteGuest(guest.mongoId));
     });
   }, []);
 
@@ -64,6 +53,7 @@ const ContextProvider = ({ children }) => {
   };
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
+
     peer.on("signal", (data) => {
       socket.emit("calluser", {
         userToCall: id,
