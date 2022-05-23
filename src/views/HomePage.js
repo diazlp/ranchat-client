@@ -12,7 +12,6 @@ export default function HomePage() {
   const [modalShow, setModalShow] = useState(false);
   // const [guest, setGuest] = useState(true);
   const [isLogin, setIsLogin] = useState(true);
-
   const {
     me,
     callAccepted,
@@ -34,7 +33,7 @@ export default function HomePage() {
         <Menus isLogin={isLogin} />
         <Col>
           <MainHeaders
-            isLogin={true}
+            isLogin={false}
             premium={premium}
             setModalShow={setModalShow}
           />

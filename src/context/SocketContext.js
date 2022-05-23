@@ -2,7 +2,11 @@ import { createContext, useState, useRef, useEffect } from "react";
 import { io } from "socket.io-client";
 import Peer from "simple-peer";
 import { useSelector, useDispatch } from "react-redux";
-import { createGuest, deleteGuest } from "../actions/guestAction";
+import {
+  createGuest,
+  deleteGuest,
+  fetchRoomDetail,
+} from "../actions/guestAction";
 const SocketContext = createContext();
 
 const socket = io(
@@ -18,6 +22,8 @@ const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
+
+  const roomId = useSelector((state) => state.guest.room);
 
   const myVideo = useRef();
   const userVideo = useRef();
@@ -74,7 +80,7 @@ const ContextProvider = ({ children }) => {
     peer.on("signal", (data) => {
       socket.emit("answercall", { signal: data, to: call.from });
     });
-
+    dispatch(fetchRoomDetail(roomId)); //room id di line 26
     console.log("jawab dulu telfonnya ya");
 
     peer.on("stream", (currentStream) => {
@@ -132,6 +138,11 @@ const ContextProvider = ({ children }) => {
 
     window.location.reload();
   };
+
+  // const sendMessage = () => {
+  //   socket.emit("sendMessageFromVideo", { username, message, room });
+  //   setMessage([...message, { sender: "you", message }]);
+  // };
 
   return (
     <SocketContext.Provider
