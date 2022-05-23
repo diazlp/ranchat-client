@@ -308,6 +308,13 @@ video::-webkit-media-controls {
 #action {
   position: absolute;
 }
+#notification {
+  z-index: 1;
+  border-radius: 50px;
+  transform: translateY(30px);
+  position: absolute;
+  border: 5px solid #42424277;
+}
 
 /* Chat Box Playground */
 .chat-box {

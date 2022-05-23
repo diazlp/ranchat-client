@@ -33,64 +33,24 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
   //   }
   // }, [call]);
 
-  // li nanti tolong di style /////////////
   function Notifications() {
     const { answerCall, call, callAccepted } = useContext(SocketContext);
 
     return (
       <>
         {call.isReceivedCall && !callAccepted && (
-          <div>
-            <button onClick={answerCall}>Accept</button>
-          </div>
+          <Row id="notification" className="bg-light p-3">
+            <Stack direction="horizontal" gap={3}>
+              Jodoh mu sudah datang!
+              <Button onClick={answerCall} size="sm">
+                Let's Go!
+              </Button>
+            </Stack>
+          </Row>
         )}
       </>
     );
   }
-
-  // function Options({ children }) {
-  //   const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } =
-  //     useContext(SocketContext);
-  //   const [idToCall, setIdToCall] = useState("");
-
-  //   return (
-  //     <div
-  //       style={{ display: "flex", flexDirection: "row", marginTop: "120px" }}
-  //     >
-  //       <form
-  //         noValidate
-  //         autoComplete="off"
-  //         onSubmit={(e) => e.preventDefault()}
-  //       >
-  //         <div>
-  //           <h6>Account Info</h6>
-  //           <label>Name</label>
-  //           <input
-  //             type="text"
-  //             value={name}
-  //             onChange={(e) => setName(e.target.value)}
-  //           />
-  //           <p>copy the following text! {me}</p>
-  //         </div>
-  //         <div>
-  //           <h6>Account Info</h6>
-  //           <label>Id to call</label>
-  //           <input
-  //             type="text"
-  //             value={idToCall}
-  //             onChange={(e) => setIdToCall(e.target.value)}
-  //           />
-  //           {callAccepted && !callEnded ? (
-  //             <button onClick={leaveCall}>Hang up</button>
-  //           ) : (
-  //             <button onClick={() => callUser(idToCall)}>Call</button>
-  //           )}
-  //         </div>
-  //       </form>
-  //       {children}
-  //     </div>
-  //   );
-  // }
 
   const showButtonReq = (isLogin) => {
     if (isLogin) {
