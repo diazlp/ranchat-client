@@ -9,27 +9,26 @@ import PremiumModal from "../components/Premium/PremiumModals";
 
 export default function HomePage() {
   const [modalShow, setModalShow] = useState(false);
+  const [guest, setGuest] = useState(true);
+  const [found, setFound] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
-  console.log(modalShow);
-
-  const login = true;
   const premium = false;
-  const found = false;
 
   return (
     <Container fluid>
       <Row className="vh-100">
-        <Menus isLogin={login} />
+        <Menus isLogin={isLogin} />
         <Col>
           <MainHeaders
-            isLogin={login}
+            isLogin={isLogin}
             premium={premium}
             setModalShow={setModalShow}
           />
           <Stack className="mx-1" gap={2}>
             <Stack direction="horizontal" gap={2} className="playground">
-              <VideoBox guest={true} isLogin={login} found={found} />
-              <VideoBox />
+              <VideoBox guest={guest} isLogin={isLogin} found={found} />
+              {/* <VideoBox /> */}
             </Stack>
             <ChatBox chat={"data"} />
           </Stack>

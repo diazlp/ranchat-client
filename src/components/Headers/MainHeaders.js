@@ -39,27 +39,27 @@ export default function MainHeaders({ isLogin, premium, setModalShow }) {
           <Stack direction="horizontal" gap={3}>
             <div className="avatars">
               <img
-                class="item"
+                className="item"
                 src="https://randomuser.me/api/portraits/women/65.jpg"
                 alt=""
               />
               <img
-                class="item"
+                className="item"
                 src="https://randomuser.me/api/portraits/men/25.jpg"
                 alt=""
               />
               <img
-                class="item"
+                className="item"
                 src="https://randomuser.me/api/portraits/women/25.jpg"
                 alt=""
               />
               <img
-                class="item"
+                className="item"
                 src="https://randomuser.me/api/portraits/men/55.jpg"
                 alt=""
               />
               <img
-                class="item"
+                className="item"
                 src="https://via.placeholder.com/500/09f/fff.png"
                 alt=""
               />

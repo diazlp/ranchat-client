@@ -1,3 +1,3 @@
 export default process.env.NODE_ENV === "production"
-  ? ""
-  : "http://localhost:3000";
+  ? "https://ranchat-app.herokuapp.com"
+  : "http://localhost:4001";

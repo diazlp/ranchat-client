@@ -5,7 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { createGuest, deleteGuest } from "../actions/guestAction";
 const SocketContext = createContext();
 
-const socket = io.connect("http://localhost:4001/");
+const socket = io(
+  process.env.NODE_ENV === "production"
+    ? "https://ranchat-app.herokuapp.com"
+    : "http://localhost:4001"
+);
 
 const ContextProvider = ({ children }) => {
   const [stream, setStream] = useState(null);
@@ -56,6 +60,8 @@ const ContextProvider = ({ children }) => {
       socket.emit("answercall", { signal: data, to: call.from });
     });
 
+    console.log("jawab dulu telfonnya ya");
+
     peer.on("stream", (currentStream) => {
       userVideo.current.srcObject = currentStream;
     });
@@ -66,6 +72,8 @@ const ContextProvider = ({ children }) => {
   };
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
+
+    console.log(id, "halohalo bengkel mobil");
 
     peer.on("signal", (data) => {
       socket.emit("calluser", {

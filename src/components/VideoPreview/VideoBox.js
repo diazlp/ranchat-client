@@ -28,11 +28,18 @@ export default function VideoBox({ guest, isLogin, found }) {
     if (room.guestCaller) {
       callUser(room.guestCaller);
     }
-    if (call.isReceivedCall) {
-      answerCall();
-      console.log(userVideo, "<<<<< dari useEffect");
-    }
-  }, [room, call]);
+  }, [room]);
+
+  // useEffect(() => {
+  //   if (call.isReceivedCall) {
+  //     answerCall();
+  //     console.log(call, "<<<<<<<");
+  //     console.log(myVideo, "<<<<ini videoku");
+  //     console.log(userVideo, "<<<<< ini video temanku");
+  //     console.log(me, "<<<< idku");
+  //     console.log(room, "<<< ini id roomnya");
+  //   }
+  // }, [call]);
 
   function Notifications() {
     const { answerCall, call, callAccepted } = useContext(SocketContext);
@@ -40,8 +47,7 @@ export default function VideoBox({ guest, isLogin, found }) {
     return (
       <>
         {call.isReceivedCall && !callAccepted && (
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <h1>{call.name} is calling:</h1>
+          <div>
             <button onClick={answerCall}>Accept</button>
           </div>
         )}
@@ -108,20 +114,39 @@ export default function VideoBox({ guest, isLogin, found }) {
   if (guest && found) {
     return (
       <Col className="d-flex justify-content-center">
-        <Options>
-          <Notifications />
-        </Options>
+        {/* <Options></Options> */}
+        <Notifications />
         <div className="video-prev d-flex align-items-end">
           {stream && (
-            <div
-              style={{
-                justifyContent: "center",
-              }}
-            >
-              <div style={{ width: "870px", height: "500px" }}>
-                <video playsInline muted ref={myVideo} autoPlay />
-              </div>
-            </div>
+            // <div
+            //   style={{
+            //     justifyContent: "center",
+            //   }}
+            // >
+            //   <div style={{ width: "870px", height: "500px" }}>
+            <>
+              <Col className="d-flex justify-content-center mb-4">
+                <Stack direction="horizontal" gap={3}>
+                  <video playsInline muted ref={myVideo} autoPlay />
+                  <div onClick={() => ran()}>
+                    <ButtonPrimary
+                      text="Run"
+                      action="/"
+                      placement="video-action btn-ran"
+                    />
+                  </div>
+
+                  <ButtonPrimary
+                    text="Stop"
+                    action="/"
+                    placement="video-action btn-stop"
+                  />
+                  {showButtonReq(isLogin)}
+                </Stack>
+              </Col>
+            </>
+            //   </div>
+            // </div>
           )}
           {callAccepted && !callEnded && (
             <div
@@ -131,26 +156,9 @@ export default function VideoBox({ guest, isLogin, found }) {
                 margin: "10px",
               }}
             >
-              <h2>{call.name || "Name"}</h2>
-
               <video playsInline ref={userVideo} autoPlay />
             </div>
           )}
-          <Col className="d-flex justify-content-center mb-4">
-            <Stack direction="horizontal" gap={3}>
-              <ButtonPrimary
-                text="Run"
-                action="/"
-                placement="video-action btn-ran"
-              />
-              <ButtonPrimary
-                text="Stop"
-                action="/"
-                placement="video-action btn-stop"
-              />
-              {showButtonReq(isLogin)}
-            </Stack>
-          </Col>
         </div>
       </Col>
     );

@@ -1,7 +1,10 @@
 import { CREATE_GUEST, DELETE_GUEST, JOIN_ROOM } from "./actionTypes";
 import axios from "axios";
 
-const serverAppUrl = "http://localhost:4001";
+const serverAppUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://ranchat-app.herokuapp.com"
+    : "http://localhost:4001";
 
 const createGuestSuccess = (payload) => {
   return {
@@ -45,6 +48,8 @@ export const deleteGuest = (mongoId) => {
 
 export const joinRoom = (socketId) => {
   return (dispatch) => {
+    console.log("joined room");
+
     return axios
       .post(`${serverAppUrl}/guest/randomRoom`, {
         socketId: socketId,
