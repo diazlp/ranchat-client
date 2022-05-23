@@ -14,21 +14,21 @@ export default function InputComponent({ type, placeholder, placement }) {
   const dispatch = useDispatch();
   const sendMessageToState = () => {
     if (guest.socketId === room.guestCaller) {
-      console.log(room, "<<< dari if");
       const payload = {
         sender: room.guestCaller,
         receiver: room.guestCalled,
         message: message,
         room: room._id,
+        time: Date.now(),
       };
       dispatch(sendMessage(payload));
     } else if (guest.socketId === room.guestCalled) {
-      console.log(room, "<<< dari else if");
       const payload = {
         sender: room.guestCalled,
         receiver: room.guestCaller,
         message: message,
         room: room._id,
+        time: Date.now(),
       };
       dispatch(sendMessage(payload));
     }
