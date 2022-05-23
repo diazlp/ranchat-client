@@ -1,6 +1,7 @@
 import { Col, Row, Stack } from "react-bootstrap";
 
 import Icon from "../../components/Icon/Icon";
+import InputComponent from "../Form/InputComponent";
 
 export default function HeadSection({
   sosmed,
@@ -10,6 +11,7 @@ export default function HeadSection({
   joined,
   edit,
   email,
+  action,
 }) {
   return (
     <Row className="head-detail">
@@ -22,6 +24,7 @@ export default function HeadSection({
           <Icon
             name="square-pen"
             placement="edit-user-info icon-edit-profile-banner clickable"
+            action={action}
           />
         )}
       </div>
@@ -32,16 +35,19 @@ export default function HeadSection({
             <Icon
               name="square-pen"
               placement="edit-user-info icon-edit-avatar clickable"
+              action={action}
             />
           )}
         </div>
         <Stack className="username p-3">
           <div className="d-flex gap-3 align-items-center">
-            <h1>{name}</h1>
+            {!edit && <h1>{name}</h1>}
             {edit && (
-              <Icon
-                name="square-pen"
-                placement="edit-user-info icon-edit-username clickable"
+              <InputComponent
+                type="text"
+                placeholder="Username"
+                placement="head-section-edit"
+                value={name}
               />
             )}
           </div>

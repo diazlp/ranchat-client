@@ -176,6 +176,10 @@ video::-webkit-media-controls {
   background-color: blueviolet !important;
   color: rgb(255, 255, 255) !important;
 }
+.btn-edit-page{
+  font-weight: bold !important;
+  background-color: #8051b6 !important;
+}
 
 
 /* Input */

@@ -19,6 +19,15 @@ export default function ButtonPrimary({ text, action, placement }) {
         {text}
       </Button>
     );
+  } else if (placement === "edit-page") {
+    return (
+      <Button className={`btn-${placement}`} onClick={() => action(true)}>
+        {placement === "premium-cta" && (
+          <Icon name="crown" placement="premium" />
+        )}
+        {text}
+      </Button>
+    );
   } else {
     return (
       <Link to={action}>
