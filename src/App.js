@@ -8,6 +8,9 @@ import LoginPage from "./views/LoginPage";
 import RegisterPage from "./views/RegisterPage";
 import VerificationPage from "./views/VerificationPage";
 import ChatPage from "./views/ChatPage";
+import { getProfile } from "./actions/userAction";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import ProfilePage from "./views/Profiles/ProfilePage";
 import DetailPage from "./views/Profiles/DetailPage";
@@ -19,6 +22,13 @@ import DummyHomepage from "./DummyPage/DummyHomepage";
 import DummyVideoPage from "./DummyPage/DummyVideoPage";
 
 function App() {
+  const disptach = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      disptach(getProfile());
+    }
+  }, []);
   return (
     <div className="App">
       <Routes>

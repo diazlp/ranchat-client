@@ -25,9 +25,10 @@ export default function InputComponent({
       <Row>
         <Col className="d-flex align-items-center">
           <Form.Control
-            type={type} 
+            type={type}
             placeholder="Type your message"
             className="input-chat py-2"
+            value={value}
             onChange={(e) => {
               const value = e.target.value;
               inputMessage(value);

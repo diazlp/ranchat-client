@@ -54,8 +54,14 @@ export const getHistoryChat = (roomfriendid) => {
       });
   };
 };
-
-export const sendMessage = ({ message, friendRoom }) => {
+export const getLastHistoryChat = ({ id }) => {
+  return axios.get(`${serverAppUrl}/messages/findlastmessage/${id}`, {
+    headers: {
+      access_token: localStorage.getItem("access_token"),
+    },
+  });
+};
+export const sendMessage = ({ message, friendRoom, id }) => {
   return (dispatch) => {
     return axios
       .post(
@@ -63,6 +69,7 @@ export const sendMessage = ({ message, friendRoom }) => {
         {
           roomfriendid: friendRoom,
           text: message,
+          id,
         },
         {
           headers: {

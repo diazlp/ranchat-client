@@ -4,23 +4,11 @@ import ButtonPrimary from "../Button/ButtonPrimary";
 import InputComponent from "../Form/InputComponent";
 import SidebarHeaders from "../Headers/SidebarHeaders";
 import ListChats from "./ListChats";
-import { getChatList } from "../../actions/chatAction";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
-export default function SidebarChat({ premium, data }) {
+
+export default function SidebarChat({ premium, data, listChat }) {
   const message = 20;
-  const [listChat, setlistChat] = useState([]);
-  const disptach = useDispatch();
-  const { chatList } = useSelector((state) => state.chat);
 
-  useEffect(() => {
-    disptach(getChatList());
-  }, []);
-
-  useEffect(() => {
-    setlistChat(chatList);
-  }, [chatList]);
   return (
     <Col className="col-3 sidebar-chat">
       <Row className="header d-flex align-items-center">
