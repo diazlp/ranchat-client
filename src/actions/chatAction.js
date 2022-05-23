@@ -61,6 +61,29 @@ export const getLastHistoryChat = ({ id }) => {
     },
   });
 };
+
+export const addRoom = ({ receiverId, sender }) => {
+  return (dispatch) => {
+    return axios
+      .post(
+        `${serverAppUrl}/messages/roomfriend`,
+        { receiverId, sender },
+        {
+          headers: {
+            access_token: localStorage.getItem("access_token"),
+          },
+        }
+      )
+      .then(({ data }) => {
+        dispatch(getHistoryChat(data.insertedId));
+        dispatch(getChatList());
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+};
+
 export const sendMessage = ({ message, friendRoom, id }) => {
   return (dispatch) => {
     return axios

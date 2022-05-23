@@ -23,28 +23,14 @@ export default function ChatFooter({ level }) {
       const receiverId = chatListById[0].members.find(
         (member) => member !== profile.UserId
       );
+
+      dispatch(sendMessage({ message, friendRoom, id: profile.UserId }));
       socket.emit("sendMessage", {
         friendRoom,
         senderId: profile.UserId,
         receiverId,
         text: message,
-        photo,
       });
-      dispatch(sendMessage({ message, friendRoom, id: profile.UserId }));
-      setMessage("");
-    }
-    if (photo && friendRoom) {
-      const chatListById = chatList.filter((list) => list._id === friendRoom);
-      const receiverId = chatListById[0].members.find(
-        (member) => member !== profile.UserId
-      );
-      socket.emit("sendMessage", {
-        friendRoom,
-        senderId: profile.UserId,
-        receiverId,
-        text: photo,
-      });
-      dispatch(sendMessage({ message, friendRoom, id: profile.UserId }));
       setMessage("");
     }
   };

@@ -22,6 +22,7 @@ export default function ChatArea({ data }) {
         message: data.text,
         senderId: data.senderId,
         time: Date.now(),
+        photo: "asasaswewvdaccqwqc",
       });
     });
   }, []);
