@@ -19,15 +19,19 @@ export default function ButtonPrimary({ text, action, placement }) {
         {text}
       </Button>
     );
+  } else if (placement === "video-action btn-ran") {
+    return (
+      <Button className={`btn-${placement}`} onClick={() => action()}>
+        {placement === "premium-cta" && (
+          <Icon name="crown" placement="premium" />
+        )}
+        {text}
+      </Button>
+    );
   } else {
     return (
       <Link to={action}>
-        <Button
-          className={`btn-${placement}`}
-          onClick={() => {
-            console.log(action);
-          }}
-        >
+        <Button className={`btn-${placement}`} onClick={() => action}>
           {placement === "premium-cta" && (
             <Icon name="crown" placement="premium" />
           )}

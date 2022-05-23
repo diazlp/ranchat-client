@@ -1,26 +1,18 @@
+import { useContext, useEffect } from "react";
 import { Col, Row, Button, Stack } from "react-bootstrap";
-import { useContext, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { SocketContext } from "../../context/SocketContext";
 import { joinRoom } from "../../actions/guestAction";
+
 import ButtonPrimary from "../Button/ButtonPrimary";
 
-export default function VideoBox({ guest, isLogin, found }) {
-  const {
-    me,
-    name,
-    callAccepted,
-    myVideo,
-    userVideo,
-    answerCall,
-    callEnded,
-    callUser,
-    stream,
-    call,
-  } = useContext(SocketContext);
+export default function VideoBox({ guest, isLogin, videoShow }) {
+  const { callAccepted, callEnded, callUser, me } = useContext(SocketContext);
+
   const dispatch = useDispatch();
   const room = useSelector((state) => state.guest.room);
-  const ran = () => {
+
+  const ranButtonHandler = () => {
     dispatch(joinRoom(me));
   };
 
@@ -41,6 +33,7 @@ export default function VideoBox({ guest, isLogin, found }) {
   //   }
   // }, [call]);
 
+  // li nanti tolong di style /////////////
   function Notifications() {
     const { answerCall, call, callAccepted } = useContext(SocketContext);
 
@@ -55,49 +48,49 @@ export default function VideoBox({ guest, isLogin, found }) {
     );
   }
 
-  function Options({ children }) {
-    const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } =
-      useContext(SocketContext);
-    const [idToCall, setIdToCall] = useState("");
+  // function Options({ children }) {
+  //   const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } =
+  //     useContext(SocketContext);
+  //   const [idToCall, setIdToCall] = useState("");
 
-    return (
-      <div
-        style={{ display: "flex", flexDirection: "row", marginTop: "120px" }}
-      >
-        <form
-          noValidate
-          autoComplete="off"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <div>
-            <h6>Account Info</h6>
-            <label>Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <p>copy the following text! {me}</p>
-          </div>
-          <div>
-            <h6>Account Info</h6>
-            <label>Id to call</label>
-            <input
-              type="text"
-              value={idToCall}
-              onChange={(e) => setIdToCall(e.target.value)}
-            />
-            {callAccepted && !callEnded ? (
-              <button onClick={leaveCall}>Hang up</button>
-            ) : (
-              <button onClick={() => callUser(idToCall)}>Call</button>
-            )}
-          </div>
-        </form>
-        {children}
-      </div>
-    );
-  }
+  //   return (
+  //     <div
+  //       style={{ display: "flex", flexDirection: "row", marginTop: "120px" }}
+  //     >
+  //       <form
+  //         noValidate
+  //         autoComplete="off"
+  //         onSubmit={(e) => e.preventDefault()}
+  //       >
+  //         <div>
+  //           <h6>Account Info</h6>
+  //           <label>Name</label>
+  //           <input
+  //             type="text"
+  //             value={name}
+  //             onChange={(e) => setName(e.target.value)}
+  //           />
+  //           <p>copy the following text! {me}</p>
+  //         </div>
+  //         <div>
+  //           <h6>Account Info</h6>
+  //           <label>Id to call</label>
+  //           <input
+  //             type="text"
+  //             value={idToCall}
+  //             onChange={(e) => setIdToCall(e.target.value)}
+  //           />
+  //           {callAccepted && !callEnded ? (
+  //             <button onClick={leaveCall}>Hang up</button>
+  //           ) : (
+  //             <button onClick={() => callUser(idToCall)}>Call</button>
+  //           )}
+  //         </div>
+  //       </form>
+  //       {children}
+  //     </div>
+  //   );
+  // }
 
   const showButtonReq = (isLogin) => {
     if (isLogin) {
@@ -111,44 +104,50 @@ export default function VideoBox({ guest, isLogin, found }) {
     }
   };
 
-  if (guest && found) {
+  if (guest && callAccepted && !callEnded) {
     return (
       <Col className="d-flex justify-content-center">
-        {/* <Options></Options> */}
-        <Notifications />
-        <div className="video-prev d-flex align-items-end">
-          {stream && (
-            // <div
-            //   style={{
-            //     justifyContent: "center",
-            //   }}
-            // >
-            //   <div style={{ width: "870px", height: "500px" }}>
-            <>
-              <Col className="d-flex justify-content-center mb-4">
-                <Stack direction="horizontal" gap={3}>
-                  <video playsInline muted ref={myVideo} autoPlay />
-                  <div onClick={() => ran()}>
-                    <ButtonPrimary
-                      text="Run"
-                      action="/"
-                      placement="video-action btn-ran"
-                    />
-                  </div>
+        <div className="video-prev d-flex align-items-end justify-content-center">
+          <video
+            playsInline
+            ref={videoShow}
+            autoPlay
+            width="100%"
+            height="100%"
+            id="video-user"
+          />
 
-                  <ButtonPrimary
-                    text="Stop"
-                    action="/"
-                    placement="video-action btn-stop"
-                  />
-                  {showButtonReq(isLogin)}
-                </Stack>
-              </Col>
-            </>
-            //   </div>
-            // </div>
-          )}
-          {callAccepted && !callEnded && (
+          <Col className="d-flex justify-content-center mb-4" id="action">
+            <Stack direction="horizontal" gap={3}>
+              <ButtonPrimary
+                text="Run"
+                action={ranButtonHandler}
+                placement="video-action btn-ran"
+              />
+
+              <ButtonPrimary
+                text="Stop"
+                action="/"
+                placement="video-action btn-stop"
+              />
+              {showButtonReq(isLogin)}
+            </Stack>
+          </Col>
+        </div>
+      </Col>
+    );
+  } else if (!guest) {
+    return (
+      <Col className="d-flex justify-content-center">
+        <div className="video-prev d-flex align-items-end justify-content-center">
+          <video
+            playsInline
+            ref={videoShow}
+            autoPlay
+            width="100%"
+            height="100%"
+          />
+          {/* {callAccepted && !callEnded && (
             <div
               style={{
                 padding: "10px",
@@ -158,23 +157,22 @@ export default function VideoBox({ guest, isLogin, found }) {
             >
               <video playsInline ref={userVideo} autoPlay />
             </div>
-          )}
+          )} */}
         </div>
       </Col>
     );
-  } else if (guest && !found) {
+  } else {
     return (
       <Col className="d-flex justify-content-center">
+        <Notifications />
         <div className="video-prev-searcing d-flex align-items-end justify-content-center">
           <Col className="action mb-4">
             <Stack direction="horizontal" gap={3}>
-              <div onClick={() => ran()}>
-                <ButtonPrimary
-                  text="Run"
-                  action="/"
-                  placement="video-action btn-ran"
-                />
-              </div>
+              <ButtonPrimary
+                text="Run"
+                action={ranButtonHandler}
+                placement="video-action btn-ran"
+              />
               <ButtonPrimary
                 text="Stop"
                 action="/"
@@ -195,12 +193,6 @@ export default function VideoBox({ guest, isLogin, found }) {
             id="video-static"
           ></video>
         </div>
-      </Col>
-    );
-  } else {
-    return (
-      <Col className="d-flex justify-content-center">
-        <div className="video-prev" />
       </Col>
     );
   }

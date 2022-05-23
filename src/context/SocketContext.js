@@ -54,7 +54,22 @@ const ContextProvider = ({ children }) => {
   const answerCall = () => {
     setCallAccepted(true);
 
-    const peer = new Peer({ initiator: false, trickle: false, stream });
+    // const peer = new Peer({ initiator: false, trickle: false, stream });
+    const peer = new Peer({
+      config: {
+        iceServers: [
+          { url: "stun:stun.l.google.com:19302" },
+          {
+            url: "turn:numb.viagenie.ca",
+            credential: "muazkh",
+            username: "webrtc@live.com",
+          },
+        ],
+      },
+      initiator: false,
+      trickle: false,
+      stream,
+    });
 
     peer.on("signal", (data) => {
       socket.emit("answercall", { signal: data, to: call.from });
@@ -72,6 +87,21 @@ const ContextProvider = ({ children }) => {
   };
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
+    // const peer = new Peer({
+    //   config: {
+    //     iceServers: [
+    //       { url: "stun:stun.l.google.com:19302" },
+    //       {
+    //         url: "turn:numb.viagenie.ca",
+    //         credential: "muazkh",
+    //         username: "webrtc@live.com",
+    //       },
+    //     ],
+    //   },
+    //   initiator: false,
+    //   trickle: false,
+    //   stream,
+    // });
 
     console.log(id, "halohalo bengkel mobil");
 
@@ -118,6 +148,7 @@ const ContextProvider = ({ children }) => {
         callUser,
         leaveCall,
         answerCall,
+        setCallAccepted,
       }}
     >
       {children}

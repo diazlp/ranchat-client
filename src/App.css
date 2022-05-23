@@ -1,5 +1,3 @@
-
-
 /* Global Setting */
 a {
   text-decoration: none;
@@ -14,153 +12,150 @@ button:hover {
 .disabled {
   pointer-events: none;
 }
-.clickable{
+.clickable {
   cursor: pointer;
 }
-.clickable:hover{
+.clickable:hover {
   cursor: pointer;
   filter: brightness(108%);
 }
 audio::-webkit-media-controls-timeline,
 video::-webkit-media-controls-timeline {
-    display: none;
+  display: none;
 }
 audio::-webkit-media-controls,
 video::-webkit-media-controls {
-    display: none;
+  display: none;
 }
 
-
 /* Icon */
-.icon-menus{
+.icon-menus {
   color: rgb(106, 14, 129);
   font-size: 30px;
   margin-right: 7px;
 }
-.icon-online-sm{
+.icon-online-sm {
   font-size: 7px;
   color: rgb(36, 197, 36);
   margin-right: 7px;
 }
-.icon-online-md{
+.icon-online-md {
   font-size: 12px;
   color: rgb(36, 197, 36);
   margin-right: 7px;
 }
-.icon-online-lg{
+.icon-online-lg {
   font-size: 15px;
   color: rgb(36, 197, 36);
 }
 
-.icon-offline-sm{
+.icon-offline-sm {
   font-size: 7px;
   color: rgb(185, 185, 185);
   margin-right: 7px;
 }
-.icon-offline-md{
+.icon-offline-md {
   font-size: 12px;
   color: rgb(185, 185, 185);
   margin-right: 7px;
 }
-.icon-offline-lg{
+.icon-offline-lg {
   font-size: 15px;
   color: rgb(185, 185, 185);
 }
 
-.icon-user-info-headline{
+.icon-user-info-headline {
   color: #464646;
   font-size: 18px;
 }
-.icon-user-info-privacy{
+.icon-user-info-privacy {
   color: #cfcfcf;
   font-size: 12px;
 }
-.icon-send-message{
+.icon-send-message {
   color: #424242;
   font-size: 23px;
   margin-left: 20px;
 }
-.icon-offline{
+.icon-offline {
   font-size: 20px;
   color: grey;
   margin-right: 7px;
 }
-.icon-premium{
+.icon-premium {
   color: rgb(255, 255, 255) !important;
   margin-right: 7px;
 }
-.icon-header-chat-level{
+.icon-header-chat-level {
   font-size: 15px;
   margin-right: 10px;
 }
-.icon-header-chat{
+.icon-header-chat {
   font-size: 25px;
 }
-.icon-create-room-video{
+.icon-create-room-video {
   font-size: 20px;
   margin-right: 10px;
 }
 .icon-disabled {
- color: rgb(201, 201, 201) !important;
- font-size: 30px;
+  color: rgb(201, 201, 201) !important;
+  font-size: 30px;
 }
-.icon-authen-true{
+.icon-authen-true {
   font-size: 23px;
   color: #424242;
 }
-.icon-authen-false{
+.icon-authen-false {
   position: absolute;
   font-size: 23px;
   color: rgb(224, 224, 224);
 }
-.icon-send-gif{
+.icon-send-gif {
   font-size: 23px;
   color: #424242;
 }
-.fa-lock{
+.fa-lock {
   position: relative;
   color: #ffa600;
   font-size: 13px;
   transform: translateY(4px) translateX(-4px);
 }
 
-
 /* Button */
-.btn-sign{
+.btn-sign {
   background-color: #5f358f !important;
   margin: 30px 0;
   padding: 10px 20px !important;
 }
-.btn-premium-cta{
+.btn-premium-cta {
   background-color: rgb(235, 172, 38) !important;
   color: rgb(255, 255, 255) !important;
   border-radius: 30px !important;
 }
-.btn-video-action{
+.btn-video-action {
   padding: 15px 40px !important;
   border-radius: 40px !important;
 }
-.btn-ran{
+.btn-ran {
   background-color: blueviolet !important;
   color: rgb(255, 255, 255) !important;
 }
-.btn-stop{
+.btn-stop {
   background-color: rgb(218, 218, 218) !important;
   color: blueviolet !important;
 }
-.btn-request{
+.btn-request {
   background-color: rgb(235, 172, 38) !important;
   color: rgb(255, 255, 255) !important;
 }
-.btn-send-verif{
+.btn-send-verif {
   background-color: blueviolet !important;
   color: rgb(255, 255, 255) !important;
 }
-.btn-verif{
+.btn-verif {
   background-color: blueviolet !important;
   color: rgb(255, 255, 255) !important;
 }
-
 
 /* Input */
 .input-chat {
@@ -171,7 +166,6 @@ video::-webkit-media-controls {
   border-radius: 30px !important;
 }
 
-
 /* Avatar */
 .avatar {
   border-radius: 50%;
@@ -179,12 +173,12 @@ video::-webkit-media-controls {
 }
 
 /* Sidebar */
-.sidebar-profile{
+.sidebar-profile {
   width: 370px !important;
   padding: 0 35px !important;
   background-color: rgb(186, 1, 233);
 }
-.sidebar-menus{
+.sidebar-menus {
   width: 110px !important;
   background-color: rgb(245, 245, 245);
 }
@@ -196,7 +190,6 @@ video::-webkit-media-controls {
   width: 370px !important;
   padding: 0 35px !important;
 }
-
 
 /* Pushable button CTA RAN */
 .pushable {
@@ -219,10 +212,7 @@ video::-webkit-media-controls {
   background: hsl(0deg 0% 0% / 0.25);
   will-change: transform;
   transform: translateY(3px) translateX(-3px);
-  transition:
-    transform
-    600ms
-    cubic-bezier(.3, .7, .4, 1);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
 .edge {
   position: absolute;
@@ -239,23 +229,17 @@ video::-webkit-media-controls {
   padding: 16px 16px;
   border-radius: 50%;
   color: white;
-  background:   #A766F0;
+  background: #a766f0;
   will-change: transform;
   transform: translateY(-6px) translateX(4px);
-  transition:
-    transform
-    600ms
-    cubic-bezier(.3, .7, .4, 1);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
 }
 .pushable:hover {
   filter: brightness(110%);
 }
 .pushable:hover .front {
   transform: translateY(-8px) translateX(6px);
-  transition:
-    transform
-    250ms
-    cubic-bezier(.3, .7, .4, 1.5);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
 }
 .pushable:active .front {
   transform: translateY(-3px) translateX(2px);
@@ -263,10 +247,7 @@ video::-webkit-media-controls {
 }
 .pushable:hover .shadow {
   transform: translateY(5px) translateX(-4px);
-  transition:
-    transform
-    250ms
-    cubic-bezier(.3, .7, .4, 1.5);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
 }
 .pushable:active .shadow {
   transform: translateY(1px);
@@ -276,12 +257,10 @@ video::-webkit-media-controls {
   outline: none;
 }
 
-
 /* Headers */
-.header{
+.header {
   height: 100px;
 }
-
 
 /* Navbar */
 .avatars {
@@ -298,7 +277,6 @@ video::-webkit-media-controls {
 .total-user-online {
   font-size: 45px;
 }
-
 
 /* Video Play ground */
 .video-prev {
@@ -320,10 +298,16 @@ video::-webkit-media-controls {
   border-radius: 20px;
   position: relative;
 }
+#video-user {
+  border-radius: 20px;
+  position: relative;
+}
 .playground {
   margin-top: 12px;
 }
-
+#action {
+  position: absolute;
+}
 
 /* Chat Box Playground */
 .chat-box {
@@ -344,7 +328,6 @@ video::-webkit-media-controls {
 .guest {
   color: blueviolet;
 }
-
 
 /* Text */
 .text-username {
@@ -373,7 +356,6 @@ video::-webkit-media-controls {
   font-size: 25px;
 }
 
-
 /* Badge */
 .badge-level-grey .bg-primary {
   background-color: rgb(112, 112, 112) !important;
@@ -390,19 +372,18 @@ video::-webkit-media-controls {
 .badge-level-blue .bg-primary {
   background-color: rgb(8, 96, 155) !important;
 }
-.badge-header-premium .bg-primary{
+.badge-header-premium .bg-primary {
   background-color: rgb(235, 172, 38) !important;
   color: #ffffff;
 }
-.badge-header-free .bg-primary{
+.badge-header-free .bg-primary {
   background-color: #ffffff !important;
   color: #5f358f;
 }
-.badge-header-default .bg-primary{
+.badge-header-default .bg-primary {
   background-color: #5f358f !important;
   color: #ffffff;
 }
-
 
 /* Sidebar Chat */
 .cb2:hover {
@@ -417,12 +398,10 @@ video::-webkit-media-controls {
   max-height: 650px;
 }
 
-
 /* Friend Chat */
 .badge-friend .bg-primary {
   background-color: blueviolet !important;
 }
-
 
 /* Form */
 #login-form {
@@ -431,7 +410,6 @@ video::-webkit-media-controls {
 #register-form {
   width: 500px !important;
 }
-
 
 /* Chat */
 .chat-header {
@@ -462,7 +440,6 @@ video::-webkit-media-controls {
   font-size: 15px;
 }
 
-
 /* Friend List */
 .friend-list {
   height: 590px;
@@ -470,7 +447,7 @@ video::-webkit-media-controls {
   overflow-x: auto;
 }
 
-.friend-list-item{
+.friend-list-item {
   border-radius: 50px;
   background-color: rgb(247, 247, 247);
 }
@@ -480,12 +457,12 @@ video::-webkit-media-controls {
 }
 
 .nav-pills .nav-link.active {
- background-color: #5f358f !important;
- color: white !important;
- border-radius: 50px;
+  background-color: #5f358f !important;
+  color: white !important;
+  border-radius: 50px;
 }
 
-.nav-link{
+.nav-link {
   color: #5f358f !important;
 }
 
@@ -500,19 +477,17 @@ video::-webkit-media-controls {
   border-radius: 50px !important;
 }
 
-
 /* On Boarding */
-.onBoading{
-  background-color: #A766F0;
+.onBoading {
+  background-color: #a766f0;
 }
-
 
 /* Profile Page */
 .sidebar-profile .nav-link {
   border-radius: 30px;
   color: white !important;
   border: 3px solid #8051b6;
-  background-color: #A766F0;
+  background-color: #a766f0;
   font-weight: bold;
 }
 
@@ -543,9 +518,8 @@ video::-webkit-media-controls {
   width: 800px;
 }
 
-
 /* User Info */
-.user-info{
+.user-info {
   margin-top: 30px !important;
 }
 
