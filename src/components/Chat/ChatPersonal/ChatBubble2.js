@@ -1,6 +1,7 @@
 import { Col, Row, Stack } from "react-bootstrap";
 import { getUser } from "../../../actions/userAction";
 import { useEffect, useState } from "react";
+
 import Avatar from "../../Avatar/Avatar";
 
 export default function ChatBubble2({ from, message, time, sender, image }) {
