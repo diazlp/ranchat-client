@@ -5,6 +5,7 @@ import { useEffect, useState, useContext } from "react";
 import { SocketContext } from "../../../context/SocketContext";
 import { getChatList } from "../../../actions/chatAction";
 
+import ScrollToBottom from "react-scroll-to-bottom";
 import ChatBubble2 from "./ChatBubble2";
 
 export default function ChatArea() {
@@ -29,6 +30,7 @@ export default function ChatArea() {
         // photo: "asasaswewvdaccqwqc",
       });
       if (data.friendRoom !== friendRoom) {
+        dispatch(getChatList());
       }
     });
   }, []);
@@ -41,21 +43,25 @@ export default function ChatArea() {
 
   useEffect(() => {
     setMessages(chatHistory);
+    console.log(window.scrollTo(0, 200));
   }, [chatHistory]);
   return (
-    <Row className="chat-area d-flex align-items-end p-4">
-      <Col>
-        {messages.length > 0 &&
-          messages.map((chat, i) => (
-            <ChatBubble2
-              key={i}
-              from={chat.fromSelf}
-              message={chat.message}
-              time={format(chat.time)}
-              sender={chat.senderId}
-            />
-          ))}
-      </Col>
+    <Row className="chat-area">
+      <ScrollToBottom className="chat-area">
+        <Col>
+          {messages.length > 0 &&
+            messages.map((chat, i) => (
+              <ChatBubble2
+                key={i}
+                from={chat.fromSelf}
+                message={chat.message}
+                time={format(chat.time)}
+                sender={chat.senderId}
+                image="https://dummyimage.com/600x400/000/fff"
+              />
+            ))}
+        </Col>
+      </ScrollToBottom>
     </Row>
   );
 }

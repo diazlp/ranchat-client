@@ -35,7 +35,7 @@ export default function ChatPage() {
         <SidebarChat premium={premium} listChat={listChat} />
 
         {friendHeaderName && (
-          <Col className="bg-light chat-area-selected">
+          <Col className="bg-light">
             <ChatHeader level={lvl} />
             <ChatArea />
             <ChatFooter level={lvl} />
