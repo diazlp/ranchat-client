@@ -1,18 +1,19 @@
 import { Form, Button } from "react-bootstrap";
-import ButtonPrimary from "../Button/ButtonPrimary";
-import InputComponent from "./InputComponent";
 import { getToken, registerUser } from "../../actions/userAction";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import ButtonPrimary from "../Button/ButtonPrimary";
+import InputComponent from "./InputComponent";
+
 export default function FormComponent({ type }) {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [status, setStatus] = useState(false);
-
-  const navigate = useNavigate();
 
   const login = () => {
     if (status) {
@@ -56,6 +57,7 @@ export default function FormComponent({ type }) {
         break;
     }
   };
+
   const inputHandler = (value, name) => {
     switch (name) {
       case "email":
@@ -88,8 +90,6 @@ export default function FormComponent({ type }) {
         setFirstname("");
         setLastname("");
         break;
-      default:
-        break;
     }
   }, [type]);
 
@@ -105,8 +105,6 @@ export default function FormComponent({ type }) {
         setPassword("");
         setFirstname("");
         setLastname("");
-        break;
-      default:
         break;
     }
   }, [type]);
@@ -161,9 +159,6 @@ export default function FormComponent({ type }) {
             require: true,
           },
         ];
-
-      default:
-        break;
     }
   };
 

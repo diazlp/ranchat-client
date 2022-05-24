@@ -11,6 +11,7 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
 
   const dispatch = useDispatch();
   const room = useSelector((state) => state.guest.room);
+  let disabled = false;
 
   const ranButtonHandler = () => {
     dispatch(joinRoom(me));
@@ -21,17 +22,6 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
       callUser(room.guestCaller);
     }
   }, [room]);
-
-  // useEffect(() => {
-  //   if (call.isReceivedCall) {
-  //     answerCall();
-  //     console.log(call, "<<<<<<<");
-  //     console.log(myVideo, "<<<<ini videoku");
-  //     console.log(userVideo, "<<<<< ini video temanku");
-  //     console.log(me, "<<<< idku");
-  //     console.log(room, "<<< ini id roomnya");
-  //   }
-  // }, [call]);
 
   function Notifications() {
     const { answerCall, call, callAccepted } = useContext(SocketContext);
@@ -83,6 +73,7 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
                 text="Run"
                 action={ranButtonHandler}
                 placement="video-action btn-ran"
+                disabled={disabled}
               />
 
               <ButtonPrimary
@@ -107,17 +98,6 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
             width="100%"
             height="100%"
           />
-          {/* {callAccepted && !callEnded && (
-            <div
-              style={{
-                padding: "10px",
-                border: "2px solid black",
-                margin: "10px",
-              }}
-            >
-              <video playsInline ref={userVideo} autoPlay />
-            </div>
-          )} */}
         </div>
       </Col>
     );

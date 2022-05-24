@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -10,6 +11,18 @@ export default function ButtonPrimary({
   setModalShow,
   submit,
 }) {
+  const [seconds, setSeconds] = useState(0);
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    if (seconds > 0) {
+      setTimeout(() => setSeconds(seconds - 1), 1000);
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  });
+
   if (action === "premium") {
     return (
       <Button className={`btn-${placement}`} onClick={() => setModalShow(true)}>
@@ -20,6 +33,7 @@ export default function ButtonPrimary({
       </Button>
     );
   } else if (action === "LR") {
+    //Login and Register bukan Left and Right
     return (
       <Button
         className={`btn-${placement}`}
@@ -34,10 +48,7 @@ export default function ButtonPrimary({
         {text}
       </Button>
     );
-  }
-
-  //// KEMUNGKINAN CONFLICT
-  else if (placement === "edit-page") {
+  } else if (placement === "edit-page") {
     return (
       <Button className={`btn-${placement}`} onClick={() => action(true)}>
         {placement === "premium-cta" && (
@@ -46,33 +57,22 @@ export default function ButtonPrimary({
         {text}
       </Button>
     );
-  }
-  ///////
-
-  //// APAKAH CONFLICT?
-  // if (placement === "send-verif") {
-  //   return (
-  //     <Button className={`btn-${placement}`} onClick={() => action(60)}>
-  //       {text}
-  //     </Button>
-  //   );
-  // } else if (placement === "premium-cta") {
-  //   return (
-  //     <Button className={`btn-${placement}`} onClick={() => action(true)}>
-  //       {placement === "premium-cta" && (
-  //         <Icon name="crown" placement="premium" />
-  //       )}
-  //       {text}
-  //     </Button>
-  //   );
-  ////
-  else if (placement === "video-action btn-ran") {
+  } else if (placement === "video-action btn-ran") {
     return (
-      <Button className={`btn-${placement}`} onClick={() => action()}>
+      <Button
+        className={`btn-${placement}`}
+        disabled={disabled}
+        onClick={() => {
+          action();
+          setSeconds(10);
+        }}
+      >
         {placement === "premium-cta" && (
           <Icon name="crown" placement="premium" />
         )}
-        {text}
+        {text} {"("}
+        {seconds}
+        {")"}
       </Button>
     );
   } else {

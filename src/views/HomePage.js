@@ -10,7 +10,6 @@ import PremiumModal from "../components/Premium/PremiumModals";
 
 export default function HomePage() {
   const [modalShow, setModalShow] = useState(false);
-  // const [guest, setGuest] = useState(true);
   const [loginStatus, setLoginStatus] = useState(false);
   const { myVideo, userVideo } = useContext(SocketContext);
 
