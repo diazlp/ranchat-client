@@ -7,6 +7,7 @@ export const DELETE_GUEST = "guest/delete";
 export const JOIN_ROOM = "guest/joinRoom";
 
 export const SEND_MESSAGE = "guest/sendMessage";
+export const RECEIVE_MESSAGE = "guest/receiveMessage";
 
 export const FETCH_FRIEND = "friend/fetch";
 export const FETCH_FRIEND_REQUEST = "friend/request-fetch";
