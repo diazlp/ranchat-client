@@ -12,7 +12,7 @@ export const getToken = (data) => {
       password: data.password,
     })
     .then(({ data }) => {
-      localStorage.setItem("UserId", data.id);
+      localStorage.setItem("UserId", data.profile?.id);
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("email", data.profile?.email);
       localStorage.setItem("fullName", data.profile?.fullName);
