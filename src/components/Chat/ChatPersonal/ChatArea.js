@@ -1,19 +1,22 @@
 import { Col, Row } from "react-bootstrap";
-import ChatBubble2 from "./ChatBubble2";
 import { useSelector, useDispatch } from "react-redux";
 import { format } from "timeago.js";
 import { useEffect, useState, useContext } from "react";
 import { SocketContext } from "../../../context/SocketContext";
 import { getChatList } from "../../../actions/chatAction";
 
-export default function ChatArea({ data }) {
+import ChatBubble2 from "./ChatBubble2";
+
+export default function ChatArea() {
+  const dispatch = useDispatch();
+
   const { socket } = useContext(SocketContext);
   const { friendRoom } = useSelector((state) => state.chat);
+  const { chatHistory } = useSelector((state) => state.chat);
+
   const [friendrommid, setFirendRoomId] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [messages, setMessages] = useState([]);
-  const dispatch = useDispatch();
-  const { chatHistory } = useSelector((state) => state.chat);
 
   useEffect(() => {
     socket.on("getMessage", (data) => {
@@ -23,10 +26,9 @@ export default function ChatArea({ data }) {
         message: data.text,
         senderId: data.senderId,
         time: Date.now(),
-        photo: "asasaswewvdaccqwqc",
+        // photo: "asasaswewvdaccqwqc",
       });
       if (data.friendRoom !== friendRoom) {
-        dispatch(getChatList());
       }
     });
   }, []);

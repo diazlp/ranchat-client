@@ -25,15 +25,16 @@ export default function ChatList({ name, message, image }) {
 
   return (
     <Row className="m-0 cb2 py-2">
-      <Col className="col-3 text-e align-self-center">
+      <Col className="d-flex align-items-center">
         <Avatar avatar={image} size="md" />
+        <TextForChat placement="username" text={usernameTruncate(name)} />
       </Col>
-      <Col className="col-9 text-truncate">
+      {/* <Col className="col-9">
         <Row className="gap-2">
           <TextForChat placement="username" text={usernameTruncate(name)} />
-          {/* <TextForChat placement="message" text={messageTruncate(message)} /> */}
+          <TextForChat placement="message" text={messageTruncate(message)} />
         </Row>
-      </Col>
+      </Col> */}
     </Row>
   );
 }

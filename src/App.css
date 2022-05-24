@@ -265,6 +265,11 @@ label {
 .avatar {
   border-radius: 50%;
   margin-right: 10px;
+  object-fit: cover;
+}
+.avatar-cb2 {
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* Sidebar */
@@ -433,8 +438,10 @@ label {
 
 /* Text */
 .text-username {
-  font-size: 19px;
+  font-size: 23px;
+  margin-left: 15px;
   font-weight: 500;
+  color: #777777;
 }
 .text-username-you {
   font-size: 19px;
@@ -492,12 +499,10 @@ label {
   background-color: rgb(240, 240, 240);
   cursor: pointer;
 }
-.avatar-cb2 {
-  border-radius: 50%;
-}
 .chat-list {
   overflow-x: auto;
   max-height: 650px;
+  margin-top: 10px !important;
 }
 
 /* Friend Chat */
@@ -540,6 +545,14 @@ label {
 .chat-time {
   color: rgb(128, 128, 128);
   font-size: 15px;
+}
+.chat-area-default {
+  width: 600px;
+  margin: auto;
+  transform: translateY(80%);
+}
+.chat-area-default img{
+  margin: auto;
 }
 
 /* Friend List */

@@ -6,8 +6,8 @@ import SidebarHeaders from "../Headers/SidebarHeaders";
 import ListChats from "./ListChats";
 
 export default function SidebarChat({ premium, listChat }) {
-  const message = 20;
-  console.log(listChat);
+  const message = listChat.length;
+
   return (
     <Col className="col-3 sidebar-chat">
       <Row className="header d-flex align-items-center">
@@ -30,7 +30,7 @@ export default function SidebarChat({ premium, listChat }) {
       </Row>
       <SidebarHeaders text="Message" num={message} />
       <InputComponent type="search" placement="search" />
-      <Row className="gap-2 chat-list d-flex align-items-start">
+      <Row className="gap-2 chat-list d-flex align-items-start mt-4">
         {listChat.length > 0 &&
           listChat.map((chat, i) => <ListChats key={i} chat={chat} />)}
       </Row>
