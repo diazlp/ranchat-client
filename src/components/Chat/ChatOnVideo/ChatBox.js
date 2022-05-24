@@ -25,24 +25,6 @@ export default function ChatBox1({ data }) {
               />
             );
           })}
-          {/* <ChatBubble1
-            who="you"
-            message="halooo sayang"
-            time="23.59"
-            username="Kevin Tandiono"
-          />
-          <ChatBubble1
-            who="guest"
-            message="Hai juga"
-            time="00.00"
-            username="Kevin Tandiono"
-          />
-          <ChatBubble1
-            who="you"
-            message="halooo sayang"
-            time="23.59"
-            username="Kevin Tandiono"
-          /> */}
         </Stack>
       </Row>
       <Row>
