@@ -73,15 +73,7 @@ const ContextProvider = ({ children }) => {
     // });
   }, []);
 
-  // useEffect(() => {
-  //   if (profile) {
-  //     socket.emit("adduser", profile.UserId);
 
-  //     socket.on("getUsers", (data) => {
-  //       setOnlineUsers(data);
-  //     });
-  //   }
-  // }, [profile]);
 
   useEffect(() => {
     socket.on("receiveMessageFromVideo", (data) => {

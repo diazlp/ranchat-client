@@ -1,17 +1,9 @@
-import { FETCH_PROFILE } from "./actionTypes";
 import axios from "axios";
 
 const serverAppUrl =
   process.env.NODE_ENV === "production"
     ? "https://ranchat-app.herokuapp.com"
     : "http://localhost:4001";
-
-// const setProfile = (payload) => {
-//   return {
-//     type: FETCH_PROFILE,
-//     payload,
-//   };
-// };
 
 export const getToken = (data) => {
   return axios
@@ -33,14 +25,11 @@ export const registerUser = (data) => {
 };
 
 export const getProfile = () => {
-  // return (dispatch) => {
   return axios.get(`${serverAppUrl}/user/profile`, {
     headers: {
       access_token: localStorage.getItem("access_token"),
     },
   });
-
-  // };
 };
 
 export const getUser = (data) => {
