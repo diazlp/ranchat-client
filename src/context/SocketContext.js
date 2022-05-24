@@ -8,6 +8,8 @@ import {
   fetchRoomDetail,
   receiveMessage,
 } from "../actions/guestAction";
+import { getProfile } from "../actions/userAction";
+
 import { sendMessage } from "../actions/guestAction";
 const SocketContext = createContext();
 
@@ -24,6 +26,8 @@ const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [profile, setProfile] = useState([]);
 
   const dispatch = useDispatch();
   const guest = useSelector((state) => state.guest.guest);
@@ -35,6 +39,17 @@ const ContextProvider = ({ children }) => {
   const connectionRef = useRef();
 
   useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      getProfile().then(({ data }) => {
+        setProfile(data);
+        socket.emit("adduser", data.UserId);
+
+        socket.on("getUsers", (data) => {
+          setOnlineUsers(data);
+        });
+      });
+    }
+
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((currentStream) => {
@@ -57,6 +72,8 @@ const ContextProvider = ({ children }) => {
     //   dispatch(receiveMessage(data));
     // });
   }, []);
+
+
 
   useEffect(() => {
     socket.on("receiveMessageFromVideo", (data) => {
@@ -173,6 +190,8 @@ const ContextProvider = ({ children }) => {
         setCallAccepted,
         socket,
         socketSendMessage,
+        onlineUsers,
+        profile,
       }}
     >
       {children}

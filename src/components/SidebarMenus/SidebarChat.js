@@ -4,10 +4,16 @@ import ButtonPrimary from "../Button/ButtonPrimary";
 import InputComponent from "../Form/InputComponent";
 import SidebarHeaders from "../Headers/SidebarHeaders";
 import ListChats from "./ListChats";
+import { useEffect, useState } from "react";
 
 export default function SidebarChat({ premium, listChat }) {
-  const message = 20;
-  console.log(listChat);
+  // const message = 20;
+  const [totalMessage, setTotalMessage] = useState(0);
+
+  useEffect(() => {
+    setTotalMessage(listChat.length);
+  }, [listChat]);
+
   return (
     <Col className="col-3 sidebar-chat">
       <Row className="header d-flex align-items-center">
@@ -28,7 +34,7 @@ export default function SidebarChat({ premium, listChat }) {
           )}
         </Col>
       </Row>
-      <SidebarHeaders text="Message" num={message} />
+      <SidebarHeaders text="Message" num={totalMessage} />
       <InputComponent type="search" placement="search" />
       <Row className="gap-2 chat-list d-flex align-items-start">
         {listChat.length > 0 &&

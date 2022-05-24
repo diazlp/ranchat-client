@@ -12,16 +12,21 @@ import { useDispatch, useSelector } from "react-redux";
 export default function ChatPage() {
   const login = true;
   const premium = false;
-  const lvl = 10;
+  const lvl = 0;
   const data = "data";
+  const [lvFriend, setLvFriend] = useState(0);
   const [listChat, setlistChat] = useState([]);
 
-  const { chatList } = useSelector((state) => state.chat);
+  const { chatList, chatHistory } = useSelector((state) => state.chat);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setlistChat(chatList);
   }, [chatList]);
+
+  useEffect(() => {
+    setLvFriend(Math.floor(chatHistory.length / 10));
+  }, [chatHistory]);
 
   useEffect(() => {
     dispatch(getChatList());
@@ -32,9 +37,9 @@ export default function ChatPage() {
         <Menus isLogin={login} />
         <SidebarChat premium={premium} data={data} listChat={listChat} />
         <Col className="bg-light">
-          <ChatHeader level={lvl} />
+          <ChatHeader level={lvFriend} />
           <ChatArea data={data} />
-          <ChatFooter level={lvl} />
+          <ChatFooter level={lvFriend} />
         </Col>
         <FriendList />
       </Row>
