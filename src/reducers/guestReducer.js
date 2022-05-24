@@ -1,9 +1,15 @@
-import { CREATE_GUEST, DELETE_GUEST, JOIN_ROOM } from "../actions/actionTypes";
+import {
+  CREATE_GUEST,
+  DELETE_GUEST,
+  JOIN_ROOM,
+  SEND_MESSAGE,
+} from "../actions/actionTypes";
 
 const initialState = {
   guest: "",
   guestList: [],
   room: {},
+  messageHistory: [],
 };
 
 const guestReducer = (state = initialState, action) => {
@@ -22,6 +28,11 @@ const guestReducer = (state = initialState, action) => {
       return {
         ...state,
         room: action.payload,
+      };
+    case SEND_MESSAGE:
+      return {
+        ...state,
+        messageHistory: [...state.messageHistory, action.payload],
       };
     default:
       return state;

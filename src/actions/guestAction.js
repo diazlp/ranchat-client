@@ -1,4 +1,9 @@
-import { CREATE_GUEST, DELETE_GUEST, JOIN_ROOM } from "./actionTypes";
+import {
+  CREATE_GUEST,
+  DELETE_GUEST,
+  JOIN_ROOM,
+  SEND_MESSAGE,
+} from "./actionTypes";
 import axios from "axios";
 
 const serverAppUrl =
@@ -22,6 +27,13 @@ const deleteGuestSuccess = () => {
 const joinRoomSuccess = (payload) => {
   return {
     type: JOIN_ROOM,
+    payload,
+  };
+};
+
+export const sendMessage = (payload) => {
+  return {
+    type: SEND_MESSAGE,
     payload,
   };
 };
@@ -61,5 +73,14 @@ export const joinRoom = (socketId) => {
           dispatch(joinRoomSuccess(data));
         }
       });
+  };
+};
+
+export const fetchRoomDetail = (roomId) => {
+  return (dispatch) => {
+    return axios.get(`${serverAppUrl}/guest/randomRoom`).then(({ data }) => {
+      const roomDetail = data.find((el) => el._id === roomId);
+      dispatch(joinRoomSuccess(roomDetail));
+    });
   };
 };
