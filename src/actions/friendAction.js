@@ -51,13 +51,13 @@ export const getFriendRequest = () => {
   };
 };
 
-export const addFriend = (data) => {
+export const addFriend = (id) => {
   return (dispatch) => {
     return axios
       .post(
         `${serverAppUrl}/friends/`,
         {
-          friendId: data.id,
+          userId: id,
         },
         {
           headers: {
@@ -65,7 +65,7 @@ export const addFriend = (data) => {
           },
         }
       )
-      .then(() => {
+      .then((data) => {
         console.log(data);
       })
       .catch((err) => {

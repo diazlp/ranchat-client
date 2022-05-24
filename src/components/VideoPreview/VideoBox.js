@@ -7,7 +7,8 @@ import { joinRoom } from "../../actions/guestAction";
 import ButtonPrimary from "../Button/ButtonPrimary";
 
 export default function VideoBox({ guest, isLogin, videoShow }) {
-  const { callAccepted, callEnded, callUser, me } = useContext(SocketContext);
+  const { callAccepted, callEnded, callUser, sendFriendRequest, me } =
+    useContext(SocketContext);
 
   const dispatch = useDispatch();
   const room = useSelector((state) => state.guest.room);
@@ -57,7 +58,7 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
       return (
         <ButtonPrimary
           text="Request"
-          action="/"
+          sendFriendRequest={sendFriendRequest}
           placement="video-action btn-request"
         />
       );
