@@ -18,15 +18,25 @@ export default function Icon({ name, placement, sosmed, action }) {
           />
         </>
       );
+    } else if (placement === "send-message clickable") {
+      return (
+        <i
+          className={`icon fa-${
+            sosmed ? "brands" : "solid"
+          } fa-${name} icon-${placement}`}
+          onClick={() => action()}
+        />
+      );
+    } else {
+      return (
+        <i
+          className={`icon fa-${
+            sosmed ? "brands" : "solid"
+          } fa-${name} icon-${placement}`}
+          onClick={() => action(true)}
+        />
+      );
     }
-    return (
-      <i
-        className={`icon fa-${
-          sosmed ? "brands" : "solid"
-        } fa-${name} icon-${placement}`}
-        onClick={() => action(true)}
-      />
-    );
   } else {
     return (
       <i

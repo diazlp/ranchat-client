@@ -41,7 +41,7 @@ export default function HomePage() {
               />
               <VideoBox videoShow={myVideo} />
             </Stack>
-            <ChatBox chat={"data"} />
+            <ChatBox />
           </Stack>
         </Col>
       </Row>

@@ -267,6 +267,10 @@ label {
   font-weight: bold !important;
   background-color: #8051b6 !important;
 }
+.btn-send-message-playground {
+  all: unset;
+  cursor: pointer;
+}
 
 /* Input */
 .input-chat {
@@ -455,7 +459,7 @@ label {
 /* Text */
 .text-username {
   font-size: 23px;
-  margin-left: 15px;
+  /* margin-left: 15px; */
   font-weight: 500;
   color: #777777;
 }
