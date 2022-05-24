@@ -9,6 +9,7 @@ export default function ButtonPrimary({
   placement,
   submit,
   customClass, //diaz made this
+  sendFriendRequest,
 }) {
   if (customClass === "premium-btn") {
     return (
@@ -69,6 +70,18 @@ export default function ButtonPrimary({
   else if (placement === "video-action btn-ran") {
     return (
       <Button className={`btn-${placement}`} onClick={() => action()}>
+        {placement === "premium-cta" && (
+          <Icon name="crown" placement="premium" />
+        )}
+        {text}
+      </Button>
+    );
+  } else if (placement === "video-action btn-request") {
+    return (
+      <Button
+        className={`btn-${placement}`}
+        onClick={() => sendFriendRequest()}
+      >
         {placement === "premium-cta" && (
           <Icon name="crown" placement="premium" />
         )}

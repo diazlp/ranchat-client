@@ -9,7 +9,7 @@ import {
   receiveMessage,
 } from "../actions/guestAction";
 import { getProfile } from "../actions/userAction";
-
+import { addFriend } from "../actions/friendAction";
 import { sendMessage } from "../actions/guestAction";
 const SocketContext = createContext();
 
@@ -31,6 +31,7 @@ const ContextProvider = ({ children }) => {
 
   const dispatch = useDispatch();
   const guest = useSelector((state) => state.guest.guest);
+  const room = useSelector((state) => state.guest.room);
   const roomId = useSelector((state) => state.guest.room);
   const messageHistory = useSelector((state) => state.guest.messageHistory);
 
@@ -73,8 +74,6 @@ const ContextProvider = ({ children }) => {
     // });
   }, []);
 
-
-
   useEffect(() => {
     socket.on("receiveMessageFromVideo", (data) => {
       dispatch(receiveMessage(data));
@@ -83,6 +82,17 @@ const ContextProvider = ({ children }) => {
   }, [messageHistory]);
 
   useEffect(() => {
+    socket.on("createfriendRequest", (id) => {
+      dispatch(addFriend(id));
+    });
+    return () => socket.off("createfriendRequest");
+  });
+
+  useEffect(() => {
+    socket.on("createfriendRequest", (id) => {
+      console.log("masuk create friend Request", id);
+      dispatch(addFriend(id));
+    });
     socket.on("disconnected", () => {
       dispatch(deleteGuest(guest.mongoId));
     });
@@ -172,6 +182,22 @@ const ContextProvider = ({ children }) => {
     socket.emit("sendMessageFromVideo", payload);
   };
 
+  const sendFriendRequest = () => {
+    if (guest.socketId === room.guestCaller) {
+      console.log("masuk send guest Caller");
+      socket.emit("friendRequest", {
+        userId: localStorage.getItem("UserId"),
+        receiverId: room.guestCalled,
+      });
+    } else if (guest.socketId === room.guestCalled) {
+      console.log("masuk send guest Called");
+      socket.emit("friendRequest", {
+        userId: localStorage.getItem("UserId"),
+        receiverId: room.guestCaller,
+      });
+    }
+  };
+
   return (
     <SocketContext.Provider
       value={{
@@ -190,6 +216,7 @@ const ContextProvider = ({ children }) => {
         setCallAccepted,
         socket,
         socketSendMessage,
+        sendFriendRequest,
         onlineUsers,
         profile,
       }}
