@@ -1,9 +1,14 @@
+import { useState, useEffect } from "react";
 import { Nav, Navbar, Row, Stack } from "react-bootstrap";
 
 import ButtonPrimary from "../Button/ButtonPrimary";
 import Icon from "../Icon/Icon";
 
-export default function MainHeaders({ isLogin, premium, setModalShow }) {
+export default function MainHeaders({ isLogin, premium, modalShow }) {
+  useEffect(() => {
+    console.log(isLogin, premium);
+  }, [isLogin]);
+
   const btnHeaders = (isLogin, premium) => {
     if (!isLogin) {
       return (
@@ -16,7 +21,7 @@ export default function MainHeaders({ isLogin, premium, setModalShow }) {
       return (
         <ButtonPrimary
           text="Premium Now"
-          action={setModalShow}
+          action={modalShow}
           placement="premium-cta"
         />
       );

@@ -12,15 +12,27 @@ export default function HomePage() {
   const [modalShow, setModalShow] = useState(false);
   // const [guest, setGuest] = useState(true);
   const [loginStatus, setLoginStatus] = useState(false);
+  const [premium, setPremium] = useState(false);
   const { myVideo, userVideo } = useContext(SocketContext);
 
   useEffect(() => {
     if (localStorage.getItem("access_token")) {
       setLoginStatus(true);
     }
-  }, []);
 
-  const premium = false;
+    if (localStorage.getItem("isPremium") === "true") {
+      setPremium(true);
+    }
+  }, [loginStatus]);
+
+  const premiumButtonHandler = () => {
+    if (
+      localStorage.getItem("access_token") &&
+      localStorage.getItem("isPremium") === "false"
+    ) {
+      setModalShow(true);
+    }
+  };
 
   return (
     <Container fluid>
@@ -30,7 +42,7 @@ export default function HomePage() {
           <MainHeaders
             isLogin={loginStatus}
             premium={premium}
-            setModalShow={setModalShow}
+            modalShow={premiumButtonHandler}
           />
           <Stack className="mx-1" gap={2}>
             <Stack direction="horizontal" gap={2} className="playground">

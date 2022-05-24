@@ -10,8 +10,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ChatPage() {
-  const login = true;
-  const premium = false;
+  const [isLogin, setIsLogin] = useState(false);
+  const [premium, setPremium] = useState(false);
   const lvl = 10;
   const data = "data";
   const [listChat, setlistChat] = useState([]);
@@ -25,11 +25,20 @@ export default function ChatPage() {
 
   useEffect(() => {
     dispatch(getChatList());
+
+    if (localStorage.getItem("access_token")) {
+      setIsLogin(true);
+    }
+
+    if (localStorage.getItem("isPremium") === "true") {
+      setPremium(true);
+    }
   }, []);
+
   return (
     <Container fluid className="chat-page">
       <Row className="vh-100">
-        <Menus isLogin={login} />
+        <Menus isLogin={isLogin} />
         <SidebarChat premium={premium} data={data} listChat={listChat} />
         <Col className="bg-light">
           <ChatHeader level={lvl} />

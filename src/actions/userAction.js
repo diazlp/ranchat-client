@@ -28,6 +28,10 @@ export const getToken = (data) => {
     })
     .then(({ data }) => {
       localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("email", data.profile?.email);
+      localStorage.setItem("fullName", data.profile?.fullName);
+      localStorage.setItem("isVerified", data.profile?.isVerified);
+      localStorage.setItem("isPremium", data.profile?.isPremium);
     });
 };
 

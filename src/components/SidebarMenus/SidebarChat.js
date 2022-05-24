@@ -7,7 +7,7 @@ import ListChats from "./ListChats";
 
 export default function SidebarChat({ premium, listChat }) {
   const message = 20;
-  console.log(listChat);
+
   return (
     <Col className="col-3 sidebar-chat">
       <Row className="header d-flex align-items-center">
