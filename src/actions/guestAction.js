@@ -46,6 +46,18 @@ export const receiveMessage = (payload) => {
   };
 };
 
+export const getAllGuest = () => {
+  return axios
+    .get(`${serverAppUrl}/guest`, {
+      headers: {
+        access_token: localStorage.getItem("access_token"),
+      },
+    })
+    .then(({ data }) => {
+      return data;
+    });
+};
+
 export const createGuest = (socketId) => {
   return (dispatch) => {
     return axios
@@ -68,8 +80,6 @@ export const deleteGuest = (mongoId) => {
 
 export const joinRoom = (socketId) => {
   return (dispatch) => {
-    console.log("joined room");
-
     return axios
       .post(`${serverAppUrl}/guest/randomRoom`, {
         socketId: socketId,

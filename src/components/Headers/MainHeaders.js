@@ -3,7 +3,18 @@ import { Nav, Navbar, Row, Stack } from "react-bootstrap";
 import ButtonPrimary from "../Button/ButtonPrimary";
 import Icon from "../Icon/Icon";
 
+import { useState, useEffect } from "react";
+import { getAllGuest } from "../../actions/guestAction";
+
 export default function MainHeaders({ isLogin, premium, setModalShow }) {
+  const [allGuests, setAllGuests] = useState(0);
+
+  useEffect(() => {
+    getAllGuest().then((res) => {
+      setAllGuests(res.length);
+    });
+  });
+
   const btnHeaders = (isLogin, premium) => {
     if (!isLogin) {
       return (
@@ -65,7 +76,7 @@ export default function MainHeaders({ isLogin, premium, setModalShow }) {
                 alt=""
               />
             </div>
-            <h1 className="m-0 total-user-online">1.000.000</h1>
+            <h1 className="m-0 total-user-online">{allGuests}</h1>
             <Icon name="circle" placement="online-lg" />
             <h3 className="m-0 subheading">Online User</h3>
           </Stack>
