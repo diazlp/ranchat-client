@@ -15,9 +15,10 @@ export default function ChatBox1({ data }) {
     <Container fluid className="chat-box">
       <Row className="chat-box-area">
         <Stack className="mt-auto mx-2 p-2">
-          {messageHistory.map((el) => {
+          {messageHistory.map((el, i) => {
             return (
               <ChatBubble1
+                key={i}
                 who={el.sender === guest.socketId ? "you" : "guest"}
                 message={el.message}
                 time={el.time}

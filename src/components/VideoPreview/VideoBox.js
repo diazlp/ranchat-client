@@ -146,7 +146,7 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
             controls
             muted
             autoPlay={"autoplay"}
-            preLoad="auto"
+            preload="auto"
             loop
             width="100%"
             height="100%"

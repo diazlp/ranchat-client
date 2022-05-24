@@ -169,7 +169,7 @@ export default function FormComponent({ type }) {
 
   return (
     <Form>
-      {input(type).map((el) => (
+      {input(type).map((el, i) => (
         <InputComponent
           type={el.type}
           placeholder={el.placeholder}

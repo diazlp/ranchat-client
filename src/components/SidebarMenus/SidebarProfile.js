@@ -26,8 +26,8 @@ export default function SidebarProfile({ premium }) {
     <Col className="sidebar-profile col-3">
       <SidebarHeader text="Profile" premium={premium} color="white" />
       <Nav defaultActiveKey="/home" className="flex-column">
-        {profileMenus.map((el) => (
-          <Link to={el.page} className="nav-link mb-3 p-3" key={el.id}>
+        {profileMenus.map((el, i) => (
+          <Link key={i} to={el.page} className="nav-link mb-3 p-3" key={el.id}>
             {el.text}
           </Link>
         ))}

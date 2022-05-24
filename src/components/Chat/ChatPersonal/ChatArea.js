@@ -44,8 +44,9 @@ export default function ChatArea({ data }) {
     <Row className="chat-area d-flex align-items-end p-4">
       <Col>
         {messages.length > 0 &&
-          messages.map((chat) => (
+          messages.map((chat, i) => (
             <ChatBubble2
+              key={i}
               from={chat.fromSelf}
               message={chat.message}
               time={format(chat.time)}

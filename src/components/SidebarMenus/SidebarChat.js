@@ -32,7 +32,7 @@ export default function SidebarChat({ premium, listChat }) {
       <InputComponent type="search" placement="search" />
       <Row className="gap-2 chat-list d-flex align-items-start">
         {listChat.length > 0 &&
-          listChat.map((chat) => <ListChats chat={chat} />)}
+          listChat.map((chat, i) => <ListChats key={i} chat={chat} />)}
       </Row>
     </Col>
   );

@@ -28,8 +28,9 @@ export default function Menus({ isLogin }) {
       <Nav defaultActiveKey="/home" className="flex-column">
         <ButtonCTARun />
         <Stack gap={5} className="my-auto text-center menus-sidebar-icon">
-          {menus.map((el) => (
+          {menus.map((el, i) => (
             <Link
+              key={i}
               to={el.to}
               className={
                 el.disabled === true ? "nav-link" : "nav-link disabled"

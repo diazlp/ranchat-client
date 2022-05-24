@@ -50,7 +50,9 @@ export default function SidebarFriend({ data }) {
 
         <div className="friend-list">
           {onlineFriends &&
-            onlineFriends.map((friends) => <ListFriend friends={friends} />)}
+            onlineFriends.map((friends, i) => (
+              <ListFriend key={i} friends={friends} />
+            ))}
         </div>
 
         <Row className="m-0">
