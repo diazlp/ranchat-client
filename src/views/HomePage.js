@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { Col, Container, Row, Stack } from "react-bootstrap";
+import { SocketContext } from "../context/SocketContext";
 
 import ChatBox from "../components/Chat/ChatOnVideo/ChatBox";
 import MainHeaders from "../components/Headers/MainHeaders";
 import Menus from "../components/SidebarMenus/Menus";
 import VideoBox from "../components/VideoPreview/VideoBox";
 import PremiumModal from "../components/Premium/PremiumModals";
-import { SocketContext } from "../context/SocketContext";
 
 import { useNavigate } from "react-router-dom";
 
