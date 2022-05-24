@@ -14,11 +14,12 @@ export default function VerificationPage() {
           <Row id="login-form">
             <Headline text="Check your Email!" />
             <p>
-              We have sent an email to cs.nomads@gmail.com. Please click the
+              We have sent an email to{" "}
+              <strong>{localStorage.getItem("email")}</strong>. Please click the
               link in the email to verify your account or enter the email
               activation code below.
             </p>
-            <FormComponent type="verif" placement="verif" />
+            <FormComponent type="Verify" />
           </Row>
         </Col>
         <OnBoarding />

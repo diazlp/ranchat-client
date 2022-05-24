@@ -40,7 +40,7 @@ function App() {
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/wawa" element={<VerificationPage />} />
+        <Route path="/verification" element={<VerificationPage />} />
         <Route path="/profile" element={<ProfilePage />}>
           <Route path="detail" element={<DetailPage />} />
           <Route path="edit" element={<EditProfile />} />

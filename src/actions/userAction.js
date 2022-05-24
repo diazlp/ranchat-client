@@ -75,6 +75,24 @@ export const addProfile = (data) => {
     });
 };
 
+// EMAIL VERIFICATION
+export const emailVerification = (data) => {
+  return axios
+    .post(
+      `${serverAppUrl}/user/verify`,
+      { verificationCode: data.verificationCode },
+      {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      }
+    )
+    .then(({ data }) => {
+      return data;
+    });
+};
+////
+
 // MIDTRANS ACTION PAYMENT
 export const getPaymentToken = () => {
   return axios
