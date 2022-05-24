@@ -56,10 +56,10 @@ export default function FormComponent({ type }) {
 
       if (!response) {
         throw "error";
+      } else {
+        localStorage.setItem("isVerified", "true");
+        navigate("/chat");
       }
-
-      localStorage.setItem("isVerified", "true");
-      navigate("/chat");
     } catch (err) {
       setErrorMessage(err.response?.data?.message);
     }
@@ -220,7 +220,12 @@ export default function FormComponent({ type }) {
           {errorMessage}
         </div>
       )}
-      <ButtonPrimary text={type} action="LR" placement="sign" submit={submit} />
+      <ButtonPrimary
+        text={type.charAt(0).toUpperCase() + type.slice(1)}
+        action="LR"
+        placement="sign"
+        submit={submit}
+      />
     </Form>
   );
 }

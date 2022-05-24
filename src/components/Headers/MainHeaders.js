@@ -8,8 +8,8 @@ export default function MainHeaders({ isLogin, premium, setModalShow }) {
     if (!isLogin) {
       return (
         <Stack direction="horizontal" gap={2}>
-          <ButtonPrimary text="login" action="login" placement="sign" />
-          <ButtonPrimary text="register" action="register" placement="sign" />
+          <ButtonPrimary text="Login" action="login" placement="sign" />
+          <ButtonPrimary text="Register" action="register" placement="sign" />
         </Stack>
       );
     } else if (!premium) {

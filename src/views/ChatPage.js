@@ -8,6 +8,7 @@ import SidebarChat from "../components/SidebarMenus/SidebarChat";
 import PremiumModal from "../components/Premium/PremiumModals";
 import { getChatList } from "../actions/chatAction";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ChatPage() {
@@ -18,6 +19,8 @@ export default function ChatPage() {
   const data = "data";
   const [lvFriend, setLvFriend] = useState(0);
   const [listChat, setlistChat] = useState([]);
+
+  const navigate = useNavigate();
 
   const { chatList, chatHistory } = useSelector((state) => state.chat);
   const dispatch = useDispatch();
@@ -47,11 +50,24 @@ export default function ChatPage() {
     dispatch(getChatList());
   }, []);
 
+  const premiumButtonHandler = () => {
+    if (localStorage.getItem("isVerified") === "false") {
+      navigate("/verification");
+    } else {
+      setModalShow(true);
+    }
+  };
+
   return (
     <Container fluid className="chat-page">
       <Row className="vh-100">
         <Menus isLogin={loginStatus} />
-        <SidebarChat premium={premium} data={data} listChat={listChat} setModalShow={setModalShow}/>
+        <SidebarChat
+          premium={premium}
+          data={data}
+          listChat={listChat}
+          setModalShow={premiumButtonHandler}
+        />
         <Col className="bg-light">
           <ChatHeader level={lvFriend} />
           <ChatArea data={data} />
