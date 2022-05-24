@@ -1,13 +1,13 @@
-import { Button, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 import ButtonPrimary from "../Button/ButtonPrimary";
-import ChatList from "../Chat/ChatPersonal/ChatList";
 import InputComponent from "../Form/InputComponent";
 import SidebarHeaders from "../Headers/SidebarHeaders";
+import ListChats from "./ListChats";
 
-export default function SidebarChat({ premium, data }) {
+export default function SidebarChat({ premium, listChat }) {
   const message = 20;
-
+  console.log(listChat);
   return (
     <Col className="col-3 sidebar-chat">
       <Row className="header d-flex align-items-center">
@@ -31,20 +31,8 @@ export default function SidebarChat({ premium, data }) {
       <SidebarHeaders text="Message" num={message} />
       <InputComponent type="search" placement="search" />
       <Row className="gap-2 chat-list d-flex align-items-start">
-        <div onClick={() => console.log("1")}>
-          <ChatList
-            name="Aliansyah Firdaus"
-            image="https://dummyimage.com/500x500/e6e6e6/080808&text=A"
-            message="Oy! Bayar utang! Parah banget"
-          />
-        </div>
-        <div onClick={() => console.log("2")}>
-          <ChatList
-            name="Aliansyah Firdaus"
-            image="https://dummyimage.com/500x500/e6e6e6/080808&text=A"
-            message="Oy! Bayar utang! Parah banget"
-          />
-        </div>
+        {listChat.length > 0 &&
+          listChat.map((chat) => <ListChats chat={chat} />)}
       </Row>
     </Col>
   );

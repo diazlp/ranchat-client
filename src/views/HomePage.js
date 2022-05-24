@@ -11,35 +11,34 @@ import { SocketContext } from "../context/SocketContext";
 export default function HomePage() {
   const [modalShow, setModalShow] = useState(false);
   // const [guest, setGuest] = useState(true);
-  const [isLogin, setIsLogin] = useState(true);
-  const {
-    me,
-    callAccepted,
-    setCallAccepted,
-    myVideo,
-    userVideo,
-    answerCall,
-    callEnded,
-    callUser,
-    stream,
-    call,
-  } = useContext(SocketContext);
+  const [loginStatus, setLoginStatus] = useState(false);
+  const { myVideo, userVideo } = useContext(SocketContext);
+
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      setLoginStatus(true);
+    }
+  }, []);
 
   const premium = false;
 
   return (
     <Container fluid>
       <Row className="vh-100">
-        <Menus isLogin={isLogin} />
+        <Menus isLogin={loginStatus} />
         <Col>
           <MainHeaders
-            isLogin={false}
+            isLogin={loginStatus}
             premium={premium}
             setModalShow={setModalShow}
           />
           <Stack className="mx-1" gap={2}>
             <Stack direction="horizontal" gap={2} className="playground">
-              <VideoBox videoShow={userVideo} guest={true} isLogin={true} />
+              <VideoBox
+                videoShow={userVideo}
+                guest={true}
+                isLogin={loginStatus}
+              />
               <VideoBox videoShow={myVideo} />
             </Stack>
             <ChatBox chat={"data"} />

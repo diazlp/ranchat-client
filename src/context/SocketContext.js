@@ -160,6 +160,7 @@ const ContextProvider = ({ children }) => {
         leaveCall,
         answerCall,
         setCallAccepted,
+        socket,
       }}
     >
       {children}

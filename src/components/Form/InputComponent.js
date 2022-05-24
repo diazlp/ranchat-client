@@ -7,10 +7,21 @@ import { sendMessage } from "../../actions/guestAction";
 import ButtonPrimary from "../Button/ButtonPrimary";
 import Icon from "../Icon/Icon";
 
-export default function InputComponent({ type, placeholder, placement }) {
+export default function InputComponent({
+  type,
+  placeholder,
+  placement,
+  inputHandler,
+  value,
+  name,
+  inputMessage,
+  sendMesssage,
+}) {
   const [message, setMessage] = useState("");
+
   const room = useSelector((state) => state.guest.room);
   const guest = useSelector((state) => state.guest.guest);
+
   const dispatch = useDispatch();
   const sendMessageToState = () => {
     if (guest.socketId === room.guestCaller) {
@@ -66,9 +77,42 @@ export default function InputComponent({ type, placeholder, placement }) {
         </Col>
       </Row>
     );
+  } else if (placement === "friend-chat") {
+    return (
+      <Row>
+        <Col className="d-flex align-items-center">
+          <Form.Control
+            type={type}
+            placeholder="Type your message"
+            className="input-chat py-2"
+            value={value}
+            onChange={(e) => {
+              const value = e.target.value;
+              inputMessage(value);
+            }}
+          />
+          <div
+            onClick={() => {
+              sendMesssage();
+            }}
+          >
+            <Icon name="paper-plane" placement="send-message clickable" />
+          </div>
+        </Col>
+      </Row>
+    );
   } else {
     return (
-      <Form.Control type={type} placeholder={placeholder} className="mb-3" />
+      <Form.Control
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => {
+          const value = e.target.value;
+          inputHandler(value, name);
+        }}
+        className="mb-3"
+      />
     );
   }
 }

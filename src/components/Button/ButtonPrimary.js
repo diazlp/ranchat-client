@@ -3,23 +3,57 @@ import { Link } from "react-router-dom";
 
 import Icon from "../Icon/Icon";
 
-export default function ButtonPrimary({ text, action, placement }) {
-  if (placement === "send-verif") {
+export default function ButtonPrimary({
+  text,
+  action,
+  placement,
+  setModalShow,
+  submit,
+}) {
+  if (action === "premium") {
     return (
-      <Button className={`btn-${placement}`} onClick={() => action(60)}>
-        {text}
-      </Button>
-    );
-  } else if (placement === "premium-cta") {
-    return (
-      <Button className={`btn-${placement}`} onClick={() => action(true)}>
+      <Button className={`btn-${placement}`} onClick={() => setModalShow(true)}>
         {placement === "premium-cta" && (
           <Icon name="crown" placement="premium" />
         )}
         {text}
       </Button>
     );
-  } else if (placement === "video-action btn-ran") {
+  } else if (action === "LR") {
+    return (
+      <Button
+        className={`btn-${placement}`}
+        onClick={(e) => {
+          e.preventDefault();
+          submit();
+        }}
+      >
+        {placement === "premium-cta" && (
+          <Icon name="crown" placement="premium" />
+        )}
+        {text}
+      </Button>
+    );
+  }
+
+  //// APAKAH CONFLICT?
+  // if (placement === "send-verif") {
+  //   return (
+  //     <Button className={`btn-${placement}`} onClick={() => action(60)}>
+  //       {text}
+  //     </Button>
+  //   );
+  // } else if (placement === "premium-cta") {
+  //   return (
+  //     <Button className={`btn-${placement}`} onClick={() => action(true)}>
+  //       {placement === "premium-cta" && (
+  //         <Icon name="crown" placement="premium" />
+  //       )}
+  //       {text}
+  //     </Button>
+  //   );
+  ////
+  else if (placement === "video-action btn-ran") {
     return (
       <Button className={`btn-${placement}`} onClick={() => action()}>
         {placement === "premium-cta" && (
