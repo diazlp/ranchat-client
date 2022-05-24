@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { format } from "timeago.js";
 import { useEffect, useState, useContext } from "react";
 import { SocketContext } from "../../../context/SocketContext";
+import { getChatList } from "../../../actions/chatAction";
 
 export default function ChatArea({ data }) {
   const { socket } = useContext(SocketContext);
@@ -11,7 +12,7 @@ export default function ChatArea({ data }) {
   const [friendrommid, setFirendRoomId] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [messages, setMessages] = useState([]);
-
+  const dispatch = useDispatch();
   const { chatHistory } = useSelector((state) => state.chat);
 
   useEffect(() => {
@@ -24,6 +25,9 @@ export default function ChatArea({ data }) {
         time: Date.now(),
         photo: "asasaswewvdaccqwqc",
       });
+      if (data.friendRoom !== friendRoom) {
+        dispatch(getChatList());
+      }
     });
   }, []);
 

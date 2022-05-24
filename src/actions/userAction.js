@@ -23,18 +23,17 @@ const setProfile = (payload) => {
 export const getToken = (data) => {
   return axios
     .post(`${serverAppUrl}/user/login`, {
-      fullName: data.fullName,
       email: data.email,
       password: data.password,
     })
     .then(({ data }) => {
-      console.log(data);
+      localStorage.setItem("access_token", data.access_token);
     });
 };
 
 export const registerUser = (data) => {
   return axios.post(`${serverAppUrl}/user/register`, {
-    fullName: data.fullname,
+    fullName: data.fullName,
     email: data.email,
     password: data.password,
   });

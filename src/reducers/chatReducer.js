@@ -1,9 +1,15 @@
-import { FETCH_FRIEND_ROOM, FETCH_HISTORY_CHAT } from "../actions/actionTypes";
+import {
+  FETCH_FRIEND_ROOM,
+  FETCH_HISTORY_CHAT,
+  FETCH_FRIEND_NAME,
+} from "../actions/actionTypes";
 
 const initialState = {
   chatList: [],
   chatHistory: [],
   friendRoom: "",
+  friendHeaderName: "",
+  friendHeaderPhoto: "",
 };
 
 const chatReducer = (state = initialState, action) => {
@@ -18,6 +24,12 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         chatHistory: action.payload.data,
         friendRoom: action.payload.roomfriendid,
+      };
+    case FETCH_FRIEND_NAME:
+      return {
+        ...state,
+        friendHeaderName: action.payload.name,
+        friendHeaderPhoto: action.payload.photoProfile,
       };
     default:
       return state;

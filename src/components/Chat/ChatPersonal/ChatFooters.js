@@ -43,7 +43,7 @@ export default function ChatFooter({ level }) {
         <Col>
           <InputComponent
             type="text"
-            placement="chat"
+            placement="friend-chat"
             chat
             value={message}
             inputMessage={inputMessage}
