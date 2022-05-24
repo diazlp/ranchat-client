@@ -7,7 +7,8 @@ import ListChats from "./ListChats";
 import { useEffect, useState } from "react";
 
 export default function SidebarChat({ premium, listChat, setModalShow }) {
-  // const message = 20;
+  const message = listChat.length;
+
   const [totalMessage, setTotalMessage] = useState(0);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ export default function SidebarChat({ premium, listChat, setModalShow }) {
       </Row>
       <SidebarHeaders text="Message" num={totalMessage} />
       <InputComponent type="search" placement="search" />
-      <Row className="gap-2 chat-list d-flex align-items-start">
+      <Row className="gap-2 chat-list d-flex align-items-start mt-4">
         {listChat.length > 0 &&
           listChat.map((chat, i) => <ListChats key={i} chat={chat} />)}
       </Row>

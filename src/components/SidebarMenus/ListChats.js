@@ -1,21 +1,19 @@
+import ChatList from "../Chat/ChatPersonal/ChatList";
 import React from "react";
 
-import ChatList from "../Chat/ChatPersonal/ChatList";
-import {
-  getHistoryChat,
-  // getLastHistoryChat,
-  friendHeader,
-} from "../../actions/chatAction";
+import { getHistoryChat, friendHeader } from "../../actions/chatAction";
+
 import { getUser } from "../../actions/userAction";
 import { useEffect, useState, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { SocketContext } from "../../context/SocketContext";
 
 export default function ListChats({ chat }) {
+  const dispatch = useDispatch();
+
   const [user, setUser] = useState("");
   const { profile } = useContext(SocketContext);
 
-  const dispatch = useDispatch();
   // const { profile } = useSelector((state) => state.user);
   useEffect(() => {
     if (chat) {

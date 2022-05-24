@@ -1,4 +1,4 @@
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Row, Stack } from "react-bootstrap";
 
 import { useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -54,25 +54,28 @@ export default function InputComponent({
   } else if (placement === "chat") {
     return (
       <Row>
-        <Col className="d-flex align-items-center">
-          <Form.Control
-            type={type}
-            placeholder="Type your message"
-            onChange={(e) => {
-              setMessage(e.target.value);
-            }}
-            className="input-chat py-2"
-          />
-          <button
-            type="submit"
-            onClick={(e) => {
+        <Col>
+          <Form
+            onSubmit={(e) => {
               e.preventDefault();
               sendMessageToState();
+              e.target.reset();
             }}
           >
-            send
-          </button>
-          <Icon name="paper-plane" placement="send-message clickable" />
+            <Stack direction="horizontal">
+              <Form.Control
+                type={type}
+                placeholder="Type your message"
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                }}
+                className="input-chat py-2"
+              />
+              <button type="submit" className="btn-send-message-playground">
+                <Icon name="paper-plane" placement="send-message clickable" />
+              </button>
+            </Stack>
+          </Form>
         </Col>
       </Row>
     );

@@ -1,8 +1,6 @@
 import { Col, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import SidebarHeader from "../Headers/SidebarHeaders";
-
 export default function SidebarProfile({ premium }) {
   const profileMenus = [
     {
@@ -15,11 +13,6 @@ export default function SidebarProfile({ premium }) {
       text: "Edit Profile",
       page: "edit",
     },
-    {
-      id: 3,
-      text: "Password and Security",
-      page: "security",
-    },
   ];
 
   return (
@@ -31,6 +24,13 @@ export default function SidebarProfile({ premium }) {
             {el.text}
           </Link>
         ))}
+        <Link
+          onClick={() => localStorage.clear()}
+          to={"/"}
+          className="nav-link mb-3 p-3"
+        >
+          Logout
+        </Link>
       </Nav>
     </Col>
   );

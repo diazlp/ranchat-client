@@ -38,6 +38,25 @@ label {
   z-index: -1;
 }
 
+-webkit-scrollbar {
+  width: 16px;
+}
+-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+-webkit-scrollbar-thumb {
+  background-color: #d4aa70;
+  border-radius: 100px;
+}
+
+/* Scroll to Bottom */
+.react-scroll-to-bottom--css-sfywf-1n7m0yu {
+  height: 100%;
+  overflow: hidden !important;
+  width: 100%;
+}
+
 /* Modal Premium */
 #modal-premium .modal-content {
   background-color: transparent;
@@ -251,6 +270,10 @@ label {
   font-weight: bold !important;
   background-color: #8051b6 !important;
 }
+.btn-send-message-playground {
+  all: unset;
+  cursor: pointer;
+}
 
 /* Input */
 .input-chat {
@@ -265,6 +288,12 @@ label {
 .avatar {
   border-radius: 50%;
   margin-right: 10px;
+  object-fit: cover;
+}
+
+.avatar-cb2 {
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 /* Sidebar */
@@ -433,8 +462,10 @@ label {
 
 /* Text */
 .text-username {
-  font-size: 19px;
+  font-size: 23px;
+  /* margin-left: 15px; */
   font-weight: 500;
+  color: #777777;
 }
 .text-username-you {
   font-size: 19px;
@@ -498,6 +529,7 @@ label {
 .chat-list {
   overflow-x: auto;
   max-height: 650px;
+  margin-top: 10px !important;
 }
 
 /* Friend Chat */
@@ -522,6 +554,8 @@ label {
 .chat-area {
   height: 780px;
   overflow-x: auto;
+  width: auto;
+  padding: 0 !important;
 }
 .cb1 {
   border-radius: 25px;
@@ -540,6 +574,19 @@ label {
 .chat-time {
   color: rgb(128, 128, 128);
   font-size: 15px;
+}
+.chat-area-default {
+  width: 600px;
+  margin: auto;
+  transform: translateY(80%);
+}
+.chat-area-default img {
+  margin: auto;
+}
+.image-message {
+  width: 300px;
+  border-radius: 25px;
+  padding: 15px 5px;
 }
 
 /* Friend List */
