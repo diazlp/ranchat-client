@@ -44,7 +44,6 @@ export default function FormComponent({ type }) {
   };
 
   const submit = () => {
-    console.log("asf");
     switch (type) {
       case "login":
         login();

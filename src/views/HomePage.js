@@ -22,7 +22,7 @@ export default function HomePage() {
 
     if (
       localStorage.getItem("access_token") &&
-      localStorage.getItem("isPremium") === true
+      localStorage.getItem("isPremium") === "true"
     ) {
       setPremium(true);
     }
@@ -52,7 +52,12 @@ export default function HomePage() {
         </Col>
       </Row>
 
-      <PremiumModal show={modalShow} onHide={() => setModalShow(false)} />
+      <PremiumModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        onSuccess={setModalShow}
+        premiumHandler={setPremium}
+      />
     </Container>
   );
 }

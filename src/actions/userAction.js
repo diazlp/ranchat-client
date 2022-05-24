@@ -94,3 +94,24 @@ export const addProfile = (data) => {
       console.log(data);
     });
 };
+
+// MIDTRANS ACTION PAYMENT
+export const getPaymentToken = () => {
+  return axios
+    .post(
+      `${serverAppUrl}/payment`,
+      {},
+      {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+        },
+      }
+    )
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+//////

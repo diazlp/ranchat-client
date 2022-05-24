@@ -1,7 +1,31 @@
 import { Modal, Button, Col, Row, Table } from "react-bootstrap";
 import Icon from "../Icon/Icon";
 
+import { useNavigate } from "react-router-dom";
+import { getPaymentToken } from "../../actions/userAction";
+
 export default function PremiumModal(props) {
+  const navigate = useNavigate();
+
+  const payment = async () => {
+    const response = await getPaymentToken();
+
+    await window.snap.pay(response.token, {
+      onSuccess: (result) => {
+        localStorage.setItem("isPremium", "true");
+        props.onSuccess(false);
+        props.premiumHandler(true);
+        navigate("/");
+      },
+      onPending: (result) => {
+        navigate("/");
+      },
+      onError: (result) => {
+        navigate("/");
+      },
+    });
+  };
+
   return (
     <Modal
       {...props}
@@ -104,7 +128,7 @@ export default function PremiumModal(props) {
           <div className="d-flex justify-content-between px-3 align-items-center premium-footer">
             <h2 className="text-secondary m-0">Rp. 993rb</h2>
             <Button
-              onClick={props.onHide}
+              onClick={() => payment()}
               className="btn btn-premium-payment btn-lg"
             >
               Premium Now
