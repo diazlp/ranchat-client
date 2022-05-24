@@ -49,7 +49,7 @@ export default function ChatBox1({ data }) {
         <InputComponent
           type="text"
           placeholder="Enter your message"
-          placement="friend-chat"
+          placement="chat"
         />
       </Row>
     </Container>
