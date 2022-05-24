@@ -11,42 +11,46 @@ import { useDispatch, useSelector } from "react-redux";
 import { SocketContext } from "../../context/SocketContext";
 
 export default function SidebarFriend({ data }) {
-  const friend = 100;
-  const online = 6;
-  const [onlineUsers, setOnlineUsers] = useState([]);
-  const [onlineFriends, setOnlineFriends] = useState([]);
+  // const friend = 100;
+  // const online = 6;
+  const [totalFriends, setTotalFriends] = useState(0);
 
+  const [totalOnline, setTotalOnline] = useState(0);
+  // const [onlineUsers, setOnlineUsers] = useState([]);
+  const [onlineFriends, setOnlineFriends] = useState([]);
   const { friendList } = useSelector((state) => state.friend);
-  const { socket } = useContext(SocketContext);
-  const { profile } = useSelector((state) => state.user);
+  const { onlineUsers } = useContext(SocketContext);
+  // const { profile } = useSelector((state) => state.user);
   const disptach = useDispatch();
 
-  useEffect(() => {
-    if (profile) {
-      socket.emit("adduser", profile.UserId);
+  // useEffect(() => {
+  //   if (profile) {
+  //     socket.emit("adduser", profile.UserId);
 
-      socket.on("getUsers", (data) => {
-        setOnlineUsers(data);
-      });
-    }
-  }, [profile]);
+  //     socket.on("getUsers", (data) => {
+  //       setOnlineUsers(data);
+  //     });
+  //   }
+  // }, [profile]);
 
   useEffect(() => {
     disptach(getFriend());
   }, []);
   useEffect(() => {
+    setTotalFriends(friendList.length);
     setOnlineFriends(
       friendList.filter((friend) =>
         onlineUsers.find((online) => online.userId === friend.FriendId)
       )
     );
+    setTotalOnline(onlineFriends.length);
   }, [friendList, onlineUsers]);
   return (
     <Col className="col-3 sidebar-friend">
-      <SidebarHeaders text="Friend" num={friend} />
+      <SidebarHeaders text="Friend" num={totalFriends} />
       <InputComponent type="search" placement="search" />
       <Stack gap={4} className="mt-5">
-        <TabFilterStatus online={online} />
+        <TabFilterStatus online={totalOnline} />
 
         <div className="friend-list">
           {onlineFriends &&

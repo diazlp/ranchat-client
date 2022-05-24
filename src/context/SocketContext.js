@@ -24,11 +24,13 @@ const ContextProvider = ({ children }) => {
   const [callAccepted, setCallAccepted] = useState(false);
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
+  const [onlineUsers, setOnlineUsers] = useState([]);
 
   const dispatch = useDispatch();
   const guest = useSelector((state) => state.guest.guest);
   const roomId = useSelector((state) => state.guest.room);
   const messageHistory = useSelector((state) => state.guest.messageHistory);
+  const { profile } = useSelector((state) => state.user);
 
   const myVideo = useRef();
   const userVideo = useRef();
@@ -56,6 +58,26 @@ const ContextProvider = ({ children }) => {
     //   console.log(data);
     //   dispatch(receiveMessage(data));
     // });
+  }, []);
+
+  useEffect(() => {
+    if (profile) {
+      socket.emit("adduser", profile.UserId);
+
+      socket.on("getUsers", (data) => {
+        setOnlineUsers(data);
+      });
+    }
+  }, [profile]);
+
+  useEffect(() => {
+    if (profile) {
+      socket.emit("adduser", profile.UserId);
+
+      socket.on("getUsers", (data) => {
+        setOnlineUsers(data);
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -173,6 +195,7 @@ const ContextProvider = ({ children }) => {
         setCallAccepted,
         socket,
         socketSendMessage,
+        onlineUsers,
       }}
     >
       {children}

@@ -1,17 +1,10 @@
-import { FETCH_TOKEN, FETCH_PROFILE } from "./actionTypes";
+import { FETCH_PROFILE } from "./actionTypes";
 import axios from "axios";
 
 const serverAppUrl =
   process.env.NODE_ENV === "production"
     ? "https://ranchat-app.herokuapp.com"
     : "http://localhost:4001";
-
-const setToken = (payload) => {
-  return {
-    type: FETCH_TOKEN,
-    payload,
-  };
-};
 
 const setProfile = (payload) => {
   return {
