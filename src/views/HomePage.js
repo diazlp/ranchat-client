@@ -23,7 +23,7 @@ export default function HomePage() {
     if (localStorage.getItem("isPremium") === "true") {
       setPremium(true);
     }
-  }, [loginStatus]);
+  }, []);
 
   const premiumButtonHandler = () => {
     if (

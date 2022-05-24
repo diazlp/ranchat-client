@@ -10,7 +10,7 @@ export default function ButtonPrimary({
   setModalShow,
   submit,
 }) {
-  if (action === "premium") {
+  if (placement === "premium-cta" && text === "Premium Now") {
     console.log("hah?");
     return (
       <Button className={`btn-${placement}`} onClick={() => setModalShow(true)}>
