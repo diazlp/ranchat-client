@@ -70,9 +70,8 @@ export default function ButtonPrimary({
         {placement === "premium-cta" && (
           <Icon name="crown" placement="premium" />
         )}
-        {text} {"("}
-        {seconds}
-        {")"}
+        {text}
+        {seconds !== 0 && `( ${seconds} )`}
       </Button>
     );
   } else {
