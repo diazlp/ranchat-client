@@ -7,12 +7,12 @@ export default function ButtonPrimary({
   text,
   action,
   placement,
-  setModalShow,
   submit,
+  customClass, //diaz made this
 }) {
-  if (action === "premium") {
+  if (customClass === "premium-btn") {
     return (
-      <Button className={`btn-${placement}`} onClick={() => setModalShow(true)}>
+      <Button className={`btn-${placement}`} onClick={() => action(true)}>
         {placement === "premium-cta" && (
           <Icon name="crown" placement="premium" />
         )}

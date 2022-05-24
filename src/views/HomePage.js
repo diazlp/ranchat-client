@@ -11,6 +11,7 @@ import { SocketContext } from "../context/SocketContext";
 export default function HomePage() {
   const [modalShow, setModalShow] = useState(false);
   // const [guest, setGuest] = useState(true);
+  const [premium, setPremium] = useState(false);
   const [loginStatus, setLoginStatus] = useState(false);
   const { myVideo, userVideo } = useContext(SocketContext);
 
@@ -18,9 +19,14 @@ export default function HomePage() {
     if (localStorage.getItem("access_token")) {
       setLoginStatus(true);
     }
-  }, []);
 
-  const premium = false;
+    if (
+      localStorage.getItem("access_token") &&
+      localStorage.getItem("isPremium") === true
+    ) {
+      setPremium(true);
+    }
+  }, []);
 
   return (
     <Container fluid>

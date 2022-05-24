@@ -18,6 +18,7 @@ export default function MainHeaders({ isLogin, premium, setModalShow }) {
           text="Premium Now"
           action={setModalShow}
           placement="premium-cta"
+          customClass="premium-btn"
         />
       );
     }
