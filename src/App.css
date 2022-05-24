@@ -28,6 +28,83 @@ video::-webkit-media-controls {
   display: none;
 }
 
+label {
+  cursor: pointer;
+}
+
+#upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+/* Modal Premium */
+#modal-premium .modal-content {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 30px;
+}
+#modal-premium .modal-premium-header {
+  background-color: rgb(106, 14, 129);
+  border: 0;
+  color: #ffffff;
+  padding: 30px 40px 0px 40px;
+  border-radius: 30px 30px 0px 0px;
+}
+#modal-premium .modal-premium-body {
+  background-color: rgb(106, 14, 129);
+  border: 0;
+  padding: 40px;
+  border-radius: 0px 0px 30px 30px;
+}
+/* #modal-premium .modal-premium-footer{
+  background-color: rgb(106, 14, 129);
+  border: 0;
+  padding: 30px;
+} */
+#modal-premium .modal-premium-header .btn-close {
+  opacity: 1;
+  background: transparent
+    url("https://flaticons.net/icon.php?slug_category=mobile-application&slug_icon=close")
+    center/1.2em auto no-repeat;
+}
+.modal-premium-body Table {
+  margin: 0;
+}
+#modal-premium .modal-premium-header .modal-title {
+  font-size: 35px;
+}
+.modal-premium-body .premium .table-price {
+  width: 370px;
+  margin: auto;
+  background-color: #f0f0f0;
+  border: 3px solid #e6e6e6;
+  border-radius: 15px;
+  padding: 15px;
+}
+.modal-premium-body .premium {
+  border-radius: 15px;
+  padding: 20px;
+}
+.modal-premium-body .free {
+  border-radius: 15px;
+  padding: 20px;
+}
+.modal-premium-body .free .table-price {
+  width: 250px;
+  margin: auto;
+  background-color: #f0f0f0;
+  border: 3px solid #e6e6e6;
+  border-radius: 15px;
+  padding: 15px;
+}
+.modal-premium-body .premium-footer {
+  margin: 30px 0;
+}
+.modal-premium-body .free .free-footer {
+  color: #e4e4e4;
+}
+
 /* Icon */
 .icon-menus {
   color: rgb(106, 14, 129);
@@ -63,7 +140,21 @@ video::-webkit-media-controls {
   font-size: 15px;
   color: rgb(185, 185, 185);
 }
-
+.icon-edit-user-info {
+  color: blueviolet !important;
+  font-size: 25px;
+}
+.icon-edit-profile-banner {
+  transform: translateX(-40px) translateY(20px);
+  position: absolute;
+}
+.icon-edit-avatar {
+  transform: translateX(-40px) translateY(70px);
+  position: absolute;
+}
+.icon-edit-profile-info {
+  font-size: 20px;
+}
 .icon-user-info-headline {
   color: #464646;
   font-size: 18px;
@@ -155,6 +246,10 @@ video::-webkit-media-controls {
 .btn-verif {
   background-color: blueviolet !important;
   color: rgb(255, 255, 255) !important;
+}
+.btn-edit-page {
+  font-weight: bold !important;
+  background-color: #8051b6 !important;
 }
 
 /* Input */
@@ -504,12 +599,12 @@ video::-webkit-media-controls {
 
 .sidebar-profile .background-profile {
   max-width: 1280px;
-  max-height: 400px;
+  max-height: 300px;
 }
 
 .detail-page .avatar {
-  max-width: 190px;
-  max-height: 190px;
+  max-width: 170px;
+  max-height: 170px;
   border-radius: 50%;
   transform: translateY(-60px);
   padding: 5px;
@@ -537,4 +632,19 @@ video::-webkit-media-controls {
 
 .user-info .user-info-value {
   font-size: 16px;
+}
+
+/* User Edit */
+.background-profile-edit {
+  position: relative;
+}
+
+.avatar-edit {
+  max-width: 170px;
+  max-height: 170px;
+  border-radius: 50%;
+  transform: translateY(-60px);
+  padding: 5px;
+  background-color: #e4e4e4;
+  position: relative;
 }

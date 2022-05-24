@@ -3,6 +3,7 @@ import {
   DELETE_GUEST,
   JOIN_ROOM,
   SEND_MESSAGE,
+  RECEIVE_MESSAGE,
 } from "./actionTypes";
 import axios from "axios";
 
@@ -34,6 +35,13 @@ const joinRoomSuccess = (payload) => {
 export const sendMessage = (payload) => {
   return {
     type: SEND_MESSAGE,
+    payload,
+  };
+};
+
+export const receiveMessage = (payload) => {
+  return {
+    type: RECEIVE_MESSAGE,
     payload,
   };
 };

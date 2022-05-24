@@ -4,14 +4,14 @@ import Avatar from "../../Avatar/Avatar";
 import TextForChat from "../../Text/TextForChat";
 
 export default function ChatList({ name, message, image }) {
-  const messageTruncate = (message) => {
-    let messageView = "";
-    for (const i in message) {
-      if (messageView.length < 20) messageView += message[i];
-    }
-    if (message.length >= 20) messageView += "...";
-    return messageView;
-  };
+  // const messageTruncate = (message) => {
+  //   let messageView = "";
+  //   for (const i in message) {
+  //     if (messageView.length < 20) messageView += message[i];
+  //   }
+  //   if (message.length >= 20) messageView += "...";
+  //   return messageView;
+  // };
 
   const usernameTruncate = (username) => {
     let usernameView = "";
@@ -31,7 +31,7 @@ export default function ChatList({ name, message, image }) {
       <Col className="col-9 text-truncate">
         <Row className="gap-2">
           <TextForChat placement="username" text={usernameTruncate(name)} />
-          <TextForChat placement="message" text={messageTruncate(message)} />
+          {/* <TextForChat placement="message" text={messageTruncate(message)} /> */}
         </Row>
       </Col>
     </Row>

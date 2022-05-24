@@ -6,7 +6,9 @@ import {
   createGuest,
   deleteGuest,
   fetchRoomDetail,
+  receiveMessage,
 } from "../actions/guestAction";
+import { sendMessage } from "../actions/guestAction";
 const SocketContext = createContext();
 
 const socket = io(
@@ -23,14 +25,14 @@ const ContextProvider = ({ children }) => {
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
 
+  const dispatch = useDispatch();
+  const guest = useSelector((state) => state.guest.guest);
   const roomId = useSelector((state) => state.guest.room);
+  const messageHistory = useSelector((state) => state.guest.messageHistory);
 
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
-
-  const dispatch = useDispatch();
-  const guest = useSelector((state) => state.guest.guest);
 
   useEffect(() => {
     navigator.mediaDevices
@@ -49,7 +51,19 @@ const ContextProvider = ({ children }) => {
     socket.on("calluser", ({ from, name: callerName, signal }) => {
       setCall({ isReceivedCall: true, from, name: callerName, signal });
     });
+
+    // socket.on("receiveMessageFromVideo", (data) => {
+    //   console.log(data);
+    //   dispatch(receiveMessage(data));
+    // });
   }, []);
+
+  useEffect(() => {
+    socket.on("receiveMessageFromVideo", (data) => {
+      dispatch(receiveMessage(data));
+    });
+    return () => socket.off("receiveMessageFromVideo");
+  }, [messageHistory]);
 
   useEffect(() => {
     socket.on("disconnected", () => {
@@ -81,7 +95,6 @@ const ContextProvider = ({ children }) => {
       socket.emit("answercall", { signal: data, to: call.from });
     });
     dispatch(fetchRoomDetail(roomId)); //room id di line 26
-    console.log("jawab dulu telfonnya ya");
 
     peer.on("stream", (currentStream) => {
       userVideo.current.srcObject = currentStream;
@@ -108,8 +121,6 @@ const ContextProvider = ({ children }) => {
     //   trickle: false,
     //   stream,
     // });
-
-    console.log(id, "halohalo bengkel mobil");
 
     peer.on("signal", (data) => {
       socket.emit("calluser", {
@@ -139,10 +150,10 @@ const ContextProvider = ({ children }) => {
     window.location.reload();
   };
 
-  // const sendMessage = () => {
-  //   socket.emit("sendMessageFromVideo", { username, message, room });
-  //   setMessage([...message, { sender: "you", message }]);
-  // };
+  const socketSendMessage = (payload) => {
+    dispatch(sendMessage(payload));
+    socket.emit("sendMessageFromVideo", payload);
+  };
 
   return (
     <SocketContext.Provider
@@ -160,6 +171,8 @@ const ContextProvider = ({ children }) => {
         leaveCall,
         answerCall,
         setCallAccepted,
+        socket,
+        socketSendMessage,
       }}
     >
       {children}

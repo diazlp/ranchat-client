@@ -3,6 +3,7 @@ import {
   DELETE_GUEST,
   JOIN_ROOM,
   SEND_MESSAGE,
+  RECEIVE_MESSAGE,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -30,6 +31,11 @@ const guestReducer = (state = initialState, action) => {
         room: action.payload,
       };
     case SEND_MESSAGE:
+      return {
+        ...state,
+        messageHistory: [...state.messageHistory, action.payload],
+      };
+    case RECEIVE_MESSAGE:
       return {
         ...state,
         messageHistory: [...state.messageHistory, action.payload],
