@@ -22,7 +22,7 @@ export default function SidebarChat({ premium, listChat }) {
           {!premium && (
             <ButtonPrimary
               text="Premium Now"
-              action="login"
+              action="/login"
               placement="premium-cta"
             />
           )}
