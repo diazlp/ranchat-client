@@ -1,4 +1,4 @@
-import { Col, Row, Stack } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import AboutMe from "../../components/Profile/AboutMe";
 import HeadSection from "../../components/Profile/HeadSection";
 import UserInfo from "../../components/Profile/UserInfo";

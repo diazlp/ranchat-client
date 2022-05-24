@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function ChatPage() {
   const login = true;
   const premium = false;
-  const lvl = 3;
+  const lvl = 10;
   const data = "data";
   const [listChat, setlistChat] = useState([]);
 

@@ -36,6 +36,19 @@ export default function ButtonPrimary({
     );
   }
 
+  //// KEMUNGKINAN CONFLICT
+  else if (placement === "edit-page") {
+    return (
+      <Button className={`btn-${placement}`} onClick={() => action(true)}>
+        {placement === "premium-cta" && (
+          <Icon name="crown" placement="premium" />
+        )}
+        {text}
+      </Button>
+    );
+  }
+  ///////
+
   //// APAKAH CONFLICT?
   // if (placement === "send-verif") {
   //   return (

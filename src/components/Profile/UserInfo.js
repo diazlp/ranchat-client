@@ -1,7 +1,8 @@
-import { Col, Stack } from "react-bootstrap";
+import { Button, Col, Stack } from "react-bootstrap";
+
 import Icon from "../Icon/Icon";
 
-export default function UserInfo({ placement, privacy }) {
+export default function UserInfo({ placement, privacy, edit, gender }) {
   const icon = (val) => {
     switch (val) {
       case "Birthday":
@@ -16,7 +17,6 @@ export default function UserInfo({ placement, privacy }) {
         return "earth-asia";
     }
   };
-
   return (
     <Col className="user-info">
       <Stack gap={2}>
@@ -24,10 +24,49 @@ export default function UserInfo({ placement, privacy }) {
           <Icon name={icon(placement)} placement="user-info-headline" />
           <p className="m-0 user-info-headline">{placement}</p>
         </Stack>
-        <Stack direction="horizontal" gap={3}>
-          <Icon name={icon(privacy)} placement="user-info-privacy clickable" />
-          <p className="m-0 user-info-value">03 July 2021</p>
-        </Stack>
+
+        {placement === "Gender" && edit && (
+          <Stack direction="horizontal" gap={3}>
+            <Icon
+              name={icon(privacy)}
+              placement="user-info-privacy clickable"
+            />
+            <Button size="sm" className="px-3">
+              Male <Icon name="mars" />
+            </Button>
+            <Button size="sm" className="px-3">
+              Female <Icon name="venus" />
+            </Button>
+          </Stack>
+        )}
+
+        {placement === "Gender" && !edit && (
+          <Stack direction="horizontal" gap={3}>
+            <Icon
+              name={icon(privacy)}
+              placement="user-info-privacy clickable"
+            />
+            <Button size="sm" className="px-3">
+              {gender} <Icon name={gender === "Male" ? "mars" : "venus"} />
+            </Button>
+          </Stack>
+        )}
+
+        {placement !== "Gender" && (
+          <Stack direction="horizontal" gap={3}>
+            <Icon
+              name={icon(privacy)}
+              placement="user-info-privacy clickable"
+            />
+            <p className="m-0 user-info-value">03 July 2021</p>
+            {edit && (
+              <Icon
+                name="square-pen"
+                placement="edit-user-info icon-edit-profile-info clickable"
+              />
+            )}
+          </Stack>
+        )}
       </Stack>
     </Col>
   );
