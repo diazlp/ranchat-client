@@ -5,7 +5,7 @@ import Icon from "../Icon/Icon";
 import ListFriend from "./ListFriend";
 import InputComponent from "../Form/InputComponent";
 import TabFilterStatus from "../Friends/TabFilterStatus";
-import { getFriend } from "../../actions/friendAction";
+import { getFriend, onlineFriend } from "../../actions/friendAction";
 import { useEffect, useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SocketContext } from "../../context/SocketContext";
@@ -40,6 +40,7 @@ export default function SidebarFriend({ data }) {
         onlineUsers.find((online) => online.userId === friend.FriendId)
       )
     );
+    disptach(onlineFriend(onlineFriends));
   }, [friendList, onlineUsers]);
   return (
     <Col className="col-3 sidebar-friend">

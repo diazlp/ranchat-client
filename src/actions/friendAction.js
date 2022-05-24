@@ -1,4 +1,8 @@
-import { FETCH_FRIEND, FETCH_FRIEND_REQUEST } from "./actionTypes";
+import {
+  FETCH_FRIEND,
+  FETCH_FRIEND_REQUEST,
+  FEATCH_ONLINE_FRIEND,
+} from "./actionTypes";
 import axios from "axios";
 
 const serverAppUrl = "http://localhost:4001";
@@ -13,6 +17,13 @@ const setFriend = (payload) => {
 const setFriendRequest = (payload) => {
   return {
     type: FETCH_FRIEND_REQUEST,
+    payload,
+  };
+};
+
+export const onlineFriend = (payload) => {
+  return {
+    type: FEATCH_ONLINE_FRIEND,
     payload,
   };
 };

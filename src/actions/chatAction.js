@@ -1,4 +1,8 @@
-import { FETCH_FRIEND_ROOM, FETCH_HISTORY_CHAT } from "./actionTypes";
+import {
+  FETCH_FRIEND_ROOM,
+  FETCH_HISTORY_CHAT,
+  FETCH_FRIEND_NAME,
+} from "./actionTypes";
 import axios from "axios";
 
 const serverAppUrl = "http://localhost:4001";
@@ -6,6 +10,13 @@ const serverAppUrl = "http://localhost:4001";
 const setFriendRoom = (payload) => {
   return {
     type: FETCH_FRIEND_ROOM,
+    payload,
+  };
+};
+
+export const friendHeader = (payload) => {
+  return {
+    type: FETCH_FRIEND_NAME,
     payload,
   };
 };

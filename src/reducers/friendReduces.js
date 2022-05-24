@@ -1,8 +1,13 @@
-import { FETCH_FRIEND, FETCH_FRIEND_REQUEST } from "../actions/actionTypes";
+import {
+  FETCH_FRIEND,
+  FETCH_FRIEND_REQUEST,
+  FEATCH_ONLINE_FRIEND,
+} from "../actions/actionTypes";
 
 const initialState = {
   friendList: [],
   firendRequestList: [],
+  onelineFriendList: [],
 };
 
 const friendReducer = (state = initialState, action) => {
@@ -16,6 +21,11 @@ const friendReducer = (state = initialState, action) => {
       return {
         ...state,
         firendRequestList: action.payload,
+      };
+    case FEATCH_ONLINE_FRIEND:
+      return {
+        ...state,
+        onelineFriendList: action.payload,
       };
     default:
       return state;
