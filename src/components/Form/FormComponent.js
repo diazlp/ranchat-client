@@ -1,7 +1,11 @@
 import { Form, Button } from "react-bootstrap";
 import ButtonPrimary from "../Button/ButtonPrimary";
 import InputComponent from "./InputComponent";
-import { getToken, registerUser } from "../../actions/userAction";
+import {
+  getToken,
+  registerUser,
+  emailVerification,
+} from "../../actions/userAction";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +15,9 @@ export default function FormComponent({ type }) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [status, setStatus] = useState(false);
+  const [verificationCode, setVerificationCode] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -43,6 +50,21 @@ export default function FormComponent({ type }) {
       });
   };
 
+  const verifyEmail = async () => {
+    try {
+      const response = await emailVerification({ verificationCode });
+
+      if (!response) {
+        throw "error";
+      } else {
+        localStorage.setItem("isVerified", "true");
+        navigate("/chat");
+      }
+    } catch (err) {
+      setErrorMessage(err.response?.data?.message);
+    }
+  };
+
   const submit = () => {
     switch (type) {
       case "login":
@@ -50,6 +72,9 @@ export default function FormComponent({ type }) {
         break;
       case "register":
         register();
+        break;
+      case "Verify":
+        verifyEmail();
         break;
       default:
         break;
@@ -69,6 +94,8 @@ export default function FormComponent({ type }) {
       case "lastname":
         setLastname(value);
         break;
+      case "verificationCode":
+        setVerificationCode(value);
       default:
         break;
     }
@@ -87,24 +114,10 @@ export default function FormComponent({ type }) {
         setFirstname("");
         setLastname("");
         break;
-      default:
+      case "Verify":
+        setVerificationCode("");
         break;
-    }
-  }, [type]);
 
-  useEffect(() => {
-    switch (type) {
-      case "login":
-        if (localStorage.getItem("email_login")) {
-          setEmail(localStorage.getItem("email_login"));
-        }
-        break;
-      case "register":
-        setEmail("");
-        setPassword("");
-        setFirstname("");
-        setLastname("");
-        break;
       default:
         break;
     }
@@ -160,6 +173,16 @@ export default function FormComponent({ type }) {
             require: true,
           },
         ];
+      case "Verify":
+        return [
+          {
+            type: "text",
+            placeholder: "Verification Code",
+            name: "verificationCode",
+            value: verificationCode,
+            require: true,
+          },
+        ];
 
       default:
         break;
@@ -168,7 +191,7 @@ export default function FormComponent({ type }) {
 
   return (
     <Form>
-      {input(type).map((el, i) => (
+      {input(type)?.map((el) => (
         <InputComponent
           type={el.type}
           placeholder={el.placeholder}
@@ -186,7 +209,23 @@ export default function FormComponent({ type }) {
           />
         </Form.Group>
       )}
-      <ButtonPrimary text={type} action="LR" placement="sign" submit={submit} />
+      {errorMessage && (
+        <div
+          style={{
+            color: "red",
+            fontSize: "15px",
+            fontWeight: "bold",
+          }}
+        >
+          {errorMessage}
+        </div>
+      )}
+      <ButtonPrimary
+        text={type.charAt(0).toUpperCase() + type.slice(1)}
+        action="LR"
+        placement="sign"
+        submit={submit}
+      />
     </Form>
   );
 }

@@ -8,12 +8,15 @@ import Menus from "../components/SidebarMenus/Menus";
 import VideoBox from "../components/VideoPreview/VideoBox";
 import PremiumModal from "../components/Premium/PremiumModals";
 
+import { useNavigate } from "react-router-dom";
+
 export default function HomePage() {
   const [modalShow, setModalShow] = useState(false);
-  // const [guest, setGuest] = useState(true);
   const [premium, setPremium] = useState(false);
   const [loginStatus, setLoginStatus] = useState(false);
   const { myVideo, userVideo } = useContext(SocketContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem("access_token")) {
@@ -28,6 +31,14 @@ export default function HomePage() {
     }
   }, []);
 
+  const premiumButtonHandler = () => {
+    if (localStorage.getItem("isVerified") === "false") {
+      navigate("/verification");
+    } else {
+      setModalShow(true);
+    }
+  };
+
   return (
     <Container fluid>
       <Row className="vh-100">
@@ -36,7 +47,7 @@ export default function HomePage() {
           <MainHeaders
             isLogin={loginStatus}
             premium={premium}
-            setModalShow={setModalShow}
+            setModalShow={premiumButtonHandler}
           />
           <Stack className="mx-1" gap={2}>
             <Stack direction="horizontal" gap={2} className="playground">

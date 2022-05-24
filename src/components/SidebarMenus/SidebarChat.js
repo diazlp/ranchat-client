@@ -6,7 +6,7 @@ import SidebarHeaders from "../Headers/SidebarHeaders";
 import ListChats from "./ListChats";
 import { useEffect, useState } from "react";
 
-export default function SidebarChat({ premium, listChat }) {
+export default function SidebarChat({ premium, listChat, setModalShow }) {
   // const message = 20;
   const [totalMessage, setTotalMessage] = useState(0);
 
@@ -28,8 +28,9 @@ export default function SidebarChat({ premium, listChat }) {
           {!premium && (
             <ButtonPrimary
               text="Premium Now"
-              action="/login"
+              action={setModalShow}
               placement="premium-cta"
+              customClass="premium-btn"
             />
           )}
         </Col>
