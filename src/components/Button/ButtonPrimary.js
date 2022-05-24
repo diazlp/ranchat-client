@@ -50,7 +50,7 @@ export default function ButtonPrimary({
     );
   } else if (placement === "edit-page") {
     return (
-      <Button className={`btn-${placement}`} onClick={() => action(true)}>
+      <Button className={`btn-${placement}`} type="submit">
         {placement === "premium-cta" && (
           <Icon name="crown" placement="premium" />
         )}

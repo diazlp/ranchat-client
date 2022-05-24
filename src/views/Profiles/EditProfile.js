@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 
 import ButtonPrimary from "../../components/Button/ButtonPrimary";
 import AboutMe from "../../components/Profile/AboutMe";
@@ -31,45 +31,52 @@ export default function EditProfile() {
 
   return (
     <Col className="detail-page m-2">
-      <HeadSection
-        sosmed={sosmed}
-        profileBanner={profileBanner}
-        avatar={avatar}
-        name={name}
-        joined={joined}
-        email={email}
-        edit={true}
-        action={setModalShow}
-      />
-      <AboutMe
-        about={about}
-        edit={true}
-        action={setModalShow}
-        sosmed={sosmed}
-      />
-      <Row className="user-info px-5">
-        {info.birth && (
-          <UserInfo placement="Birthday" privacy={false} edit={true} />
-        )}
-        {info.address && (
-          <UserInfo placement="Live in" privacy={false} edit={true} />
-        )}
-        {info.gender && (
-          <UserInfo
-            placement="Gender"
-            privacy={false}
-            edit={true}
-            gender={gender}
-          />
-        )}
-      </Row>
-      <Row className="button-edit-info-submit px-5 mt-5">
-        <ButtonPrimary
-          text="Submit"
-          placement="edit-page"
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log("hai");
+        }}
+      >
+        <HeadSection
+          sosmed={sosmed}
+          profileBanner={profileBanner}
+          avatar={avatar}
+          name={name}
+          joined={joined}
+          email={email}
+          edit={true}
           action={setModalShow}
         />
-      </Row>
+        <AboutMe
+          about={about}
+          edit={true}
+          action={setModalShow}
+          sosmed={sosmed}
+        />
+        <Row className="user-info px-5">
+          {info.birth && (
+            <UserInfo placement="Birthday" privacy={false} edit={true} />
+          )}
+          {info.address && (
+            <UserInfo placement="Live in" privacy={false} edit={true} />
+          )}
+          {info.gender && (
+            <UserInfo
+              placement="Gender"
+              privacy={false}
+              edit={true}
+              gender={gender}
+            />
+          )}
+        </Row>
+        <Row className="button-edit-info-submit px-5 mt-5">
+          <ButtonPrimary
+            text="Submit"
+            placement="edit-page"
+            action={setModalShow}
+          />
+        </Row>
+      </Form>
       <ModalEdit show={modalShow} onHide={() => setModalShow(false)} />
     </Col>
   );
