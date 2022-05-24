@@ -9,12 +9,12 @@ import { SocketContext } from "../../../context/SocketContext";
 
 export default function ChatFooter({ level }) {
   const authLvl = (lvl) => (lvl > 4 ? true : false);
-  const { socket } = useContext(SocketContext);
-  const [arrivalMessage, setArrivalMessage] = useState(null);
+  const { socket, profile } = useContext(SocketContext);
+  // const [arrivalMessage, setArrivalMessage] = useState(null);
 
   const [message, setMessage] = useState("");
   const { friendRoom, chatList } = useSelector((state) => state.chat);
-  const { profile } = useSelector((state) => state.user);
+  // const { profile } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const sendMesssage = () => {

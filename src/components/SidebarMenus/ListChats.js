@@ -7,14 +7,16 @@ import {
   friendHeader,
 } from "../../actions/chatAction";
 import { getUser } from "../../actions/userAction";
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState, useContext } from "react";
+import { useDispatch } from "react-redux";
+import { SocketContext } from "../../context/SocketContext";
 
 export default function ListChats({ chat }) {
   const [user, setUser] = useState("");
+  const { profile } = useContext(SocketContext);
 
   const dispatch = useDispatch();
-  const { profile } = useSelector((state) => state.user);
+  // const { profile } = useSelector((state) => state.user);
   useEffect(() => {
     if (chat) {
       const friendId = chat.members.find((m) => m !== profile.UserId);

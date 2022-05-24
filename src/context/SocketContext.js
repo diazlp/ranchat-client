@@ -8,6 +8,8 @@ import {
   fetchRoomDetail,
   receiveMessage,
 } from "../actions/guestAction";
+import { getProfile } from "../actions/userAction";
+
 import { sendMessage } from "../actions/guestAction";
 const SocketContext = createContext();
 
@@ -25,18 +27,29 @@ const ContextProvider = ({ children }) => {
   const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState("");
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [profile, setProfile] = useState([]);
 
   const dispatch = useDispatch();
   const guest = useSelector((state) => state.guest.guest);
   const roomId = useSelector((state) => state.guest.room);
   const messageHistory = useSelector((state) => state.guest.messageHistory);
-  const { profile } = useSelector((state) => state.user);
 
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
 
   useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      getProfile().then(({ data }) => {
+        setProfile(data);
+        socket.emit("adduser", data.UserId);
+
+        socket.on("getUsers", (data) => {
+          setOnlineUsers(data);
+        });
+      });
+    }
+
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((currentStream) => {
@@ -60,25 +73,15 @@ const ContextProvider = ({ children }) => {
     // });
   }, []);
 
-  useEffect(() => {
-    if (profile) {
-      socket.emit("adduser", profile.UserId);
+  // useEffect(() => {
+  //   if (profile) {
+  //     socket.emit("adduser", profile.UserId);
 
-      socket.on("getUsers", (data) => {
-        setOnlineUsers(data);
-      });
-    }
-  }, [profile]);
-
-  useEffect(() => {
-    if (profile) {
-      socket.emit("adduser", profile.UserId);
-
-      socket.on("getUsers", (data) => {
-        setOnlineUsers(data);
-      });
-    }
-  }, []);
+  //     socket.on("getUsers", (data) => {
+  //       setOnlineUsers(data);
+  //     });
+  //   }
+  // }, [profile]);
 
   useEffect(() => {
     socket.on("receiveMessageFromVideo", (data) => {
@@ -196,6 +199,7 @@ const ContextProvider = ({ children }) => {
         socket,
         socketSendMessage,
         onlineUsers,
+        profile,
       }}
     >
       {children}

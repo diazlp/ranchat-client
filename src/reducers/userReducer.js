@@ -2,7 +2,7 @@ import { FETCH_TOKEN, FETCH_PROFILE } from "../actions/actionTypes";
 
 const initialState = {
   token: "",
-  profile: {},
+  // profile: {},
 };
 
 const userReducer = (state = initialState, action) => {

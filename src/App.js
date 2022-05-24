@@ -1,11 +1,11 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-import { getProfile } from "./actions/userAction";
+// import { getProfile } from "./actions/userAction";
 
 import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
@@ -25,11 +25,11 @@ import DummyVideoPage from "./DummyPage/DummyVideoPage";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (localStorage.getItem("access_token")) {
-      dispatch(getProfile());
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("access_token")) {
+  //     dispatch(getProfile());
+  //   }
+  // }, []);
 
   return (
     <div className="App">
