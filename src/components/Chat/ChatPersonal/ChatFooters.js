@@ -7,6 +7,10 @@ import IconAuthen from "../../Icon/IconAuthen";
 export default function ChatFooter({ level }) {
   const authLvl = (lvl) => (lvl > 4 ? true : false);
 
+  const test = (e) => {
+    console.log("bisa", e.target.value);
+  };
+
   return (
     <Container fluid>
       <Row className="sticky-bottom">
@@ -16,7 +20,7 @@ export default function ChatFooter({ level }) {
         <Col className="col-2 d-flex justify-content-center">
           <Stack direction="horizontal" gap={4}>
             <Icon name="note-sticky" placement="send-gif clickable" />
-            <IconAuthen icon="image" auth={authLvl(level)} />
+            <IconAuthen icon="image" auth={authLvl(level)} action={test} />
             <IconAuthen icon="street-view" auth={authLvl(level)} />
           </Stack>
         </Col>

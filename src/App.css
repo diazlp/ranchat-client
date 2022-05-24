@@ -29,6 +29,15 @@ audio::-webkit-media-controls,
 video::-webkit-media-controls {
     display: none;
 }
+label {
+  cursor: pointer;
+}
+
+#upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
 
 
 /* Icon */

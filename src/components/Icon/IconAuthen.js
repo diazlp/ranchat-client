@@ -2,8 +2,11 @@ import { OverlayTrigger, Popover } from "react-bootstrap";
 
 import Icon from "./Icon";
 
-export default function IconAuthen({ icon, auth }) {
+export default function IconAuthen({ icon, auth, action }) {
   if (auth) {
+    if (icon === "image") {
+      return <Icon name={icon} placement="authen-true image" action={action} />;
+    }
     return <Icon name={icon} placement="authen-true" />;
   } else {
     return (

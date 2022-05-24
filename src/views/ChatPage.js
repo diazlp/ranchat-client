@@ -10,7 +10,7 @@ import SidebarChat from "../components/SidebarMenus/SidebarChat";
 export default function ChatPage() {
   const login = true;
   const premium = false;
-  const lvl = 3;
+  const lvl = 10;
   const data = "data";
 
   return (
