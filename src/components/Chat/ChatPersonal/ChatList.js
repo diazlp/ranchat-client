@@ -26,7 +26,7 @@ export default function ChatList({ name, message, image }) {
   return (
     <Row className="m-0 cb2 py-2">
       <Col className="col-3 text-e align-self-center">
-        <Avatar avatar={image} size="md" />
+        <Avatar avatar={image} size="md" placement="friend-list" />
       </Col>
       <Col className="col-9 text-truncate">
         <Row className="gap-2">

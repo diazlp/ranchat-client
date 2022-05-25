@@ -286,8 +286,6 @@ label {
 
 /* Avatar */
 .avatar {
-  height: 170px;
-  width: 170px;
   border-radius: 50%;
   margin-right: 10px;
   object-fit: cover;
@@ -689,7 +687,7 @@ label {
   position: relative;
 }
 
-.avatar-edit {
+.avatar-header {
   height: 170px;
   width: 170px;
   max-width: 170px;
@@ -699,4 +697,10 @@ label {
   padding: 5px;
   background-color: #e4e4e4;
   position: relative;
+}
+
+.avatar-friend-list{
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
 }

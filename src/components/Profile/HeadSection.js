@@ -29,7 +29,10 @@ export default function HeadSection({
       </div>
       <Col className="d-flex px-5">
         <div>
-          <img src={avatar} className={`avatar${edit ? "-edit" : ""}`} />
+          <img
+            src={avatar}
+            className={`avatar${edit ? "-edit" : ""} avatar-header`}
+          />
           {edit && (
             <Icon
               name="square-pen"
