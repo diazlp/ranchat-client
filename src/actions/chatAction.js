@@ -101,7 +101,7 @@ export const sendMessage = ({ message, friendRoom, id }) => {
       .post(
         `${serverAppUrl}/messages/addmessage`,
         {
-          roomfriendid: friendRoom,
+          friendRoom,
           text: message,
           id,
         },
@@ -121,7 +121,6 @@ export const sendMessage = ({ message, friendRoom, id }) => {
 };
 
 export const sendImage = ({ formData, friendRoom }) => {
-  console.log("formData: ", formData);
   return (dispatch) => {
     return axios
       .post(`${serverAppUrl}/messages/addmessage`, formData, {

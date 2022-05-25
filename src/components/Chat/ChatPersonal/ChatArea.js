@@ -20,13 +20,14 @@ export default function ChatArea() {
 
   useEffect(() => {
     socket.on("getMessage", (data) => {
+      console.log(data);
       setFirendRoomId(data.friendRoom);
       setArrivalMessage({
         fromSelf: "guest",
         message: data.text,
         senderId: data.senderId,
+        photo: data.photo,
         time: Date.now(),
-        // photo: "asasaswewvdaccqwqc",
       });
       if (data.friendRoom !== friendRoom) {
         dispatch(getChatList());
@@ -39,10 +40,8 @@ export default function ChatArea() {
       arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
     }
   }, [arrivalMessage]);
-
   useEffect(() => {
     setMessages(chatHistory);
-    console.log(window.scrollTo(0, 200));
   }, [chatHistory]);
   return (
     <Row className="chat-area">
@@ -55,8 +54,9 @@ export default function ChatArea() {
                 from={chat.fromSelf}
                 message={chat.message}
                 time={format(chat.time)}
+                type={chat.type}
                 sender={chat.senderId}
-                image="https://dummyimage.com/600x400/000/fff"
+                image={chat.photo}
               />
             ))}
         </Col>

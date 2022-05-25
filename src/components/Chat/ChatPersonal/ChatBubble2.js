@@ -56,7 +56,10 @@ export default function ChatBubble2({ from, message, time, sender, image }) {
                 </div>
                 <Stack className="ms-3" gap={2}>
                   <div className="cb1 chat-guest px-3 py-1 d-flex align-items-center">
-                    <p className="m-0 p-1 chat-message">{message}</p>
+                    {image && <img src={image} className="image-message" />}
+                    {!image && (
+                      <p className="m-0 p-1 chat-message">{message}</p>
+                    )}
                   </div>
                   <p className="align-self-start chat-time">{time}</p>
                 </Stack>

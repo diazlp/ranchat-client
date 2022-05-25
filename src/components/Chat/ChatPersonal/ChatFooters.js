@@ -19,6 +19,7 @@ export default function ChatFooter({ level }) {
   const dispatch = useDispatch();
   const sendMesssage = () => {
     if (message && friendRoom) {
+      console.log('asad')
       const chatListById = chatList.filter((list) => list._id === friendRoom);
       const receiverId = chatListById[0].members.find(
         (member) => member !== profile.UserId
