@@ -103,8 +103,11 @@ export default function ChatPage() {
               />
               <h1>Welcome to RanChat!</h1>
               <p>
-                This is a place where you can chat with your new acquintance and
-                make them even more of a closer. Only in RanChat
+                RanChat allows users to socialize with strangers without sharing
+                personal information. It pairs random users in chat set-ups,
+                identified as <strong>You</strong> and <strong>Stranger</strong>
+                . You can also add stranger to your friend list and send them
+                cute images.
               </p>
             </Stack>
           </Col>

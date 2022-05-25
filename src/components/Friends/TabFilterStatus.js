@@ -1,8 +1,8 @@
 import { Nav, Row } from "react-bootstrap";
 
-export default function TabFilterStatus({ online }) {
+export default function TabFilterStatus({ online, tabChange }) {
   const handleSelect = (eventKey) => {
-    console.log(eventKey);
+    tabChange(eventKey);
   };
 
   return (

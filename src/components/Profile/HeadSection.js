@@ -6,12 +6,18 @@ export default function HeadSection({
   sosmed,
   profileBanner,
   avatar,
-  name,
+  fullName,
   joined,
   edit,
   email,
   action,
+  setProfile,
+  profile,
 }) {
+  const onChangeHandler = (e) => {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
+  };
+
   return (
     <Row className="head-detail">
       <div className="p-0">
@@ -43,13 +49,15 @@ export default function HeadSection({
         </div>
         <Stack className="username p-3">
           <div className="d-flex gap-3 align-items-center">
-            {!edit && <h1>{name}</h1>}
+            {!edit && <h1>{fullName}</h1>}
             {edit && (
               <Form.Control
                 type="text"
                 placeholder="Username"
-                value={name}
+                value={fullName}
                 className="mb-3 w-50"
+                name="fullName"
+                onChange={(e) => onChangeHandler(e)}
               />
             )}
           </div>

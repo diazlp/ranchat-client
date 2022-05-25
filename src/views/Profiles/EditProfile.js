@@ -1,6 +1,6 @@
 import { Col, Form, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { getProfile } from "../../actions/userAction";
+import { getProfile, addProfile } from "../../actions/userAction";
 
 import ButtonPrimary from "../../components/Button/ButtonPrimary";
 import AboutMe from "../../components/Profile/AboutMe";
@@ -21,17 +21,29 @@ export default function EditProfile() {
     about: "",
     joined: "",
     birthday: "",
-    place: "",
+    address: "",
     gender: "",
     email: "",
   });
+
+  const editProfile = () => {
+    addProfile({
+      fullName: profile.fullName,
+      profilePicture: profile.avatar,
+      birthday: profile.birthday,
+      address: profile.address,
+      bio: profile.about,
+      banner: profile.banner,
+      // gender: profile.gender,
+    });
+  };
 
   useEffect(() => {
     getProfile().then(({ data }) => {
       setProfile({
         ...profile,
-        fullName: data.User.fullName,
-        email: data.User.email,
+        fullName: data.User?.fullName,
+        email: data.User?.email,
         avatar: data.profilePicture,
         banner: data.banner,
         about: data.bio,
@@ -55,23 +67,27 @@ export default function EditProfile() {
       <Form
         onSubmit={(e) => {
           e.preventDefault();
-          console.log("hai");
+          editProfile();
         }}
       >
         <HeadSection
           sosmed={sosmed}
           profileBanner={profile.banner}
           avatar={profile.avatar}
-          name={profile.fullName}
+          fullName={profile.fullName}
           email={profile.email}
           edit={true}
           action={setModalShow}
+          setProfile={setProfile}
+          profile={profile}
         />
         <AboutMe
           about={profile.about}
           edit={true}
           action={setModalShow}
           sosmed={sosmed}
+          setProfile={setProfile}
+          profile={profile}
         />
         <Row className="user-info px-4 gap-5">
           {info.birth && (

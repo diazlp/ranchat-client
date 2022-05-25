@@ -10,7 +10,13 @@ export default function UserInfo({
   gender,
   birthday,
   address,
+  setProfile,
+  profile,
 }) {
+  const onChangeHandler = (e) => {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
+    console.log(e.target.name, e.target.value);
+  };
   const icon = (val) => {
     switch (val) {
       case "Birthday":
@@ -69,7 +75,14 @@ export default function UserInfo({
               placement="user-info-privacy clickable"
             />
             {!edit && <p className="m-0 user-info-value">{birthday}</p>}
-            {edit && <Form.Control type="date" value={birthday} />}
+            {edit && (
+              <Form.Control
+                name="birthday"
+                type="date"
+                value={birthday}
+                onChange={(e) => onChangeHandler(e)}
+              />
+            )}
           </Stack>
         )}
 
@@ -81,7 +94,14 @@ export default function UserInfo({
             />
 
             {!edit && <p className="m-0 user-info-value">{address}</p>}
-            {edit && <Form.Control type="text" value={address} />}
+            {edit && (
+              <Form.Control
+                type="text"
+                value={address}
+                name="address"
+                onChange={(e) => onChangeHandler(e)}
+              />
+            )}
           </Stack>
         )}
       </Stack>

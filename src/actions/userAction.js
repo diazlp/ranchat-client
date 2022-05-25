@@ -55,15 +55,16 @@ export const addProfile = (data) => {
     .post(
       `${serverAppUrl}/user/profile`,
       {
+        fullName: data.fullName,
         profilePicture: data.profilePicture,
         birthday: data.birthday,
         address: data.address,
-        gender: data.gender,
+        // gender: data.gender,
         bio: data.bio,
         banner: data.banner,
-        facebook: data.facebook,
-        instagram: data.instagram,
-        twitter: data.twitter,
+        // facebook: data.facebook,
+        // instagram: data.instagram,
+        // twitter: data.twitter,
       },
       {
         headers: {
@@ -71,8 +72,8 @@ export const addProfile = (data) => {
         },
       }
     )
-    .then(({ data }) => {
-      console.log(data);
+    .then(() => {
+      getProfile();
     });
 };
 

@@ -2,12 +2,28 @@ import { Col, Form, Row, Stack } from "react-bootstrap";
 
 import InputComponent from "../Form/InputComponent";
 
-export default function AboutMe({ about, edit, action, sosmed }) {
+export default function AboutMe({
+  about,
+  edit,
+  action,
+  sosmed,
+  setProfile,
+  profile,
+}) {
+  const onChangeHandler = (e) => {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
+  };
   if (edit) {
     return (
       <div className="border p-3">
         <Col className="d-flex gap-3">
-          <Form.Control as="textarea" rows={6} value={about} />
+          <Form.Control
+            as="textarea"
+            name="about"
+            onChange={(e) => onChangeHandler(e)}
+            rows={6}
+            value={about}
+          />
           <Stack gap={4}>
             <Form.Control
               type="text"

@@ -27,6 +27,16 @@ export default function Icon({ name, placement, sosmed, action }) {
           onClick={() => action()}
         />
       );
+    } else if (placement === "authen-true location") {
+      return (
+        <i
+          className={`icon fa-${
+            sosmed ? "brands" : "solid"
+          } fa-${name} icon-${placement}`}
+          onClick={() => action()}
+          style={{ cursor: "pointer" }}
+        />
+      );
     } else {
       return (
         <i

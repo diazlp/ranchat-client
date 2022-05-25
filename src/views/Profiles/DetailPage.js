@@ -17,7 +17,7 @@ export default function DetailPage() {
     about: "",
     joined: "",
     birthday: "",
-    place: "",
+    address: "",
     gender: "",
   });
 
@@ -44,7 +44,7 @@ export default function DetailPage() {
         sosmed={sosmed}
         profileBanner={profile.banner}
         avatar={profile.avatar}
-        name={profile.fullName}
+        fullName={profile.fullName}
         joined={profile.joined}
       />
       <AboutMe about={profile.about} />

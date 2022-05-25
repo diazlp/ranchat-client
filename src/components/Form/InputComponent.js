@@ -82,25 +82,37 @@ export default function InputComponent({
   } else if (placement === "friend-chat") {
     return (
       <Row>
-        <Col className="d-flex align-items-center">
-          <Form.Control
-            type={type}
-            placeholder="Type your message"
-            className="input-chat py-2"
-            value={value}
-            onChange={(e) => {
-              const value = e.target.value;
-              inputMessage(value);
-            }}
-          />
-          <div
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendMesssage();
+          }}
+        >
+          <Col className="d-flex align-items-center">
+            <Form.Control
+              type={type}
+              placeholder="Type your message"
+              className="input-chat py-2"
+              value={value}
+              onChange={(e) => {
+                const value = e.target.value;
+                inputMessage(value);
+              }}
+            />
+
+            <button type="submit" className="btn-send-message-playground">
+              <Icon name="paper-plane" placement="send-message clickable" />
+            </button>
+
+            {/* <div
             onClick={() => {
               sendMesssage();
             }}
           >
             <Icon name="paper-plane" placement="send-message clickable" />
-          </div>
-        </Col>
+          </div> */}
+          </Col>
+        </Form>
       </Row>
     );
   } else {

@@ -1,7 +1,7 @@
 import FriendListItem from "../Friends/FriendListItem";
 import { useDispatch } from "react-redux";
 import { addRoom } from "../../actions/chatAction";
-export default function ListFriend({ friends }) {
+export default function ListFriend({ friends, status }) {
   const dispatch = useDispatch();
   const makeRoomFriend = () => {
     dispatch(
@@ -21,7 +21,7 @@ export default function ListFriend({ friends }) {
     >
       <FriendListItem
         username={friends.FriendData.fullName}
-        status="online"
+        status={status}
         avatar={friends.FriendData.Profile.profilePicture}
         level={3}
       />

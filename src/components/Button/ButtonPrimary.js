@@ -72,6 +72,15 @@ export default function ButtonPrimary({
         {text}
       </Button>
     );
+  } else if (placement === "video-action btn-stop") {
+    return (
+      <Button className={`btn-${placement}`} onClick={() => action()}>
+        {placement === "premium-cta" && (
+          <Icon name="crown" placement="premium" />
+        )}
+        {text}
+      </Button>
+    );
   } else if (placement === "video-action btn-ran") {
     return (
       <Button

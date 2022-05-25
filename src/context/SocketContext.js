@@ -178,8 +178,9 @@ const ContextProvider = ({ children }) => {
 
     connectionRef.current = peer;
   };
-  const leaveCall = () => {
+  const leaveCall = async () => {
     setCallEnded(true);
+
     connectionRef.current.destroy();
 
     window.location.reload();
