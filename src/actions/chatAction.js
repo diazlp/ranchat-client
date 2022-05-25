@@ -87,7 +87,7 @@ export const addRoom = ({ receiverId, sender }) => {
       )
       .then(({ data }) => {
         dispatch(getHistoryChat(data.insertedId));
-        dispatch(getChatList())
+        dispatch(getChatList());
       })
       .catch((err) => {
         console.log(err.response);
@@ -112,8 +112,27 @@ export const sendMessage = ({ message, friendRoom, id }) => {
         }
       )
       .then(() => {
-        
         dispatch(getHistoryChat(friendRoom));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+};
+
+export const sendImage = ({ formData, friendRoom }) => {
+  console.log("formData: ", formData);
+  return (dispatch) => {
+    return axios
+      .post(`${serverAppUrl}/messages/addmessage`, formData, {
+        headers: {
+          access_token: localStorage.getItem("access_token"),
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((data) => {
+        dispatch(getHistoryChat(friendRoom));
+        return data;
       })
       .catch((err) => {
         console.log(err.response);

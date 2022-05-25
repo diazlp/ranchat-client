@@ -12,9 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 export default function ChatPage() {
   const login = true;
   const premium = false;
-  const lvl = 0;
+  // const lvl = 0;
   const data = "data";
-  const [lvFriend, setLvFriend] = useState(0);
+  const [lvFriend, setLvFriend] = useState(100);
   const [listChat, setlistChat] = useState([]);
 
   const { chatList, chatHistory } = useSelector((state) => state.chat);
@@ -24,9 +24,9 @@ export default function ChatPage() {
     setlistChat(chatList);
   }, [chatList]);
 
-  useEffect(() => {
-    setLvFriend(Math.floor(chatHistory.length / 10));
-  }, [chatHistory]);
+  // useEffect(() => {
+  //   setLvFriend(Math.floor(chatHistory.length / 10));
+  // }, [chatHistory]);
 
   useEffect(() => {
     dispatch(getChatList());

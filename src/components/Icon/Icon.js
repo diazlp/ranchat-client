@@ -10,7 +10,7 @@ export default function Icon({ name, placement, sosmed, action }) {
               } fa-${name} icon-${placement}`}
             />
           </label>
-          <input
+          <input  
             type="file"
             id="upload-photo"
             value={(e) => (test = e)}
