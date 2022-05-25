@@ -1,4 +1,5 @@
-import { Button, Col, Stack } from "react-bootstrap";
+import { Button, Col, Form, Stack } from "react-bootstrap";
+import InputComponent from "../Form/InputComponent";
 
 import Icon from "../Icon/Icon";
 
@@ -24,6 +25,7 @@ export default function UserInfo({
         return "earth-asia";
     }
   };
+
   return (
     <Col className="user-info">
       <Stack gap={2}>
@@ -53,7 +55,7 @@ export default function UserInfo({
               name={icon(privacy)}
               placement="user-info-privacy clickable"
             />
-            <Button size="sm" className="px-3">
+            <Button size="sm" className="px-3" disabled>
               {gender} <Icon name={gender === "Male" ? "mars" : "venus"} />
             </Button>
           </Stack>
@@ -66,13 +68,8 @@ export default function UserInfo({
               name={icon(privacy)}
               placement="user-info-privacy clickable"
             />
-            <p className="m-0 user-info-value">{birthday}</p>
-            {edit && (
-              <Icon
-                name="square-pen"
-                placement="edit-user-info icon-edit-profile-info clickable"
-              />
-            )}
+            {!edit && <p className="m-0 user-info-value">{birthday}</p>}
+            {edit && <Form.Control type="date" value={birthday} />}
           </Stack>
         )}
 
@@ -82,13 +79,9 @@ export default function UserInfo({
               name={icon(privacy)}
               placement="user-info-privacy clickable"
             />
-            <p className="m-0 user-info-value">{address}</p>
-            {edit && (
-              <Icon
-                name="square-pen"
-                placement="edit-user-info icon-edit-profile-info clickable"
-              />
-            )}
+
+            {!edit && <p className="m-0 user-info-value">{address}</p>}
+            {edit && <Form.Control type="text" value={address} />}
           </Stack>
         )}
       </Stack>

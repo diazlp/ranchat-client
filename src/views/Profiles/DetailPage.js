@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { getProfile } from "../../actions/userAction";
+
 import AboutMe from "../../components/Profile/AboutMe";
 import HeadSection from "../../components/Profile/HeadSection";
 import UserInfo from "../../components/Profile/UserInfo";
-import { getProfile } from "../../actions/userAction";
 
 export default function DetailPage() {
   const sosmed = { facebook: true, twitter: true, instagram: true };
   const info = { birth: true, address: true, gender: true };
-  // const profileBanner = "https://dummyimage.com/1300x400/000/fff";
-  // const avatar = "https://dummyimage.com/400x400/000/fff";
-  // const about =
-  //   "Tanta petere igitur, ne sineres memini fieri etiam aliquam inclinationem ad consequendum minima. Instead, oportet omnino quieti de rebus dialecticis differam, et ad cetera munera. Quodsi haberent magnalia inter potentiam et divitias, et non illam quidem haec eo spectant haec quoque vos omnino desit illud quo solo felicitatis libertatisque";
-  // const joined = "Joined at, 26 July 2021";
-  // const name = "Aliansyah Firdaus";
 
   const [profile, setProfile] = useState({
     fullName: "",
@@ -28,9 +23,10 @@ export default function DetailPage() {
 
   useEffect(() => {
     getProfile().then(({ data }) => {
+      console.log(data);
       setProfile({
         ...profile,
-        fullName: localStorage.getItem("fullName"),
+        fullName: data.User.fullName,
         avatar: data.profilePicture,
         banner: data.banner,
         about: data.bio,

@@ -286,6 +286,8 @@ label {
 
 /* Avatar */
 .avatar {
+  height: 170px;
+  width: 170px;
   border-radius: 50%;
   margin-right: 10px;
   object-fit: cover;
@@ -647,6 +649,7 @@ label {
 .sidebar-profile .background-profile {
   max-width: 1280px;
   max-height: 300px;
+  position: relative;
 }
 
 .detail-page .avatar {
@@ -687,6 +690,8 @@ label {
 }
 
 .avatar-edit {
+  height: 170px;
+  width: 170px;
   max-width: 170px;
   max-height: 170px;
   border-radius: 50%;

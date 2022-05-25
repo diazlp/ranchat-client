@@ -1,7 +1,6 @@
-import { Col, Row, Stack } from "react-bootstrap";
+import { Col, Form, Row, Stack } from "react-bootstrap";
 
 import Icon from "../../components/Icon/Icon";
-import InputComponent from "../Form/InputComponent";
 
 export default function HeadSection({
   sosmed,
@@ -15,7 +14,7 @@ export default function HeadSection({
 }) {
   return (
     <Row className="head-detail">
-      <div>
+      <div className="p-0">
         <img
           src={profileBanner}
           className={`background-profile-${edit ? "edit" : ""} img-fluid p-0`}
@@ -43,11 +42,11 @@ export default function HeadSection({
           <div className="d-flex gap-3 align-items-center">
             {!edit && <h1>{name}</h1>}
             {edit && (
-              <InputComponent
+              <Form.Control
                 type="text"
                 placeholder="Username"
-                placement="head-section-edit"
                 value={name}
+                className="mb-3 w-50"
               />
             )}
           </div>
