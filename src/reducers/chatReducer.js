@@ -2,6 +2,7 @@ import {
   FETCH_FRIEND_ROOM,
   FETCH_HISTORY_CHAT,
   FETCH_FRIEND_NAME,
+  SET_NEW_MESSAGE,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   friendRoom: "",
   friendHeaderName: "",
   friendHeaderPhoto: "",
+  newMessage: {},
 };
 
 const chatReducer = (state = initialState, action) => {
@@ -30,6 +32,11 @@ const chatReducer = (state = initialState, action) => {
         ...state,
         friendHeaderName: action.payload.name,
         friendHeaderPhoto: action.payload.photoProfile,
+      };
+    case SET_NEW_MESSAGE:
+      return {
+        ...state,
+        newMessage: action.payload,
       };
     default:
       return state;

@@ -19,6 +19,7 @@ export default function ChatFooter({ level }) {
   const dispatch = useDispatch();
   const sendMesssage = () => {
     if (message && friendRoom) {
+      console.log("asad");
       const chatListById = chatList.filter((list) => list._id === friendRoom);
       const receiverId = chatListById[0].members.find(
         (member) => member !== profile.UserId
@@ -48,7 +49,8 @@ export default function ChatFooter({ level }) {
       formData.append("friendRoom", friendRoom);
       formData.append("id", profile.UserId);
 
-      dispatch(sendImage({ formData, friendRoom })).then(({ data }) => {
+      dispatch(sendImage({ formData, id: profile.UserId })).then(({ data }) => {
+        console.log(data);
         socket.emit("sendMessage", {
           friendRoom,
           senderId: profile.UserId,

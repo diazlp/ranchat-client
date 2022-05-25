@@ -13,20 +13,21 @@ export default function ChatArea() {
 
   const { socket } = useContext(SocketContext);
   const { friendRoom } = useSelector((state) => state.chat);
-  const { chatHistory } = useSelector((state) => state.chat);
+  const { chatHistory, newMessage } = useSelector((state) => state.chat);
   const [friendrommid, setFirendRoomId] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     socket.on("getMessage", (data) => {
+      console.log(data);
       setFirendRoomId(data.friendRoom);
       setArrivalMessage({
         fromSelf: "guest",
         message: data.text,
         senderId: data.senderId,
+        photo: data.photo,
         time: Date.now(),
-        // photo: "asasaswewvdaccqwqc",
       });
       if (data.friendRoom !== friendRoom) {
         dispatch(getChatList());
@@ -41,8 +42,10 @@ export default function ChatArea() {
   }, [arrivalMessage]);
 
   useEffect(() => {
+    newMessage && setMessages((prev) => [...prev, newMessage]);
+  }, [newMessage]);
+  useEffect(() => {
     setMessages(chatHistory);
-    console.log(window.scrollTo(0, 200));
   }, [chatHistory]);
   return (
     <Row className="chat-area">
@@ -55,8 +58,9 @@ export default function ChatArea() {
                 from={chat.fromSelf}
                 message={chat.message}
                 time={format(chat.time)}
+                type={chat.type}
                 sender={chat.senderId}
-                image="https://dummyimage.com/600x400/000/fff"
+                image={chat.photo}
               />
             ))}
         </Col>
