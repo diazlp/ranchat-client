@@ -6,8 +6,9 @@ import {
   registerUser,
   emailVerification,
 } from "../../actions/userAction";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { SocketContext } from "../../context/SocketContext";
 
 export default function FormComponent({ type }) {
   const [email, setEmail] = useState("");
@@ -19,6 +20,7 @@ export default function FormComponent({ type }) {
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  const { socket, setOnlineUsers } = useContext(SocketContext);
   const navigate = useNavigate();
 
   const login = () => {
@@ -32,7 +34,11 @@ export default function FormComponent({ type }) {
     }
 
     getToken({ email, password })
-      .then(() => {
+      .then((data) => {
+        socket.emit("adduser", data.profile.id);
+        socket.on("getUsers", (data) => {
+          setOnlineUsers(data);
+        });
         navigate("/");
       })
       .catch((err) => {

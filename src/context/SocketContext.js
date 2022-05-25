@@ -75,6 +75,14 @@ const ContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      getProfile().then(({ data }) => {
+        setProfile(data);
+      });
+    }
+  }, [localStorage.getItem("access_token")]);
+
+  useEffect(() => {
     socket.on("receiveMessageFromVideo", (data) => {
       dispatch(receiveMessage(data));
     });
@@ -219,6 +227,8 @@ const ContextProvider = ({ children }) => {
         sendFriendRequest,
         onlineUsers,
         profile,
+        setOnlineUsers,
+        setProfile,
       }}
     >
       {children}

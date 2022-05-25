@@ -45,6 +45,11 @@ export default function SidebarFriend({ data }) {
     );
     setTotalOnline(onlineFriends.length);
   }, [friendList, onlineUsers]);
+
+  useEffect(() => {
+    setTotalOnline(onlineFriends.length);
+  }, [onlineFriends]);
+
   return (
     <Col className="col-3 sidebar-friend">
       <SidebarHeaders text="Friend" num={totalFriends} />
