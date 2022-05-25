@@ -8,24 +8,21 @@ export default function AboutMe({ about, edit, action, sosmed }) {
       <div className="border p-3">
         <Col className="d-flex gap-3">
           <Form.Control as="textarea" rows={6} value={about} />
-          <Stack>
-            <InputComponent
+          <Stack gap={4}>
+            <Form.Control
               type="text"
               placeholder="facebook"
-              placement="edit-sosmed-facebook"
               value={sosmed.facebook}
             />
-            <InputComponent
+            <Form.Control
               type="text"
               placeholder="instagram"
-              placement="edit-sosmed-instagram"
-              value={sosmed.twitter}
+              value={sosmed.instagram}
             />
-            <InputComponent
+            <Form.Control
               type="text"
               placeholder="twitter"
-              placement="edit-sosmed-twitter"
-              value={sosmed.instagram}
+              value={sosmed.twitter}
             />
           </Stack>
         </Col>
