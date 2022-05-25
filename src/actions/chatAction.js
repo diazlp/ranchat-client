@@ -2,6 +2,7 @@ import {
   FETCH_FRIEND_ROOM,
   FETCH_HISTORY_CHAT,
   FETCH_FRIEND_NAME,
+  SET_NEW_MESSAGE,
 } from "./actionTypes";
 import axios from "axios";
 
@@ -10,6 +11,13 @@ const serverAppUrl = "http://localhost:4001";
 const setFriendRoom = (payload) => {
   return {
     type: FETCH_FRIEND_ROOM,
+    payload,
+  };
+};
+
+const newMessage = (payload) => {
+  return {
+    type: SET_NEW_MESSAGE,
     payload,
   };
 };
@@ -112,7 +120,15 @@ export const sendMessage = ({ message, friendRoom, id }) => {
         }
       )
       .then(() => {
-        dispatch(getHistoryChat(friendRoom));
+        dispatch(
+          newMessage({
+            fromSelf: "you",
+            message,
+            senderId: id,
+            photo: null,
+            time: Date.now(),
+          })
+        );
       })
       .catch((err) => {
         console.log(err.response);
@@ -120,7 +136,7 @@ export const sendMessage = ({ message, friendRoom, id }) => {
   };
 };
 
-export const sendImage = ({ formData, friendRoom }) => {
+export const sendImage = ({ formData, id }) => {
   return (dispatch) => {
     return axios
       .post(`${serverAppUrl}/messages/addmessage`, formData, {
@@ -129,8 +145,16 @@ export const sendImage = ({ formData, friendRoom }) => {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then((data) => {
-        dispatch(getHistoryChat(friendRoom));
+      .then(( data ) => {
+        dispatch(
+          newMessage({
+            fromSelf: "you",
+            message: null,
+            senderId: id,
+            photo: data.data.imgUrl,
+            time: Date.now(),
+          })
+        );
         return data;
       })
       .catch((err) => {

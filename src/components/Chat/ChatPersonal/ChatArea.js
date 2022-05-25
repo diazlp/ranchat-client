@@ -13,7 +13,7 @@ export default function ChatArea() {
 
   const { socket } = useContext(SocketContext);
   const { friendRoom } = useSelector((state) => state.chat);
-  const { chatHistory } = useSelector((state) => state.chat);
+  const { chatHistory, newMessage } = useSelector((state) => state.chat);
   const [friendrommid, setFirendRoomId] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -40,6 +40,10 @@ export default function ChatArea() {
       arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
     }
   }, [arrivalMessage]);
+
+  useEffect(() => {
+    newMessage && setMessages((prev) => [...prev, newMessage]);
+  }, [newMessage]);
   useEffect(() => {
     setMessages(chatHistory);
   }, [chatHistory]);
