@@ -60,16 +60,19 @@ export default function ButtonPrimary({
         {text}
       </Button>
     );
-  } else if (placement === "video-action btn-ran") {
+  } else if (placement === "video-action btn-request") {
     return (
-      <Button className={`btn-${placement}`} onClick={() => action()}>
+      <Button
+        className={`btn-${placement}`}
+        onClick={() => sendFriendRequest()}
+      >
         {placement === "premium-cta" && (
           <Icon name="crown" placement="premium" />
         )}
         {text}
       </Button>
     );
-  } else if (placement === "video-action btn-request") {
+  } else if (placement === "video-action btn-ran") {
     return (
       <Button
         className={`btn-${placement}`}
@@ -82,8 +85,7 @@ export default function ButtonPrimary({
         {placement === "premium-cta" && (
           <Icon name="crown" placement="premium" />
         )}
-        {text}
-        {seconds !== 0 && `( ${seconds} )`}
+        {text + " "} {seconds !== 0 && `( ${seconds} )`}
       </Button>
     );
   } else {
