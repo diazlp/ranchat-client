@@ -2,7 +2,14 @@ import { Button, Col, Stack } from "react-bootstrap";
 
 import Icon from "../Icon/Icon";
 
-export default function UserInfo({ placement, privacy, edit, gender }) {
+export default function UserInfo({
+  placement,
+  privacy,
+  edit,
+  gender,
+  birthday,
+  address,
+}) {
   const icon = (val) => {
     switch (val) {
       case "Birthday":
@@ -52,13 +59,30 @@ export default function UserInfo({ placement, privacy, edit, gender }) {
           </Stack>
         )}
 
-        {placement !== "Gender" && (
+        {/* DIAZ CODE */}
+        {placement === "Birthday" && (
           <Stack direction="horizontal" gap={3}>
             <Icon
               name={icon(privacy)}
               placement="user-info-privacy clickable"
             />
-            <p className="m-0 user-info-value">03 July 2021</p>
+            <p className="m-0 user-info-value">{birthday}</p>
+            {edit && (
+              <Icon
+                name="square-pen"
+                placement="edit-user-info icon-edit-profile-info clickable"
+              />
+            )}
+          </Stack>
+        )}
+
+        {placement === "Live in" && (
+          <Stack direction="horizontal" gap={3}>
+            <Icon
+              name={icon(privacy)}
+              placement="user-info-privacy clickable"
+            />
+            <p className="m-0 user-info-value">{address}</p>
             {edit && (
               <Icon
                 name="square-pen"
