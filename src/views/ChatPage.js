@@ -16,9 +16,9 @@ export default function ChatPage() {
   const [modalShow, setModalShow] = useState(false);
   const [premium, setPremium] = useState(false);
   const [loginStatus, setLoginStatus] = useState(false);
-  const lvl = 10;
+  // const lvl = 10;
 
-  const [lvFriend, setLvFriend] = useState(0);
+  const [lvFriend, setLvFriend] = useState(100);
   const [listChat, setlistChat] = useState([]);
 
   const navigate = useNavigate();
@@ -32,9 +32,9 @@ export default function ChatPage() {
     setlistChat(chatList);
   }, [chatList]);
 
-  useEffect(() => {
-    setLvFriend(Math.floor(chatHistory.length / 10));
-  }, [chatHistory]);
+  // useEffect(() => {
+  //   setLvFriend(Math.floor(chatHistory.length / 10));
+  // }, [chatHistory]);
 
   useEffect(() => {
     if (localStorage.getItem("access_token")) {
