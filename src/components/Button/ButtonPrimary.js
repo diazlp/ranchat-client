@@ -88,7 +88,7 @@ export default function ButtonPrimary({
         disabled={disabled}
         onClick={() => {
           action();
-          setSeconds(10);
+          setSeconds(15);
         }}
       >
         {placement === "premium-cta" && (

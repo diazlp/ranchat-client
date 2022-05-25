@@ -76,12 +76,12 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
 
           <Col className="d-flex justify-content-center mb-4" id="action">
             <Stack direction="horizontal" gap={3}>
-              <ButtonPrimary
+              {/* <ButtonPrimary
                 text="Run"
                 action={ranButtonHandler}
                 placement="video-action btn-ran"
                 disabled={disabled}
-              />
+              /> */}
 
               <ButtonPrimary
                 text="Stop"
@@ -120,11 +120,11 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
                 action={ranButtonHandler}
                 placement="video-action btn-ran"
               />
-              <ButtonPrimary
+              {/* <ButtonPrimary
                 text="Stop"
                 action="/"
                 placement="video-action btn-stop"
-              />
+              /> */}
               {showButtonReq(isLogin)}
             </Stack>
           </Col>
