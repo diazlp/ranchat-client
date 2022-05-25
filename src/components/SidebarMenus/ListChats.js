@@ -18,6 +18,7 @@ export default function ListChats({ chat }) {
   useEffect(() => {
     if (chat) {
       const friendId = chat.members.find((m) => m !== profile.UserId);
+
       getUser(friendId).then(({ data }) => {
         setUser(data);
       });

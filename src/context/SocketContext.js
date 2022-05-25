@@ -11,6 +11,7 @@ import {
 import { getProfile } from "../actions/userAction";
 import { addFriend } from "../actions/friendAction";
 import { sendMessage } from "../actions/guestAction";
+
 const SocketContext = createContext();
 
 const socket = io(
@@ -50,7 +51,7 @@ const ContextProvider = ({ children }) => {
         });
       });
     }
-
+   
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((currentStream) => {
@@ -73,6 +74,14 @@ const ContextProvider = ({ children }) => {
     //   dispatch(receiveMessage(data));
     // });
   }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      getProfile().then(({ data }) => {
+        setProfile(data);
+      });
+    }
+  }, [localStorage.getItem("access_token")]);
 
   useEffect(() => {
     socket.on("receiveMessageFromVideo", (data) => {
@@ -219,6 +228,8 @@ const ContextProvider = ({ children }) => {
         sendFriendRequest,
         onlineUsers,
         profile,
+        setOnlineUsers,
+        setProfile,
       }}
     >
       {children}

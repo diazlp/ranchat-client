@@ -20,7 +20,6 @@ export default function ChatArea() {
 
   useEffect(() => {
     socket.on("getMessage", (data) => {
-      console.log(data);
       setFirendRoomId(data.friendRoom);
       setArrivalMessage({
         fromSelf: "guest",

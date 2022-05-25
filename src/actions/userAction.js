@@ -18,6 +18,7 @@ export const getToken = (data) => {
       localStorage.setItem("fullName", data.profile?.fullName);
       localStorage.setItem("isVerified", data.profile?.isVerified);
       localStorage.setItem("isPremium", data.profile?.isPremium);
+      return data;
     });
 };
 

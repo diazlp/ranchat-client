@@ -7,8 +7,6 @@ import ListChats from "./ListChats";
 import { useEffect, useState } from "react";
 
 export default function SidebarChat({ premium, listChat, setModalShow }) {
-  const message = listChat.length;
-
   const [totalMessage, setTotalMessage] = useState(0);
 
   useEffect(() => {

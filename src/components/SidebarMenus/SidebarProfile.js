@@ -1,7 +1,20 @@
 import { Col, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SidebarHeader from "../Headers/SidebarHeaders";
+import { SocketContext } from "../../context/SocketContext";
+import { useContext } from "react";
+
 export default function SidebarProfile({ premium }) {
+  const { profile, socket, setOnlineUsers } = useContext(SocketContext);
+
+  const removeUserLogout = () => {
+    socket.emit("removeUserLogout", profile.UserId);
+
+    socket.on("getUsers", (data) => {
+      setOnlineUsers(data);
+    });
+    localStorage.clear();
+  };
   const profileMenus = [
     {
       id: 1,
@@ -25,7 +38,7 @@ export default function SidebarProfile({ premium }) {
           </Link>
         ))}
         <Link
-          onClick={() => localStorage.clear()}
+          onClick={() => removeUserLogout()}
           to={"/"}
           className="nav-link mb-3 p-3"
         >
