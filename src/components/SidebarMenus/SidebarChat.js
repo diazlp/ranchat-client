@@ -41,5 +41,5 @@ export default function SidebarChat({ premium, listChat }) {
           listChat.map((chat, i) => <ListChats key={i} chat={chat} />)}
       </Row>
     </Col>
-  );
+  )
 }
