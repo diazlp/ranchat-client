@@ -20,12 +20,14 @@ export default function ChatArea() {
 
   useEffect(() => {
     socket.on("getMessage", (data) => {
+      console.log(data);
       setFirendRoomId(data.friendRoom);
       setArrivalMessage({
         fromSelf: "guest",
         message: data.text,
         senderId: data.senderId,
         photo: data.photo,
+        type: data.type,
         time: Date.now(),
       });
       if (data.friendRoom !== friendRoom) {
@@ -46,6 +48,7 @@ export default function ChatArea() {
   useEffect(() => {
     setMessages(chatHistory);
   }, [chatHistory]);
+
   return (
     <Row className="chat-area">
       <ScrollToBottom className="chat-area">

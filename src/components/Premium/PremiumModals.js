@@ -126,7 +126,7 @@ export default function PremiumModal(props) {
             </Table>
           </div>
           <div className="d-flex justify-content-between px-3 align-items-center premium-footer">
-            <h2 className="text-secondary m-0">Rp. 993rb</h2>
+            <h2 className="text-secondary m-0">Rp 150.000</h2>
             <Button
               onClick={() => payment()}
               className="btn btn-premium-payment btn-lg"

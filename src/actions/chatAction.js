@@ -103,7 +103,7 @@ export const addRoom = ({ receiverId, sender }) => {
   };
 };
 
-export const sendMessage = ({ message, friendRoom, id }) => {
+export const sendMessage = ({ location, message, friendRoom, id }) => {
   return (dispatch) => {
     return axios
       .post(
@@ -111,6 +111,7 @@ export const sendMessage = ({ message, friendRoom, id }) => {
         {
           friendRoom,
           text: message,
+          location,
           id,
         },
         {
@@ -120,15 +121,29 @@ export const sendMessage = ({ message, friendRoom, id }) => {
         }
       )
       .then(() => {
-        dispatch(
-          newMessage({
-            fromSelf: "you",
-            message,
-            senderId: id,
-            photo: null,
-            time: Date.now(),
-          })
-        );
+        if (location) {
+          dispatch(
+            newMessage({
+              fromSelf: "you",
+              message: location,
+              senderId: id,
+              type: "location",
+              photo: null,
+              time: Date.now(),
+            })
+          );
+        } else {
+          dispatch(
+            newMessage({
+              fromSelf: "you",
+              message,
+              senderId: id,
+              type: "text",
+              photo: null,
+              time: Date.now(),
+            })
+          );
+        }
       })
       .catch((err) => {
         console.log(err.response);
@@ -145,12 +160,13 @@ export const sendImage = ({ formData, id }) => {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then(( data ) => {
+      .then((data) => {
         dispatch(
           newMessage({
             fromSelf: "you",
             message: null,
             senderId: id,
+            type: "image",
             photo: data.data.imgUrl,
             time: Date.now(),
           })

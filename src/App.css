@@ -588,6 +588,12 @@ label {
   border-radius: 25px;
   padding: 15px 5px;
 }
+.image-location {
+  width: 200px;
+  border-radius: 25px;
+  padding: 15px 5px;
+  /* background-color: rgb(100, 40, 156); */
+}
 
 /* Friend List */
 .friend-list {
@@ -699,7 +705,7 @@ label {
   position: relative;
 }
 
-.avatar-friend-list{
+.avatar-friend-list {
   border-radius: 50%;
   margin-right: 10px;
   object-fit: cover;

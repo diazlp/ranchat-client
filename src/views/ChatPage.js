@@ -103,10 +103,8 @@ export default function ChatPage() {
               />
               <h1>Welcome to RanChat!</h1>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s Lorem Ipsum is simply dummy text of
-                the printing and
+                This is a place where you can chat with your new acquintance and
+                make them even more of a closer. Only in RanChat
               </p>
             </Stack>
           </Col>

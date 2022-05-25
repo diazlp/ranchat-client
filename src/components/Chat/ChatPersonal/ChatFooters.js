@@ -8,6 +8,8 @@ import { sendMessage, sendImage } from "../../../actions/chatAction";
 import { SocketContext } from "../../../context/SocketContext";
 
 export default function ChatFooter({ level }) {
+  const [position, setPosition] = useState("");
+
   const authLvl = (lvl) => (lvl > 4 ? true : false);
   const { socket, profile } = useContext(SocketContext);
   // const [arrivalMessage, setArrivalMessage] = useState(null);
@@ -19,7 +21,6 @@ export default function ChatFooter({ level }) {
   const dispatch = useDispatch();
   const sendMesssage = () => {
     if (message && friendRoom) {
-      console.log("asad");
       const chatListById = chatList.filter((list) => list._id === friendRoom);
       const receiverId = chatListById[0].members.find(
         (member) => member !== profile.UserId
@@ -31,6 +32,7 @@ export default function ChatFooter({ level }) {
         senderId: profile.UserId,
         receiverId,
         text: message,
+        type: "text",
       });
       setMessage("");
     }
@@ -57,9 +59,39 @@ export default function ChatFooter({ level }) {
           receiverId,
           text: null,
           photo: data.imgUrl,
+          type: "image",
         });
       });
     }
+  };
+
+  const sendLocation = () => {
+    const chatListById = chatList.filter((list) => list._id === friendRoom);
+
+    const receiverId = chatListById[0].members.find(
+      (member) => member !== profile.UserId
+    );
+
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        dispatch(
+          sendMessage({
+            location: `https://www.google.com/maps/@${latitude},${longitude},30z`,
+            friendRoom,
+            id: profile.UserId,
+          })
+        );
+
+        socket.emit("sendMessage", {
+          friendRoom,
+          senderId: profile.UserId,
+          receiverId,
+          text: `https://www.google.com/maps/@${latitude},${longitude},30z`,
+          type: "location",
+        });
+        // setPosition();
+      }
+    );
   };
 
   const inputMessage = (value) => {
@@ -80,13 +112,17 @@ export default function ChatFooter({ level }) {
         </Col>
         <Col className="col-2 d-flex justify-content-center">
           <Stack direction="horizontal" gap={4}>
-            <Icon name="note-sticky" placement="send-gif clickable" />
+            {/* <Icon name="note-sticky" placement="send-gif clickable" /> */}
             <IconAuthen
               icon="image"
               auth={authLvl(level)}
               action={sendingImage}
             />
-            <IconAuthen icon="street-view" auth={authLvl(level)} />
+            <IconAuthen
+              icon="street-view"
+              auth={authLvl(level)}
+              action={sendLocation}
+            />
           </Stack>
         </Col>
       </Row>

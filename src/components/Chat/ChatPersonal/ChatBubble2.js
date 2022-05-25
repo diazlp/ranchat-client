@@ -4,7 +4,14 @@ import { useEffect, useState } from "react";
 
 import Avatar from "../../Avatar/Avatar";
 
-export default function ChatBubble2({ from, message, time, sender, image }) {
+export default function ChatBubble2({
+  from,
+  message,
+  time,
+  sender,
+  image,
+  type,
+}) {
   const [user, setUser] = useState("");
   useEffect(() => {
     getUser(sender).then(({ data }) => {
@@ -20,9 +27,27 @@ export default function ChatBubble2({ from, message, time, sender, image }) {
               <Stack direction="horizontal">
                 <Stack className="me-3" gap={2}>
                   <div className="cb1 chat-you px-3 py-2 d-flex align-items-center">
-                    {image && <img src={image} className="image-message" />}
-                    {!image && (
+                    {type === "image" && (
+                      <img src={image} className="image-message" />
+                    )}
+                    {type === "text" && (
                       <p className="m-0 p-1 chat-message">{message}</p>
+                    )}
+                    {type === "location" && (
+                      <a
+                        href={message}
+                        target="_blank"
+                        style={{
+                          color: "white",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <img
+                          src="https://cdn.pixabay.com/photo/2016/03/22/04/23/map-1272165_960_720.png"
+                          alt="my-location"
+                          className="image-location"
+                        />
+                      </a>
                     )}
                   </div>
                   <p className="align-self-end chat-time">{time}</p>
@@ -56,9 +81,27 @@ export default function ChatBubble2({ from, message, time, sender, image }) {
                 </div>
                 <Stack className="ms-3" gap={2}>
                   <div className="cb1 chat-guest px-3 py-1 d-flex align-items-center">
-                    {image && <img src={image} className="image-message" />}
-                    {!image && (
+                    {type === "image" && (
+                      <img src={image} className="image-message" />
+                    )}
+                    {type === "text" && (
                       <p className="m-0 p-1 chat-message">{message}</p>
+                    )}
+                    {type === "location" && (
+                      <a
+                        href={message}
+                        target="_blank"
+                        style={{
+                          color: "white",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <img
+                          src="https://cdn.pixabay.com/photo/2016/03/22/04/23/map-1272165_960_720.png"
+                          alt="my-location"
+                          className="image-location"
+                        />
+                      </a>
                     )}
                   </div>
                   <p className="align-self-start chat-time">{time}</p>

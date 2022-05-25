@@ -7,7 +7,7 @@ export default function IconAuthen({ icon, auth, action }) {
     if (icon === "image") {
       return <Icon name={icon} placement="authen-true image" action={action} />;
     }
-    return <Icon name={icon} placement="authen-true" />;
+    return <Icon name={icon} placement="authen-true" action={action} />;
   } else {
     return (
       <OverlayTrigger
