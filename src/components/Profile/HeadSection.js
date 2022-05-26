@@ -20,19 +20,18 @@ export default function HeadSection({
 
   return (
     <Row className="head-detail">
-      <div className="p-0">
-        <img
-          src={profileBanner}
-          className={`background-profile-${edit ? "edit" : ""} img-fluid p-0`}
+      <img
+        src={profileBanner}
+        className={`background-profile${edit ? "-edit" : ""} p-0`}
+        height={300}
+      />
+      {/* {edit && (
+        <Icon
+          name="square-pen"
+          placement="edit-user-info icon-edit-profile-banner clickable"
+          action={action}
         />
-        {edit && (
-          <Icon
-            name="square-pen"
-            placement="edit-user-info icon-edit-profile-banner clickable"
-            action={action}
-          />
-        )}
-      </div>
+      )} */}
       <Col className="d-flex px-5">
         <div>
           <img

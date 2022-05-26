@@ -38,7 +38,7 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
         {call.isReceivedCall && !callAccepted && (
           <Row id="notification" className="bg-light p-3">
             <Stack direction="horizontal" gap={3}>
-              Jodoh mu sudah datang!
+              Kamu menemukan teman mu!
               <Button onClick={answerCall} size="sm">
                 Let's Go!
               </Button>
