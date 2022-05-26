@@ -6,8 +6,8 @@ export default function ListFriend({ friends, status }) {
   const makeRoomFriend = () => {
     dispatch(
       addRoom({
-        receiverId: friends.FriendData.id,
-        sender: friends.FriendData.fullName,
+        receiverId: friends.FriendData?.id,
+        sender: friends.FriendData?.fullName,
       })
     );
   };
@@ -20,9 +20,9 @@ export default function ListFriend({ friends, status }) {
       }}
     >
       <FriendListItem
-        username={friends.FriendData.fullName}
+        username={friends.FriendData?.fullName}
         status={status}
-        avatar={friends.FriendData.Profile.profilePicture}
+        avatar={friends.FriendData?.Profile?.profilePicture}
         level={3}
       />
     </div>

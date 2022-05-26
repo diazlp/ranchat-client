@@ -17,7 +17,7 @@ export default function ListChats({ chat }) {
   // const { profile } = useSelector((state) => state.user);
   useEffect(() => {
     if (chat) {
-      const friendId = chat.members.find((m) => m !== profile.UserId);
+      const friendId = chat.members?.find((m) => m !== profile?.UserId);
       getUser(friendId).then(({ data }) => {
         setUser(data);
       });
@@ -33,7 +33,7 @@ export default function ListChats({ chat }) {
             dispatch(
               friendHeader({
                 name: user.fullName,
-                photoProfile: user.Profile.profilePicture,
+                photoProfile: user.Profile?.profilePicture,
               })
             );
           }}
@@ -41,7 +41,7 @@ export default function ListChats({ chat }) {
           <ChatList
             name={user.fullName}
             // message=""
-            image={user.Profile.profilePicture}
+            image={user.Profile?.profilePicture}
           />
         </div>
       )}
