@@ -52,7 +52,7 @@ export default function ChatArea() {
   return (
     <Row className="chat-area">
       <ScrollToBottom className="chat-area">
-        <Col>
+        <Col className="ps-3 pt-3 pb-3">
           {messages.length > 0 &&
             messages.map((chat, i) => (
               <ChatBubble2

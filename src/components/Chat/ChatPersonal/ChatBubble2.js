@@ -1,4 +1,4 @@
-import { Col, Row, Stack } from "react-bootstrap";
+import { Col, Row, Stack, Button } from "react-bootstrap";
 import { getUser } from "../../../actions/userAction";
 import { useEffect, useState } from "react";
 
@@ -42,11 +42,17 @@ export default function ChatBubble2({
                           textDecoration: "none",
                         }}
                       >
-                        <img
-                          src="https://cdn.pixabay.com/photo/2016/03/22/04/23/map-1272165_960_720.png"
-                          alt="my-location"
-                          className="image-location"
-                        />
+                        <Stack className="text-center p-2 gap-3">
+                          <img
+                            src="https://i.ibb.co/pZM4ZS8/map.jpg"
+                            alt="my-location"
+                            className="image-location mt-2"
+                          />
+                          <p className="p-0 m-0">
+                            <i className="fa-solid fa-location-crosshairs me-2"></i>
+                            <strong>See My Location!</strong>
+                          </p>
+                        </Stack>
                       </a>
                     )}
                   </div>

@@ -589,10 +589,12 @@ label {
   padding: 15px 5px;
 }
 .image-location {
-  width: 200px;
-  border-radius: 25px;
-  padding: 15px 5px;
-  /* background-color: rgb(100, 40, 156); */
+  height: 120px;
+  width: 270px !important;
+  object-fit: cover;
+  border-radius: 20px;
+  background-color: #d3d3d356;
+  padding: 7px;
 }
 
 /* Friend List */
