@@ -61,6 +61,10 @@ export default function ChatPage() {
     }
   };
 
+  const hardCodedLevelBasedOnPremiumStatus = () => {
+    return localStorage.getItem("isPremium") === "true" ? 100 : 1;
+  };
+
   return (
     <Container fluid className="chat-page">
       <Row className="vh-100">
@@ -88,7 +92,7 @@ export default function ChatPage() {
           <Col className="bg-light">
             <ChatHeader level={lvFriend} />
             <ChatArea />
-            <ChatFooter level={lvFriend} />
+            <ChatFooter level={hardCodedLevelBasedOnPremiumStatus()} />
           </Col>
         )}
 

@@ -26,11 +26,11 @@ export default function ChatHeader({ level }) {
             </Stack>
             <Stack direction="horizontal" gap={4}>
               <BadgeLevel level={level} size="lg" />
-              <IconAuthen icon="video" auth={authLvl(level)} />
+              {/* <IconAuthen icon="video" auth={authLvl(level)} />
               <Icon
                 name="ellipsis-vertical"
                 placement="header-chat clickable"
-              />
+              /> */}
             </Stack>
           </Col>
         </Row>

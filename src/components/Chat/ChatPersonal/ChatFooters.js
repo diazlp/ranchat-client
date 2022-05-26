@@ -10,6 +10,8 @@ import { SocketContext } from "../../../context/SocketContext";
 export default function ChatFooter({ level }) {
   const [position, setPosition] = useState("");
 
+  console.log(level, "<<<<<");
+
   const authLvl = (lvl) => (lvl > 4 ? true : false);
   const { socket, profile } = useContext(SocketContext);
   // const [arrivalMessage, setArrivalMessage] = useState(null);

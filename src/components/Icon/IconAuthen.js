@@ -17,7 +17,7 @@ export default function IconAuthen({ icon, auth, action }) {
         placement="top"
         overlay={
           <Popover>
-            <Popover.Body>Level mu belum memenuhi</Popover.Body>
+            <Popover.Body>You are not a premium user</Popover.Body>
           </Popover>
         }
       >
