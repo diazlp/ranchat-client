@@ -6,7 +6,10 @@ import {
 } from "./actionTypes";
 import axios from "axios";
 
-const serverAppUrl = "http://localhost:4001";
+const serverAppUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://ranchat-app.herokuapp.com"
+    : "http://localhost:4001";
 
 const setFriendRoom = (payload) => {
   return {

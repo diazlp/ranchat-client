@@ -19,8 +19,8 @@ import EditProfile from "./views/Profiles/EditProfile";
 import Security from "./views/Profiles/Security";
 
 /* DUMMY PAGE */
-import DummyHomepage from "./DummyPage/DummyHomepage";
-import DummyVideoPage from "./DummyPage/DummyVideoPage";
+// import DummyHomepage from "./DummyPage/DummyHomepage";
+// import DummyVideoPage from "./DummyPage/DummyVideoPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,8 +34,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/testchat" element={<DummyHomepage />} />
-        <Route path="/testvideo" element={<DummyVideoPage />} />
+        {/* <Route path="/testchat" element={<DummyHomepage />} /> */}
+        {/* <Route path="/testvideo" element={<DummyVideoPage />} /> */}
         <Route path="/" element={<HomePage />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/login" element={<LoginPage />} />

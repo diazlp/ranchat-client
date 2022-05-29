@@ -16,7 +16,16 @@ const SocketContext = createContext();
 const socket = io(
   process.env.NODE_ENV === "production"
     ? "https://ranchat-app.herokuapp.com"
-    : "http://localhost:4001"
+    : "http://localhost:4001",
+  {
+    transports: ["websocket", "polling"],
+    "force new connection": true,
+    reconnectionAttempts: "Infinity",
+    timeout: 10000,
+    extraHeaders: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  }
 );
 
 const ContextProvider = ({ children }) => {
