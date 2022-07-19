@@ -104,6 +104,7 @@ export default function VideoBox({ guest, isLogin, videoShow }) {
             autoPlay
             width="100%"
             height="100%"
+            muted
           />
         </div>
       </Col>
