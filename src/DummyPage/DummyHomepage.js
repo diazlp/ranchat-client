@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import io from "socket.io-client";
 
 const socket = io.connect(
-  process.env.NODE_ENV === "production"
-    ? "https://ranchat-app.herokuapp.com"
-    : "http://localhost:4001"
+  "https://legendary-screeching-ridge.glitch.me"
+  //   process.env.NODE_ENV === "production"
+  //     ? "https://ranchat-app.herokuapp.com"
+  //     : "http://localhost:4001";
+
 );
 
 export default function HomePage() {

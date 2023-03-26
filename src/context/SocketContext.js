@@ -14,9 +14,11 @@ import { sendMessage } from "../actions/guestAction";
 const SocketContext = createContext();
 
 const socket = io(
-  process.env.NODE_ENV === "production"
-    ? "https://ranchat-app.herokuapp.com"
-    : "http://localhost:4001",
+  "https://legendary-screeching-ridge.glitch.me"
+  //   process.env.NODE_ENV === "production"
+  //     ? "https://ranchat-app.herokuapp.com"
+  //     : "http://localhost:4001";
+  ,
   {
     transports: ["websocket", "polling"],
     "force new connection": true,

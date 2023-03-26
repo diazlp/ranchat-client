@@ -1,9 +1,12 @@
 import axios from "axios";
 
 const serverAppUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://ranchat-app.herokuapp.com"
-    : "http://localhost:4001";
+  "https://legendary-screeching-ridge.glitch.me";
+// const serverAppUrl =
+//   process.env.NODE_ENV === "production"
+//     ? "https://ranchat-app.herokuapp.com"
+//     : "http://localhost:4001";
+
 
 export const getToken = (data) => {
   return axios
